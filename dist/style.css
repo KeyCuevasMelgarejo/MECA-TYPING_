@@ -1,0 +1,235 @@
+/* colores
+ * ------------------------------------------------- 
+    E9E9E9 = blanco
+    cf3e3e = red
+    5f5f5f = gris claro
+    1f1f1f = gris oscuro
+    0D0A0B = gris muy oscuro
+*/
+
+
+
+/* main
+ * ------------------------------------------------- */
+ html,body{
+    background-color: #1f1f1f !important;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+
+/* card
+ * ------------------------------------------------- */
+ .card{
+     color: #5f5f5f;
+     background-color: #1f1f1f !important;
+     border:none !important;
+ }
+
+ .btn-limpiar {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #E9E9E9;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: #cf3e3e;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+}
+
+.btn-limpiar:active {
+    background: rgba(255, 255, 255, 0.12);
+    color:#E9E9E9;
+}
+
+
+
+/* keyboard
+ * ------------------------------------------------- */
+.keyboard {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 5px 0;
+    background: #1f1f1f;
+    user-select: none;
+    transition: bottom 0.4s;
+    z-index: 2;
+}
+
+.keyboard--hidden {
+    bottom: -100%;
+}
+
+.keyboard__keys {
+    text-align: center;
+}
+
+.keyboard__key {
+    height: 40px;
+    width: 6%;
+    max-width: 90px;
+    margin: 2.5px;
+    border-radius: 4px;
+    border: none;
+    background: #cf3e3e;
+    color: #E9E9E9;
+    font-size: 1.05rem;
+    outline: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: top;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+}
+
+.keyboard__key:active {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.keyboard__key--wide {
+    width: 12%;
+}
+
+.keyboard__key--extra-wide {
+    width: 36%;
+    max-width: 500px;
+}
+
+.keyboard__key--activatable::after {
+    content: '';
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #E9E9E9;
+    border-radius: 50%;
+}
+
+.keyboard__key--active::after {
+    background: #3CD2E6;
+}
+
+.keyboard__key--dark {
+    background: #5f5f5f;
+}
+
+
+
+/* text
+ * ------------------------------------------------- */
+ .text {
+    border: 10px solid #cf3e3e;
+    border-radius: 2mm;
+    background-color: #1f1f1f;
+    color: #E9E9E9;
+    padding: 15px;
+    font-size: 18px;
+    width: 100%;
+    height: 150px;
+    margin-bottom: 15px;
+    scrollbar-width: thin;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.text:focus {
+    outline: none !important;
+    border: 10px solid #5f5f5f;
+}
+
+
+
+/* input
+ * ------------------------------------------------- */
+.use-keyboard-input {
+    border: 10px solid #cf3e3e;
+    border-radius: 2mm;
+    background-color: #1f1f1f;
+    color: #E9E9E9;
+    padding: 15px;
+    font-size: 18px;
+    width: 100%;
+    height: 150px;
+    margin-bottom: 15px;
+    scrollbar-width: thin;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.use-keyboard-input:focus {
+    outline: none !important;
+    border: 10px solid #5f5f5f;
+}
+
+.use-keyboard-input::-webkit-scrollbar {
+    width: 11px;
+}
+
+.use-keyboard-input::-webkit-scrollbar-track {
+    background: #1f1f1f;
+}
+
+.use-keyboard-input::-webkit-scrollbar-thumb {
+    background-color: #0D0A0B ;
+    border-radius: 6px;
+    border: 3px solid #1f1f1f;
+}
+
+
+
+/* alert
+ * ------------------------------------------------- */
+.alert{
+    color: #1f1f1f !important;
+    background-color: #3CD2E6 !important;
+}
+
+
+
+/* footer
+ * ------------------------------------------------- */
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #cf3e3e;
+    text-align: center;
+}
+
+.footer a {
+    color: #E9E9E9;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #1f1f1f;
+}
