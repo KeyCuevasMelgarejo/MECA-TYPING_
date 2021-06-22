@@ -35,7 +35,7 @@ const Keyboard = {
         document.querySelectorAll(".use-keyboard-input").forEach(element => {
             element.addEventListener("focus", () => {
                 this.open(element.value, currentValue => {
-                    element.value = currentValue;
+                    element.value = currentValue;                    
                 });
             });
         });

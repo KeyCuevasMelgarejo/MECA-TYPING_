@@ -101,7 +101,22 @@
 }
 
 .keyboard__key:active {
-    background: rgba(255, 255, 255, 0.12);
+    background:rgba(255, 255, 255, 0.12);
+}
+
+.keyboard__key.keypress {
+    animation: keypressed-change-color 1s; /* other keywords like "infinite alternate" can be useful here */
+}
+  
+@keyframes keypressed-change-color {
+    /* You could think of as "step 1" */
+    0% {
+        background: rgba(255, 255, 255, 0.12);
+    }
+    /* You could think of as "step 2" */
+    100% {
+        background: #cf3e3e;
+    }
 }
 
 .keyboard__key--wide {
@@ -164,7 +179,7 @@
 
 /* input
  * ------------------------------------------------- */
-.use-keyboard-input {
+.use-keyboard-input{
     border: 10px solid #cf3e3e;
     border-radius: 2mm;
     background-color: #1f1f1f;

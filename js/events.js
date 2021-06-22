@@ -8,10 +8,13 @@ const Events = {
 
         alerta.style="display:none";
 
+        // if you clic out of use-keyboard-input then close keyboard
         textContent.onclick = function(e) {
             e.preventDefault();
             Keyboard.close();
         }
+
+        // you can't copy and paste from text
         textContent.onpaste = function(e) {
             e.preventDefault();
             alerta.style="display:block";
@@ -22,14 +25,19 @@ const Events = {
             alerta.style="display:block";
             Keyboard.close();
         }
-        btnLimpiar.onclick=function(e){
-            e.preventDefault();
-            textKeyboardInput.value="";
-        }
+
+        // you try to copy or paste show a message and then you can close it
         btnCloseAlert.onclick=function(e){
             e.preventDefault();
             alerta.style.display="none";
         }
+
+        // clear use-keyboard-input
+        btnLimpiar.onclick=function(e){
+            e.preventDefault();
+            textKeyboardInput.value="";
+        }
+
     }
 };
 
