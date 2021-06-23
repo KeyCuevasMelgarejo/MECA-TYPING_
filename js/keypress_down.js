@@ -1,6 +1,5 @@
-const Keypress = {
+const KeypressDown = {
     init(e) {  
-        console.log(e.key+" "+e.keyCode);
         // Detect esc key and close keyboard     
         if(e.key=='Escape'|| e.key=='Esc'|| e.keyCode==27){
             e.preventDefault();
@@ -45,10 +44,9 @@ const Keypress = {
             });
         }else if(e.keyCode==16){ // shift
             document.querySelectorAll(".keyboard__key").forEach(key => {
-                key.classList.remove("keypress");
                 if(key.innerText=="keyboard_arrow_up"){
                     key.addEventListener("click",function(){
-                        key.classList.add("keypress");
+                        key.classList.add("active");
                     });
                     key.dispatchEvent(new Event("click"));
                 }
@@ -80,5 +78,5 @@ const Keypress = {
 };
 
 window.addEventListener('keydown', function(e){
-    Keypress.init(e);
+    KeypressDown.init(e);
 }, true);
