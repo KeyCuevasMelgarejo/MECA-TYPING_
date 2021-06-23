@@ -1,12 +1,13 @@
 const Keypress = {
     init(e) {  
+        console.log(e.key+" "+e.keyCode);
         // Detect esc key and close keyboard     
         if(e.key=='Escape'|| e.key=='Esc'|| e.keyCode==27){
             e.preventDefault();
             Keyboard.close();
             // remove the focus and continue clicking on it to show keyboard again
             document.getElementById("content").blur();
-        }else if(e.keyCode==32){
+        }else if(e.keyCode==32){ // space bar
             // Automatically use keyboard for elements with .use-keyboard-input
             document.querySelectorAll(".keyboard__key").forEach(key => {
                 // 1.this remove class keypress, and looks like :hover effect 
@@ -21,7 +22,7 @@ const Keypress = {
                     key.dispatchEvent(new Event("click"));
                 }
             });
-        }else if(e.keyCode==13){
+        }else if(e.keyCode==13){ // enter
             document.querySelectorAll(".keyboard__key").forEach(key => {
                 key.classList.remove("keypress");
                 if(key.innerText=="keyboard_return"){
@@ -31,7 +32,7 @@ const Keypress = {
                     key.dispatchEvent(new Event("click"));
                 }
             });
-        }else if(e.keyCode==16 || e.keyCode==20){
+        }else if(e.keyCode==20){ // bloq mayus
             document.querySelectorAll(".keyboard__key").forEach(key => {
                 key.classList.remove("keypress");
                 if(key.innerText=="keyboard_capslock"){
@@ -42,7 +43,29 @@ const Keypress = {
                 }
 
             });
-        }else{
+        }else if(e.keyCode==16){ // shift
+            document.querySelectorAll(".keyboard__key").forEach(key => {
+                key.classList.remove("keypress");
+                if(key.innerText=="keyboard_arrow_up"){
+                    key.addEventListener("click",function(){
+                        key.classList.add("keypress");
+                    });
+                    key.dispatchEvent(new Event("click"));
+                }
+
+            });
+        }else if(e.keyCode==46){ // supr erase all
+            document.querySelectorAll(".keyboard__key").forEach(key => {
+                key.classList.remove("suprkeypress");
+                if(key.innerText=="delete"){
+                    key.addEventListener("click",function(){
+                        key.classList.add("suprkeypress");
+                    });
+                    key.dispatchEvent(new Event("click"));
+                }
+
+            });
+        }else{ //numers, letters and backspace
             document.querySelectorAll(".keyboard__key").forEach(key => {
                 key.classList.remove("keypress");
                 if(key.innerText == e.key.toLowerCase() || key.innerText == e.key.toUpperCase()){

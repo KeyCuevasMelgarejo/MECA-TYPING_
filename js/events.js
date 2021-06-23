@@ -32,7 +32,7 @@ const Events = {
             alerta.style.display="none";
         }
 
-        // clear use-keyboard-input
+        // clear use-keyboard-input textarea
         btnLimpiar.onclick=function(e){
             e.preventDefault();
             textKeyboardInput.value="";

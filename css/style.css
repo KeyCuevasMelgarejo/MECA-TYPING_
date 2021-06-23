@@ -105,18 +105,37 @@
 }
 
 .keyboard__key.keypress {
-    animation: keypressed-change-color 1s; /* other keywords like "infinite alternate" can be useful here */
+    animation: keypressed-change-color 1s;
 }
   
 @keyframes keypressed-change-color {
-    /* You could think of as "step 1" */
     0% {
         background: rgba(255, 255, 255, 0.12);
     }
-    /* You could think of as "step 2" */
     100% {
         background: #cf3e3e;
     }
+}
+
+.keyboard__key.suprkeypress {
+    animation: suprkeypressed-change-color 1s;
+}
+  
+@keyframes suprkeypressed-change-color {
+    0% {
+        background: #cf3e3e;
+    }
+    100% {
+        background: #5f5f5f;
+    }
+}
+
+.keyboard__key--backspace {
+    width: 13%;
+}
+
+.keyboard__key--shift {
+    width: 9%;
 }
 
 .keyboard__key--wide {
@@ -130,11 +149,11 @@
 
 .keyboard__key--activatable::after {
     content: '';
-    top: 10px;
+    top: 8px;
     right: 10px;
     position: absolute;
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
     background: #E9E9E9;
     border-radius: 50%;
 }
@@ -147,7 +166,13 @@
     background: #5f5f5f;
 }
 
-
+@media only screen and (max-width:786px) {
+    .keyboard__key--activatable::after {
+        right: 5px;
+        width: 6px;
+        height: 6px;
+    }  
+}
 
 /* text
  * ------------------------------------------------- */
@@ -159,7 +184,7 @@
     padding: 15px;
     font-size: 18px;
     width: 100%;
-    height: 150px;
+    height: 160px;
     margin-bottom: 15px;
     scrollbar-width: thin;
     -webkit-touch-callout: none;
@@ -187,7 +212,7 @@
     padding: 15px;
     font-size: 18px;
     width: 100%;
-    height: 150px;
+    height: 160px;
     margin-bottom: 15px;
     scrollbar-width: thin;
     -webkit-touch-callout: none;
