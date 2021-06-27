@@ -5,8 +5,8 @@ Practica y mejora tu escritura con el teclado.
 
 # Demo
 
-<a href="https://github.com/KeyCuevasMelgarejo/KeyCuevasMelgarejo">
-    <img alt="visitas" title="Visitas Perfil GitHub" src="https://github-contador-visitas.herokuapp.com/"/></a>
+<a href="https://github.com/KeyCuevasMelgarejo/MECA-TYPING_/fork">
+    <img alt="Demo" title="Demo Button" src="https://shields.io/badge/-HAZ%20CLICK%20PARA%20VER%20LA%20DEMO-red.svg?&style=for-the-badge&logo=github&logoColor=white"/></a>
 
 # Uso
 ### 1. Escribe
