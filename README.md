@@ -9,7 +9,7 @@ Practica y mejora tu escritura con el teclado.
     <img alt="Demo" title="Demo Button" src="https://shields.io/badge/-HAZ%20CLIC%20PARA%20VER%20LA%20DEMO-red.svg?&style=for-the-badge&logo=github&logoColor=white"/></a>
     
 # Descarga
-El programa funciona en cualquier navegador pero si deseas te dejo la opción de descargar el ejecutable y usarlo dependiendo el sistema operativo que tengas. No hay ciencia en los pasos para intalar el programa, dale siguiente, siguiente y siguiente y ya está xD
+El programa funciona en cualquier navegador pero si deseas te dejo la opción de descargar el ejecutable y usarlo dependiendo el sistema operativo que tengas. No hay ciencia en los pasos para intalar el programa, dale siguiente, siguiente y siguiente y ya está :see_no_evil: .
 
 # Uso
 ### 1. Escribe
