@@ -1,3 +1,6 @@
+```bash
+# Proyecto en curso...
+```
 # Meca Typing - Descripcion
 Practica y mejora tu escritura con el teclado.
  
