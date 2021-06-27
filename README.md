@@ -10,7 +10,7 @@
 
 # Uso
 ### 1. Escribe
-El programa te indica la tecla en el teclado y los dedos que debes usar según la letra que corresponde al bloque de texto dado.
+El programa te indica la tecla que debes presionar y los dedos que debes usar según la letra que corresponde al bloque de texto dado.
 ### 2. Resultado
 Al finalizar, el programa te indica un estadistico de tu desempeño concerniente a la prácticas realizadas. 
 
