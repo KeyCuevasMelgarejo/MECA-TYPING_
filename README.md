@@ -1,5 +1,5 @@
 # Meca Typing - Descripcion
- Practica tu escritura con el teclado.
+Practica y mejora tu escritura con el teclado.
  
  <img src="https://img.shields.io/badge/LICENCIA-GPL-yellow?style=for-the-badge&logo=git&logoColor=white" alt="licencia" />
 
