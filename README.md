@@ -15,7 +15,7 @@ Practica y mejora tu escritura con el teclado.
 El programa funciona en cualquier navegador pero si deseas te dejo la opción de descargar el ejecutable y usarlo dependiendo el sistema operativo que tengas. No hay ciencia en los pasos para intalar el programa, dale siguiente, siguiente, siguiente y ya está :see_no_evil:.
 
 <a href="https://github.com/KeyCuevasMelgarejo/archivos_publicos_/raw/master/MECA-TYPING_/MecaTyping_Linux.zip">
-    <img alt="Demo" title="Demo Button" src="https://shields.io/badge/-DESCARGA%20PARA%20LINUX-yellow.svg?&style=for-the-badge&logo=linux&logoColor=white"/></a>
+    <img alt="Demo" title="Demo Button" src="https://shields.io/badge/-DESCARGA%20PARA%20LINUX-inactive.svg?&style=for-the-badge&logo=linux&logoColor=white"/></a>
 
 # Uso
 ### 1. Escribe
