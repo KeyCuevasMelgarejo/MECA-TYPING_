@@ -44,6 +44,11 @@ const KeypressDown = {
             });
         }else if(e.keyCode==16){ // shift
             document.querySelectorAll(".keyboard__key").forEach(key => {
+                // change key values, numeric to sign
+                if(key.innerText=="1"){
+                    key.textContent="!";
+                    key.value="!";
+                }
                 if(key.innerText=="keyboard_arrow_up"){
                     key.addEventListener("click",function(){
                         key.classList.add("active");
