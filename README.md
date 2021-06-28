@@ -16,6 +16,8 @@ El programa funciona en cualquier navegador pero si deseas te dejo la opción de
 
 <a href="https://github.com/KeyCuevasMelgarejo/archivos_publicos_/raw/master/MECA-TYPING_/MecaTyping_Linux.zip">
     <img alt="Demo" title="Demo Button" src="https://shields.io/badge/-DESCARGA%20PARA%20LINUX-blue.svg?&style=for-the-badge&logo=linux&logoColor=white"/></a>
+<a href="https://github.com/KeyCuevasMelgarejo/archivos_publicos_/raw/master/MECA-TYPING_/MecaTyping_Windows.zip">
+    <img alt="Demo" title="Demo Button" src="https://shields.io/badge/-DESCARGA%20PARA%20WINDOWS-blue.svg?&style=for-the-badge&logo=windows&logoColor=white"/></a>
 
 # Uso
 ### 1. Escribe
