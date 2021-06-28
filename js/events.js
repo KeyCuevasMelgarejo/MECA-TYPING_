@@ -30,6 +30,7 @@ const Events = {
         // clear use-keyboard-input textarea
         btnLimpiar.onclick=function(e){
             e.preventDefault();
+            Keyboard.properties.value="";
             textKeyboardInput.value="";
         }
     }
@@ -37,4 +38,15 @@ const Events = {
 
 window.addEventListener("DOMContentLoaded", function () {
     Events.init();
+});
+
+window.addEventListener("click", function (e) {
+    var textKeyboardInput = document.querySelector('.use-keyboard-input');
+    var keyboard = document.querySelector('.keyboard');
+    var btnLimpiar = document.querySelector('.btn-limpiar');
+    if (!textKeyboardInput.contains(e.target) 
+    && !keyboard.contains(e.target) 
+    && !btnLimpiar.contains(e.target)) { 
+        Keyboard.close();              
+    }
 });
