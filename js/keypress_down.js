@@ -40,7 +40,6 @@ const KeypressDown = {
                     });
                     key.dispatchEvent(new Event("click"));
                 }
-
             });
         }else if(e.keyCode==16){ // shift
             document.querySelectorAll(".keyboard__key").forEach(key => {
@@ -55,7 +54,6 @@ const KeypressDown = {
                     });
                     key.dispatchEvent(new Event("click"));
                 }
-
             });
         }else if(e.keyCode==46){ // supr erase all
             document.querySelectorAll(".keyboard__key").forEach(key => {
@@ -66,7 +64,6 @@ const KeypressDown = {
                     });
                     key.dispatchEvent(new Event("click"));
                 }
-
             });
         }else{ //numers, letters and backspace
             document.querySelectorAll(".keyboard__key").forEach(key => {

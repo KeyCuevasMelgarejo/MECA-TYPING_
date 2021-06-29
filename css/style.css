@@ -147,13 +147,17 @@
     width: 10%;
 }
 
+.keyboard__key--undo {
+    min-width: 42px;
+}
+
 .keyboard__key--wide {
     width: 12%;
 }
 
 .keyboard__key--extra-wide {
     width: 36%;
-    max-width: 500px;
+    max-width: 430px;
 }
 
 .keyboard__key--activatable::after {

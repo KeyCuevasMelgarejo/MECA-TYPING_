@@ -11,6 +11,8 @@ const Text = {
 
         myInput.readOnly = "true";
         myInput.innerHTML = text;
+
+        saveMemento();
     }
 };
 

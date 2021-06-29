@@ -48,7 +48,7 @@ const Keyboard = {
             "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", 
             "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
             "z", "x", "c", "v", "b", "n", "m", ",", ".", "shift",
-            "done", "space", "erase"
+            "done", "space", "erase", "undo"
         ];
 
         // Creates HTML for an icon
@@ -74,6 +74,8 @@ const Keyboard = {
                     keyElement.addEventListener("click", () => {
                         this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
                         this._triggerEvent("oninput");
+
+                        saveMemento(); // from keypress_undo.js
                     });
 
                     break;
@@ -107,6 +109,8 @@ const Keyboard = {
                     keyElement.addEventListener("click", () => {
                         this.properties.value += "\n";
                         this._triggerEvent("oninput");
+
+                        saveMemento(); // from keypress_undo.js
                     });
 
                     break;
@@ -118,6 +122,8 @@ const Keyboard = {
                     keyElement.addEventListener("click", () => {
                         this.properties.value += " ";
                         this._triggerEvent("oninput");
+
+                        saveMemento(); // from keypress_undo.js
                     });
 
                     break;
@@ -140,6 +146,18 @@ const Keyboard = {
                     keyElement.addEventListener("click", () => {
                         this.properties.value="";
                         document.querySelector('.use-keyboard-input').value="";
+
+                        saveMemento(); // from keypress_undo.js
+                    });
+
+                    break;
+
+                case "undo":
+                    keyElement.classList.add("keyboard__key--undo", "keyboard__key--dark");
+                    keyElement.innerHTML = createIconHTML("undo");
+
+                    keyElement.addEventListener("click", () => {
+                        undo(); // from keypress_undo.js
                     });
 
                     break;
@@ -150,6 +168,8 @@ const Keyboard = {
                     keyElement.addEventListener("click", () => {
                         this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
                         this._triggerEvent("oninput");
+
+                        saveMemento(); // from keypress_undo.js
                     });
 
                     break;
