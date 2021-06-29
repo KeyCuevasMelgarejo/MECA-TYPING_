@@ -31,6 +31,10 @@
      border:none !important;
  }
 
+ .card-text{
+    margin-left: -18px !important;
+ }
+
  .btn-limpiar {
     display: inline-block;
     font-weight: 400;
