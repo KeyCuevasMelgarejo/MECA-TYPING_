@@ -8,5 +8,4 @@ function saveMemento() {
 function undo() {
   const lastMemento = mementos.pop();
   Keyboard.properties.value=lastMemento ? lastMemento : input.value;
-  input.value = lastMemento ? lastMemento : input.value;
 }

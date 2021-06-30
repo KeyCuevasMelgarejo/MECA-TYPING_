@@ -1,7 +1,9 @@
 const KeypressUp = {
     init(e) {  
+        const keyboardKey = document.querySelectorAll(".keyboard__key");
         if(e.keyCode==16){ // shift
-            document.querySelectorAll(".keyboard__key").forEach(key => {
+            e.preventDefault();
+            keyboardKey.forEach(key => {
                 // change key values, sign to numeric
                 if(key.innerText=="!"){
                     key.textContent="1";
@@ -13,6 +15,7 @@ const KeypressUp = {
                         key.classList.remove("active");
                     });
                     key.dispatchEvent(new Event("click"));
+                    keyboardKey.length = 0;
                 }
             });
         }  

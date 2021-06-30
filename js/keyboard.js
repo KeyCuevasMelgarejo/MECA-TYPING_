@@ -73,11 +73,11 @@ const Keyboard = {
 
                     keyElement.addEventListener("click", () => {
                         this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
+                        //this means: document.querySelector('.use-keyboard-input').value="";
                         this._triggerEvent("oninput");
 
                         saveMemento(); // from keypress_undo.js
                     });
-
                     break;
 
                 case "caps":
@@ -85,10 +85,11 @@ const Keyboard = {
                     keyElement.innerHTML = createIconHTML("keyboard_capslock");
 
                     keyElement.addEventListener("click", () => {
+                        keyElement.classList.add("keypress");
+
                         this._toggleCapsLock();
                         keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock);
                     });
-
                     break;
 
                 case "shift":
@@ -97,9 +98,7 @@ const Keyboard = {
 
                     keyElement.addEventListener("click", () => {
                         this._toggleCapsLock();
-                        this._triggerEvent("oninput");
                     });
-
                     break;
 
                 case "enter":
@@ -110,9 +109,10 @@ const Keyboard = {
                         this.properties.value += "\n";
                         this._triggerEvent("oninput");
 
+                        keyElement.classList.add("keypress");
+
                         saveMemento(); // from keypress_undo.js
                     });
-
                     break;
 
                 case "space":
@@ -123,9 +123,13 @@ const Keyboard = {
                         this.properties.value += " ";
                         this._triggerEvent("oninput");
 
+                        // A2.the unique way to create effect after press and change color
+                        // pseudoclasses like :active :hover are not accepted, that why i created @keyframes on style.css
+                        // ...keypress_down.js part A1
+                        keyElement.classList.add("keypress");
+
                         saveMemento(); // from keypress_undo.js
                     });
-
                     break;
 
                 case "done":
@@ -136,7 +140,6 @@ const Keyboard = {
                         this.close();
                         this._triggerEvent("onclose");
                     });
-
                     break;
 
                 case "erase":
@@ -145,11 +148,12 @@ const Keyboard = {
 
                     keyElement.addEventListener("click", () => {
                         this.properties.value="";
-                        document.querySelector('.use-keyboard-input').value="";
+                        this._triggerEvent("oninput");
+
+                        keyElement.classList.add("suprkeypress");
 
                         saveMemento(); // from keypress_undo.js
                     });
-
                     break;
 
                 case "undo":
@@ -158,8 +162,9 @@ const Keyboard = {
 
                     keyElement.addEventListener("click", () => {
                         undo(); // from keypress_undo.js
-                    });
 
+                        this._triggerEvent("oninput");
+                    });
                     break;
 
                 default:
@@ -167,11 +172,10 @@ const Keyboard = {
 
                     keyElement.addEventListener("click", () => {
                         this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
-                        this._triggerEvent("oninput");
-
                         saveMemento(); // from keypress_undo.js
-                    });
 
+                        this._triggerEvent("oninput");
+                    });
                     break;
             }
 
