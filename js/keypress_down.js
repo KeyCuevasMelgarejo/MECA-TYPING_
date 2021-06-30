@@ -41,15 +41,8 @@ const KeypressDown = {
         }else if(e.keyCode==16){ // shift
             e.preventDefault();
             keyboardKey.forEach(key => {
-                // change key values, numeric to sign
-                if(key.innerText=="1"){     
-                    key.textContent="!";
-                    key.value="!";
-                }
                 if(key.innerText=="keyboard_arrow_up"){
-                    key.addEventListener("click",function(){
-                        key.classList.add("active");
-                    });
+                    key.classList.add("active");
                     key.dispatchEvent(new Event("click"));
                     keyboardKey.length = 0;
                 }
