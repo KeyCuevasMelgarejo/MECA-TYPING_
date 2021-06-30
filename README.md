@@ -4,7 +4,7 @@
 # Meca Typing - Descripcion
 Practica y mejora tu escritura con el teclado.
  
- <img src="https://img.shields.io/badge/LICENCIA-GPL-yellow?style=for-the-badge&logo=git&logoColor=white" alt="licencia" />  <img src="https://img.shields.io/badge/TOTAL%20CLONES-80+-yellow?style=for-the-badge&logo=git&logoColor=white" alt="from insights traffic" />
+ <img src="https://img.shields.io/badge/LICENCIA-GPL-yellow?style=for-the-badge&logo=git&logoColor=white" alt="licencia" />
 
 # Demo
 
