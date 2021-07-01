@@ -260,3 +260,65 @@
 .footer a:hover {
     color: #1f1f1f;
 }
+
+/* hands
+ * ------------------------------------------------- */
+ .hands {
+    position: fixed;
+    bottom: -100%;
+    width: 18%;
+    height: 230px;
+    padding: 5px 0;
+    background: transparent;
+    user-select: none;
+    transition: bottom 0.4s;
+    z-index: 3;
+    display: inline-flex;
+}
+
+.right{
+    right: 0;
+}
+
+.left{
+    left: 0;
+}
+
+.hands--show {
+    bottom: 0%;
+}
+
+.hand{
+    position: relative;
+    width: 90%;
+    height: 70%;
+    margin-top: 25px;
+}
+
+.hand-left{
+    margin-left: 6%;
+}
+
+.hand-right{
+    margin-left: 5%;
+}
+
+@media only screen and (max-width:786px) {
+    .hand {
+        margin-top: 0px;
+        width: 50%;
+        height: 40%;
+    }  
+    .hand-left{
+        margin-left: 30%;
+    }
+    .hand-right{
+        margin-left: 20%;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .hands {
+        display: none;
+    }  
+}

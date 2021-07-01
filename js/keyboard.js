@@ -137,7 +137,7 @@ const Keyboard = {
                     keyElement.classList.add("keyboard__key--wide", "keyboard__key--dark");
                     keyElement.innerHTML = createIconHTML("visibility_off");
 
-                    keyElement.addEventListener("click", () => {
+                    keyElement.addEventListener("click", () => {                  
                         this.close();
                         this._triggerEvent("onclose");
                     });
@@ -235,6 +235,8 @@ const Keyboard = {
         this.eventHandlers.oninput = oninput;
         this.eventHandlers.onclose = onclose;
         this.elements.main.classList.remove("keyboard--hidden");
+
+        Hands.open();
     },
 
     close() {
@@ -242,6 +244,8 @@ const Keyboard = {
         this.eventHandlers.oninput = oninput;
         this.eventHandlers.onclose = onclose;
         this.elements.main.classList.add("keyboard--hidden");
+
+        Hands.close();
     }
 };
 

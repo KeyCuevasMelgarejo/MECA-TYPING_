@@ -1,43 +1,17 @@
 const KeypressDown = {
     init(e) { 
-        const keyboardKey = document.querySelectorAll(".keyboard__key");
-        // Detect esc key and close keyboard     
-        if(e.key=='Escape'|| e.key=='Esc'|| e.keyCode==27){
-            e.preventDefault();
-            Keyboard.close();
-            // remove the focus and continue clicking on it to show keyboard again
+        var keyboardKey = document.querySelectorAll(".keyboard__key");    
+        if(e.key=='Escape'|| e.key=='Esc'|| e.keyCode==27){ // detect esc key and close keyboard 
+            this._reSetupEvent(e,keyboardKey,"keypress","visibility_off");
+
+            // remove the focus and allow clicking on it to show keyboard again
             document.getElementById("content").blur();
         }else if(e.keyCode==32){ // space bar
-            e.preventDefault();
-            // Automatically use keyboard for elements with .use-keyboard-input
-            keyboardKey.forEach(key => {
-                // A1.this remove class keypress, and looks like :hover effect ...keyboard.js part A2
-                key.classList.remove("keypress");
-                if(key.innerText=="space_bar"){
-                    // Dispatch/Trigger/Fire the event
-                    key.dispatchEvent(new Event("click"));
-                    // Break out of the loop by truncating array
-                    keyboardKey.length = 0;
-                }
-            });
+            this._reSetupEvent(e,keyboardKey,"keypress","space_bar");
         }else if(e.keyCode==13){ // enter
-            e.preventDefault();
-            keyboardKey.forEach(key => {
-                key.classList.remove("keypress");
-                if(key.innerText=="keyboard_return"){
-                    key.dispatchEvent(new Event("click"));
-                    keyboardKey.length = 0;
-                }
-            });
+            this._reSetupEvent(e,keyboardKey,"keypress","keyboard_return");
         }else if(e.keyCode==20){ // bloq mayus
-            e.preventDefault();
-            keyboardKey.forEach(key => {
-                key.classList.remove("keypress");
-                if(key.innerText=="keyboard_capslock"){
-                    key.dispatchEvent(new Event("click"));
-                    keyboardKey.length = 0;
-                }
-            });
+            this._reSetupEvent(e,keyboardKey,"keypress","keyboard_capslock");
         }else if(e.keyCode==16){ // shift
             e.preventDefault();
             keyboardKey.forEach(key => {
@@ -48,14 +22,7 @@ const KeypressDown = {
                 }
             });
         }else if(e.keyCode==46){ // supr erase all
-            e.preventDefault();
-            keyboardKey.forEach(key => {
-                key.classList.remove("suprkeypress");
-                if(key.innerText=="delete"){
-                    key.dispatchEvent(new Event("click"));
-                    keyboardKey.length = 0;
-                }
-            });
+            this._reSetupEvent(e,keyboardKey,"suprkeypress","delete");
         }else{ //numers, letters and backspace
             keyboardKey.forEach(key => {
                 key.classList.remove("keypress");
@@ -68,6 +35,21 @@ const KeypressDown = {
                 }
             });
         }
+    },
+
+    _reSetupEvent(_e,_keyboardKey,_class,_innerText){
+        _e.preventDefault();
+        // Automatically use keyboard for elements with .use-keyboard-input
+        _keyboardKey.forEach(key => {
+            // A1.this remove class keypress, and looks like :hover effect ...keyboard.js part A2
+            key.classList.remove(_class);
+            if(key.innerText==_innerText){
+                 // Dispatch/Trigger/Fire the event
+                key.dispatchEvent(new Event("click"));
+                // Break out of the loop by truncating array
+                _keyboardKey.length = 0;
+            }
+        });
     }
 };
 
