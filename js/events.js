@@ -11,12 +11,14 @@ const Events = {
         textKeyboardInput.onpaste = function(e) {
             e.preventDefault();
             textKeyboardInput.value = textKeyboardInput.value.substring(0, textKeyboardInput.value.length - 1);
+            alerta.innerHTML="<strong>¡Ey!</strong> No se permite copiar ni pegar";
             alerta.style="display:block";
             Keyboard.close();
         }
         textKeyboardInput.oncopy = function(e) {
             e.preventDefault();
             textKeyboardInput.value = textKeyboardInput.value.substring(0, textKeyboardInput.value.length - 1);
+            alerta.innerHTML="<strong>¡Ey!</strong> No se permite copiar ni pegar";
             alerta.style="display:block";
             Keyboard.close();
         }
@@ -40,6 +42,8 @@ window.addEventListener("DOMContentLoaded", function () {
     Events.init();
 });
 
+
+// close keyboard when press out of .use-keyboard-input
 window.addEventListener("click", function (e) {
     var textKeyboardInput = document.querySelector('.use-keyboard-input');
     var keyboard = document.querySelector('.keyboard');

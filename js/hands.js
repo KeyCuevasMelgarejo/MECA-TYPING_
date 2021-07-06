@@ -1,18 +1,28 @@
 const Hands = {
     init() {
-        // Select container
-        const hands = document.querySelectorAll(".hands");
+        document.querySelectorAll("circle").forEach(element=> {
+            this.fingerAnimation(element);
+        });
+    },
+
+    fingerAnimation(element){
+        transition.begin(element, [
+            ["transform", "translateY(0)", "translateY(0px)", "1s", "ease-in-out"],
+            ["fill", "#cf3e3e", "#E9E9E9", "500ms", "linear"],
+            ["stroke", "#cf3e3e", "#5f5f5f", "500ms", "linear"],
+            //["transform", "scale(1)", "scale(0.5)"]
+        ]);
     },
 
     open() {
-        document.querySelectorAll(".hands").forEach(function(element) {
-            element.classList.add("hands--show");
+        document.querySelectorAll(".content-hands").forEach(element=> {
+            element.classList.add("content-hands--show");
         });
     },
 
     close() {
-        document.querySelectorAll(".hands").forEach(function(element) {
-            element.classList.remove("hands--show");
+        document.querySelectorAll(".content-hands").forEach(element=> {
+            element.classList.remove("content-hands--show");
         });
     }
 };

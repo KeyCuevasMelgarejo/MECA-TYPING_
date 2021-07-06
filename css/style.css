@@ -36,8 +36,15 @@
     margin-left: -17px !important;
  }
 
+ .card-text p{
+    color:#E9E9E9; 
+    display: inline-block;
+    margin-bottom: 0 !important;
+    font-weight: bold;
+ }
+
  .btn-limpiar {
-    margin-top: 5%;
+    margin-top: 360px;
     display: inline-block;
     font-weight: 400;
     line-height: 1.5;
@@ -171,14 +178,6 @@
     border-radius: 50%;
 }
 
-.keyboard__key--active::after {
-    background: #3CD2E6;
-}
-
-.keyboard__key--dark {
-    background: #5f5f5f;
-}
-
 @media only screen and (max-width:786px) {
     .keyboard__key--activatable::after {
         right: 5px;
@@ -187,12 +186,26 @@
     }  
 }
 
+.keyboard__key--active::after {
+    background: #3CD2E6;
+}
+
+.keyboard__key--dark {
+    background: #5f5f5f;
+}
+
+.keyboard__key--pending {
+    background: #3CD2E6;
+}
 
 
-/* input
+
+/* input placeholder
  * ------------------------------------------------- */
-.use-keyboard-input{
-    border: 10px solid #cf3e3e;
+ .use-content-text{
+    position: absolute;
+    z-index: 0;
+    border: 6px solid #cf3e3e;
     border-radius: 2mm;
     background-color: #1f1f1f;
     color: #5f5f5f;
@@ -210,9 +223,58 @@
     user-select: none;
 }
 
+.use-content-text.error {
+    animation: error-change-color 0.5s;
+}
+  
+@keyframes error-change-color {
+    0% {
+        background: #cf3e3e;
+    }
+    100% {
+        background: #1f1f1f;
+    }
+}
+
+.use-content-text.sucess {
+    animation: error-change-color-success 1s;
+}
+  
+@keyframes error-change-color-success {
+    0% {
+        background: #3CD2E6;
+    }
+    100% {
+        background: #1f1f1f;
+    }
+}
+  
+/* input
+ * ------------------------------------------------- */
+.use-keyboard-input{
+    position: absolute;
+    z-index: 1;
+    border: 6px solid #cf3e3e;
+    border-radius: 2mm;
+    background-color: transparent;
+    color: #E9E9E9;
+    padding: 15px;
+    font-size: 18px;
+    width: 100%;
+    height: 280px;
+    margin-bottom: 15px;
+    scrollbar-width: thin;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .use-keyboard-input:focus {
     outline: none !important;
-    border: 10px solid #5f5f5f;
+    border: 6px solid #5f5f5f;
 }
 
 .use-keyboard-input::-webkit-scrollbar {
@@ -263,7 +325,7 @@
 
 /* hands
  * ------------------------------------------------- */
- .hands {
+ .content-hands {
     position: fixed;
     bottom: -100%;
     width: 18%;
@@ -276,15 +338,15 @@
     display: inline-flex;
 }
 
-.right{
+.content-hands-right{
     right: 0;
 }
 
-.left{
+.content-hands-left{
     left: 0;
 }
 
-.hands--show {
+.content-hands--show {
     bottom: 0%;
 }
 
@@ -293,6 +355,7 @@
     width: 90%;
     height: 70%;
     margin-top: 25px;
+    transition: 1s;
 }
 
 .hand-left{
@@ -318,7 +381,7 @@
 }
 
 @media only screen and (max-width:600px) {
-    .hands {
+    .content-hands {
         display: none;
     }  
 }

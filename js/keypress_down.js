@@ -1,6 +1,9 @@
 const KeypressDown = {
     init(e) { 
-        var keyboardKey = document.querySelectorAll(".keyboard__key");    
+        var keyboardKey = document.querySelectorAll(".keyboard__key");  
+        // when press  a key, show keyboard
+        document.querySelector('.use-keyboard-input').dispatchEvent(new Event("focus"));  
+        
         if(e.key=='Escape'|| e.key=='Esc'|| e.keyCode==27){ // detect esc key and close keyboard 
             this._reSetupEvent(e,keyboardKey,"keypress","visibility_off");
 

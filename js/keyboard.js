@@ -13,7 +13,8 @@ const Keyboard = {
     properties: {
         value: "",
         capsLock: false,
-        shift: false
+        shift: false,
+        shiftPending: false
     },
 
     init() {
@@ -74,7 +75,7 @@ const Keyboard = {
 
                     keyElement.addEventListener("click", () => {
                         this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
-                        //this means: document.querySelector('.use-keyboard-input').value="";
+                        //this means: document.querySelector('.use-keyboard-input').value=
                         this._triggerEvent("oninput");
 
                         saveMemento(); // from keypress_undo.js
@@ -180,9 +181,12 @@ const Keyboard = {
                             this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
                         }
 
-                        saveMemento(); // from keypress_undo.js
-
-                        this._triggerEvent("oninput");
+                        if(this._toggleCompareText(this.properties.value)){
+                            this._triggerEvent("oninput");
+                            saveMemento(); // from keypress_undo.js
+                        }else{
+                            this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
+                        }
                     });
                     break;
             }
@@ -209,6 +213,13 @@ const Keyboard = {
         for (const key of this.elements.keys) {
             if (key.childElementCount === 0) {
                 key.textContent = this.properties.capsLock ? key.textContent.toUpperCase() : key.textContent.toLowerCase();
+            }else if(key.textContent=="keyboard_arrow_up"){
+                // when next word needs to press 'shift' but press 'BloqMayus', obviously must remove #3CD2E6 color and viceverse
+                if(this.properties.capsLock==true){
+                    key.classList.remove("keyboard__key--pending");
+                }else if(this.properties.capsLock==false && this.properties.shiftPending==true){
+                    key.classList.add("keyboard__key--pending");
+                }
             }
         }
     },
@@ -228,6 +239,12 @@ const Keyboard = {
                 }
             }
         }
+    },
+
+    _toggleCompareText(wordInserted) {
+        var placeHolderInput = document.querySelector('.use-content-text');
+
+        return Text.compareTo(placeHolderInput, wordInserted);
     },
 
     open(initialValue, oninput, onclose) {

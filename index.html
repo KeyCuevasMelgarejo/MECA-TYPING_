@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" >
-  
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,13 +20,16 @@
       
       <div class="card">
         <div class="card-body">
-          <h5 class="card-text">La siguiente letra es:</h5>
+          <h5 class="card-text"></h5>
         </div>
       </div>
-
-      <div class="row">
+  
+      <div class="row" >
         <div class="col-lg-12">
-          <textarea id="content" readonly class="use-keyboard-input"></textarea>
+          <div style="position: relative;">
+            <textarea id="content-text" readonly class="use-content-text"></textarea>
+            <textarea id="content-keyboard" readonly class="use-keyboard-input"></textarea>
+          </div>
         </div>
         <div class="col-lg-12 text-center">
           <button href="#" class="btn-limpiar">Limpiar todo</button>
@@ -38,7 +40,6 @@
       <div class="row text-center">
         <div class="col-lg-12">
           <div id="alert" class="alert alert-dismissible fade show" role="alert">
-            <strong>¡Ey!</strong> No se permite copiar ni pegar.
             <button id="btn-close-alert" type="button" class="btn-close"></button>
           </div>
         </div>
@@ -46,7 +47,7 @@
     
     </div>
 
-    <div class="hands left">
+    <div class="content-hands content-hands-left">
       <svg class="hand hand-left" enable-background="new 0 0 496.994 496.994" viewBox="0 0 496.994 496.994" xmlns="http://www.w3.org/2000/svg">
         <!--sombra bordes-->
         <path d="m488.329 297.198-150.15 157.15c-27.01 27.01-63.64 42.18-101.83 42.18h-28.35c-72.896 0-132-59.098-132-132 0-35.13-9.25-69.63-26.81-100.05l-44.9-77.77c-6.874-11.904-5.248-26.481 3.17-36.53 14.129-16.905 41.052-14.859 52.26 4.53 65.343 113.181-10.324-17.886 63.94 110.75-51.165-190.945-50.943-185.344-49.14-195.7 
@@ -67,14 +68,14 @@
         <path d="m163.999 405.528c-4.418 0-8-3.582-8-8 0-63.903 47.695-118.445 110.943-126.87 4.394-.576 8.404 2.494 8.986 6.873.584 4.38-2.494 8.403-6.873 8.986-55.331 7.37-97.057 55.095-97.057 111.011.001 4.418-3.581 8-7.999 8z" fill="#f9cfac"/>
         <path d="m163.999 405.528c-4.418 0-8-3.582-8-8 0-63.903 47.695-118.445 110.943-126.87 4.394-.576 8.404 2.494 8.986 6.873.584 4.38-2.494 8.403-6.873 8.986-55.331 7.37-97.057 55.095-97.057 111.011.001 4.418-3.581 8-7.999 8z" fill="#f9cfac" transform='rotate(75) translate(170 -455)'/>
         <!--uñas indicadores-->
-        <circle cx="7.8mm" cy="44mm" r="5%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
-        <circle cx="29mm" cy="19mm" r="6%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
-        <circle cx="60mm" cy="9mm" r="6%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
-        <circle cx="93.5mm" cy="17mm" r="6%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
-        <circle cx="122.5mm" cy="73.9mm" r="5.5%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
+        <circle class="meñique" cx="7.8mm" cy="44mm" r="5%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
+        <circle class="anular" cx="29mm" cy="19mm" r="6%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
+        <circle class="medio" cx="60mm" cy="9mm" r="6%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
+        <circle class="indice" cx="93.5mm" cy="17mm" r="6%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
+        <circle class="gordo" cx="122.5mm" cy="73.9mm" r="5.5%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
       </svg>
     </div>
-    <div class="hands right">
+    <div class="content-hands content-hands-right">
       <svg class="hand hand-right" style="transform: rotateY(180deg)" enable-background="new 0 0 496.994 496.994" viewBox="0 0 496.994 496.994" xmlns="http://www.w3.org/2000/svg">
         <!--sombra bordes-->
         <path d="m488.329 297.198-150.15 157.15c-27.01 27.01-63.64 42.18-101.83 42.18h-28.35c-72.896 0-132-59.098-132-132 0-35.13-9.25-69.63-26.81-100.05l-44.9-77.77c-6.874-11.904-5.248-26.481 3.17-36.53 14.129-16.905 41.052-14.859 52.26 4.53 65.343 113.181-10.324-17.886 63.94 110.75-51.165-190.945-50.943-185.344-49.14-195.7 0-1.038 1.305-6.21 3.11-9.82 14.736-30.269 58.656-25.525 67.2 6.33 2.667 9.956 44.598 166.459 47.17 176.06 0-218.052-.158-207.027.29-210.38 2.494-18.688 18.798-31.37 33.86-31.37 20.857-1.017 37.85 15.559 37.85 35.95v212c60.187-209.94 55.193-195.219 59.64-202 9.364-14.838 30.545-21.065 47.43-11.6 13.39 6.722 21.854 23.982 17.35 40.82l-52.42 195.62v42.53c0 14.26 17.23 21.4 27.31 11.32 48.396-56.028 44.072-51.165 46.39-53.33 25.043-23.209 59.097-26.622 70.36-20.99 17.798 7.652 23.2 31.37 8.27 46.3z" fill="#5f5f5f"/>
@@ -92,11 +93,11 @@
         <path d="m163.999 405.528c-4.418 0-8-3.582-8-8 0-63.903 47.695-118.445 110.943-126.87 4.394-.576 8.404 2.494 8.986 6.873.584 4.38-2.494 8.403-6.873 8.986-55.331 7.37-97.057 55.095-97.057 111.011.001 4.418-3.581 8-7.999 8z" fill="#f9cfac"/>
         <path d="m163.999 405.528c-4.418 0-8-3.582-8-8 0-63.903 47.695-118.445 110.943-126.87 4.394-.576 8.404 2.494 8.986 6.873.584 4.38-2.494 8.403-6.873 8.986-55.331 7.37-97.057 55.095-97.057 111.011.001 4.418-3.581 8-7.999 8z" fill="#f9cfac" transform='rotate(75) translate(170 -455)'/>
         <!--uñas indicadores-->
-        <circle cx="7.8mm" cy="44mm" r="5%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
-        <circle cx="29mm" cy="19mm" r="6%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
-        <circle cx="60mm" cy="9mm" r="6%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
-        <circle cx="93.5mm" cy="17mm" r="6%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
-        <circle cx="122.5mm" cy="73.9mm" r="5.5%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
+        <circle class="meñique" cx="7.8mm" cy="44mm" r="5%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
+        <circle class="anular" cx="29mm" cy="19mm" r="6%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
+        <circle class="medio" cx="60mm" cy="9mm" r="6%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
+        <circle class="indice" cx="93.5mm" cy="17mm" r="6%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
+        <circle class="gordo" cx="122.5mm" cy="73.9mm" r="5.5%" style="fill: #E9E9E9; stroke: #5f5f5f; stroke-width: 1mm;" />
       </svg>
     </div>
 
@@ -105,12 +106,13 @@
             <span class="text-muted"><a href="https://github.com/KeyCuevasMelgarejo">&copy; Key Cuevas Melgarejo</a></span>
         </div>
     </footer>  
-    <script src="js/events.js"></script>  
+    <script src="lib/transition.min.js"></script>
+    <script src="js/keyboard.js"></script> 
     <script src="js/text.js"></script>
-    <script src="js/keyboard.js"></script>
     <script src="js/keypress_down.js"></script>
     <script src="js/keypress_up.js"></script>
     <script src="js/keypress_undo.js"></script>
     <script src="js/hands.js"></script>
+    <script src="js/events.js"></script> 
   </body>
 </html>
