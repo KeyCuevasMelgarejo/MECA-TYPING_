@@ -79,6 +79,8 @@ const Keyboard = {
                         this._triggerEvent("oninput");
 
                         saveMemento(); // from keypress_undo.js
+
+                        this._triggerRemoveText(this.properties.value);
                     });
                     break;
 
@@ -87,6 +89,10 @@ const Keyboard = {
                     keyElement.innerHTML = createIconHTML("keyboard_capslock");
 
                     keyElement.addEventListener("click", () => {
+
+                        // A2.the unique way to create effect after press and change color
+                        // pseudoclasses like :active :hover are not accepted, that why i created @keyframes on style.css
+                        // ...keypress_down.js part A1
                         keyElement.classList.add("keypress");
 
                         this._toggleCapsLock();
@@ -113,7 +119,7 @@ const Keyboard = {
 
                         keyElement.classList.add("keypress");
 
-                        saveMemento(); // from keypress_undo.js
+                        saveMemento();
                     });
                     break;
 
@@ -123,14 +129,15 @@ const Keyboard = {
 
                     keyElement.addEventListener("click", () => {
                         this.properties.value += " ";
-                        this._triggerEvent("oninput");
 
-                        // A2.the unique way to create effect after press and change color
-                        // pseudoclasses like :active :hover are not accepted, that why i created @keyframes on style.css
-                        // ...keypress_down.js part A1
                         keyElement.classList.add("keypress");
 
-                        saveMemento(); // from keypress_undo.js
+                        if(this._triggerCompareText(this.properties.value)){
+                            this._triggerEvent("oninput");
+                            saveMemento();
+                        }else{
+                            this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
+                        }
                     });
                     break;
 
@@ -155,6 +162,8 @@ const Keyboard = {
                         keyElement.classList.add("suprkeypress");
 
                         saveMemento(); // from keypress_undo.js
+
+                        this._triggerRemoveAllText();
                     });
                     break;
 
@@ -166,6 +175,8 @@ const Keyboard = {
                         undo(); // from keypress_undo.js
 
                         this._triggerEvent("oninput");
+
+                        //this._triggerUndo(this.properties.value);
                     });
                     break;
 
@@ -181,7 +192,7 @@ const Keyboard = {
                             this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
                         }
 
-                        if(this._toggleCompareText(this.properties.value)){
+                        if(this._triggerCompareText(this.properties.value)){
                             this._triggerEvent("oninput");
                             saveMemento(); // from keypress_undo.js
                         }else{
@@ -241,11 +252,23 @@ const Keyboard = {
         }
     },
 
-    _toggleCompareText(wordInserted) {
+    _triggerCompareText(wordInserted) {
         var placeHolderInput = document.querySelector('.use-content-text');
 
-        return Text.compareTo(placeHolderInput, wordInserted);
+        return Text.compareText(placeHolderInput, wordInserted);
     },
+
+    _triggerRemoveText(wordInserted) {
+        var placeHolderInput = document.querySelector('.use-content-text');
+
+        Text.removeText(placeHolderInput, wordInserted);
+    },
+
+    _triggerRemoveAllText() {
+        var placeHolderInput = document.querySelector('.use-content-text');
+
+        Text.removeAllText(placeHolderInput);
+    },    
 
     open(initialValue, oninput, onclose) {
         this.properties.value = initialValue || "";

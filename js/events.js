@@ -11,14 +11,14 @@ const Events = {
         textKeyboardInput.onpaste = function(e) {
             e.preventDefault();
             textKeyboardInput.value = textKeyboardInput.value.substring(0, textKeyboardInput.value.length - 1);
-            alerta.innerHTML="<strong>¡Ey!</strong> No se permite copiar ni pegar";
+            alerta.querySelector("div").innerHTML='<strong>¡Ey!</strong> No se permite copiar ni pegar';
             alerta.style="display:block";
             Keyboard.close();
         }
         textKeyboardInput.oncopy = function(e) {
             e.preventDefault();
             textKeyboardInput.value = textKeyboardInput.value.substring(0, textKeyboardInput.value.length - 1);
-            alerta.innerHTML="<strong>¡Ey!</strong> No se permite copiar ni pegar";
+            alerta.querySelector("div").innerHTML='<strong>¡Ey!</strong> No se permite copiar ni pegar';
             alerta.style="display:block";
             Keyboard.close();
         }
