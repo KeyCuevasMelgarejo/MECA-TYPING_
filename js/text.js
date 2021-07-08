@@ -4,7 +4,7 @@ const Text = {
         var placeHolderInput = document.querySelector('.use-content-text');
         var writeInput = document.querySelector('.use-keyboard-input');
         // var text = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus culpa et quod reiciendis ullam sit aperiam libero laboriosam error distinctio repellendus omnis, quos perferendis facere sed! Minus fuga molestiae magni?";
-        var text = "Lorem\nipsum dolor sit amet consectetur\nadipisicing elit.";
+        var text = "Lorem\ni";
         // disable for copy and paste
         writeInput.readOnly = "true";
         placeHolderInput.readOnly= "true";
@@ -17,14 +17,13 @@ const Text = {
     // compare placeHolderInput and WriteInput 
     compareText(placeHolderInput, writeInput){
         var writeInputLenght = writeInput.length;
-        var nextWord = placeHolderInput.innerHTML.charAt(writeInputLenght);
-        var previousWord = placeHolderInput.innerHTML.charAt(writeInputLenght-1);
+        // on 'enter' key case asign '\n', in other way, a 'character'
+        var nextWord = (placeHolderInput.innerHTML.charAt(writeInputLenght) && placeHolderInput.innerHTML[writeInputLenght].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght));
+        var previousWord = (placeHolderInput.innerHTML.charAt(writeInputLenght-1) && placeHolderInput.innerHTML[writeInputLenght-1].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght-1));
         var cardText = document.querySelector('.card-text');
         var alert = document.getElementById('alert'); 
 
         var okNextWord = false;
-
-        console.log(nextWord);
         
         if(writeInput.slice(-1)==placeHolderInput.innerHTML.charAt(writeInputLenght - 1)){
             if(writeInputLenght!=0){
@@ -66,8 +65,8 @@ const Text = {
     // for backspace
     removeText(placeHolderInput, writeInput){
         var writeInputLenght = writeInput.length;
-        var previousColoredWord = placeHolderInput.innerHTML.charAt(writeInputLenght+1);
-        var previousWord = placeHolderInput.innerHTML.charAt(writeInputLenght);
+        var previousColoredWord = (placeHolderInput.innerHTML.charAt(writeInputLenght+1) && placeHolderInput.innerHTML[writeInputLenght+1].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght+1));
+        var previousWord = (placeHolderInput.innerHTML.charAt(writeInputLenght) && placeHolderInput.innerHTML[writeInputLenght].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght));
         var cardText = document.querySelector('.card-text');
         
         cardText.innerHTML="La siguiente letra es: <p>"+previousWord+"</p>";
@@ -101,7 +100,10 @@ const Text = {
             }
 
             // add color to the key which represents next word to type 
-            if(key.innerText=="space_bar" && letra==" "){
+            if(key.innerText=="keyboard_return" && letra=='\\n'){
+                key.classList.add("keyboard__key--pending");
+                keyboardKey.length = 0;
+            }else if(key.innerText=="space_bar" && letra==" "){
                 key.classList.add("keyboard__key--pending");
                 keyboardKey.length = 0;
             }else if(key.innerText.toLowerCase()==letra.toLowerCase()){
@@ -121,7 +123,10 @@ const Text = {
             }
 
             // add color to the key which represents next word to type 
-            if(key.innerText=="space_bar" && letra==" "){
+            if(key.innerText=="keyboard_return" && letra=='\\n'){
+                key.classList.remove("keyboard__key--pending");
+                keyboardKey.length = 0;
+            }else if(key.innerText=="space_bar" && letra==" "){
                 key.classList.remove("keyboard__key--pending");
                 keyboardKey.length = 0;
             }else if(key.innerText.toLowerCase()==letra.toLowerCase()){

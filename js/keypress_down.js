@@ -8,7 +8,7 @@ const KeypressDown = {
             this._reSetupEvent(e,keyboardKey,"keypress","visibility_off");
 
             // remove the focus and allow clicking on it to show keyboard again
-            document.getElementById("content").blur();
+            document.getElementById("content-keyboard").blur();
         }else if(e.keyCode==32){ // space bar
             this._reSetupEvent(e,keyboardKey,"keypress","space_bar");
         }else if(e.keyCode==13){ // enter

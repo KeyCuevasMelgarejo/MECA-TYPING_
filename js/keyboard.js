@@ -115,11 +115,15 @@ const Keyboard = {
 
                     keyElement.addEventListener("click", () => {
                         this.properties.value += "\n";
-                        this._triggerEvent("oninput");
 
                         keyElement.classList.add("keypress");
 
-                        saveMemento();
+                        if(this._triggerCompareText(this.properties.value)){
+                            this._triggerEvent("oninput");
+                            saveMemento();
+                        }else{
+                            this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
+                        }
                     });
                     break;
 
