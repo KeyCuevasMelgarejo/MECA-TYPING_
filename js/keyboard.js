@@ -176,11 +176,12 @@ const Keyboard = {
                     keyElement.innerHTML = createIconHTML("undo");
 
                     keyElement.addEventListener("click", () => {
-                        undo(); // from keypress_undo.js
+                        const lastMemento = mementos.pop();
+                        this.properties.value=lastMemento ? lastMemento : "";
 
                         this._triggerEvent("oninput");
 
-                        //this._triggerUndo(this.properties.value);
+                        this._triggerUndo(this.properties.value);
                     });
                     break;
 
@@ -257,22 +258,20 @@ const Keyboard = {
     },
 
     _triggerCompareText(wordInserted) {
-        var placeHolderInput = document.querySelector('.use-content-text');
-
         return Text.compareText(placeHolderInput, wordInserted);
     },
 
     _triggerRemoveText(wordInserted) {
-        var placeHolderInput = document.querySelector('.use-content-text');
-
         Text.removeText(placeHolderInput, wordInserted);
     },
 
     _triggerRemoveAllText() {
-        var placeHolderInput = document.querySelector('.use-content-text');
-
         Text.removeAllText(placeHolderInput);
     },    
+
+    _triggerUndo(wordInserted) {
+        Text.undo(placeHolderInput,wordInserted);
+    }, 
 
     open(initialValue, oninput, onclose) {
         this.properties.value = initialValue || "";
@@ -290,6 +289,9 @@ const Keyboard = {
         this.elements.main.classList.add("keyboard--hidden");
 
         Hands.close();
+
+        // oposite to focus
+        writeInput.blur();
     }
 };
 

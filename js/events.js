@@ -1,23 +1,21 @@
 const Events = {
     init() {        
-        var alerta = document.getElementById('alert');
         var btnLimpiar = document.querySelector('.btn-limpiar');
-        var textKeyboardInput = document.querySelector('.use-keyboard-input');
         var btnCloseAlert = document.getElementById('btn-close-alert');
 
         alerta.style="display:none";
 
         // you can't copy and paste from text
-        textKeyboardInput.onpaste = function(e) {
+        writeInput.onpaste = function(e) {
             e.preventDefault();
-            textKeyboardInput.value = textKeyboardInput.value.substring(0, textKeyboardInput.value.length - 1);
+            writeInput.value = writeInput.value.substring(0, writeInput.value.length - 1);
             alerta.querySelector("div").innerHTML='<strong>¡Ey!</strong> No se permite copiar ni pegar';
             alerta.style="display:block";
             Keyboard.close();
         }
-        textKeyboardInput.oncopy = function(e) {
+        writeInput.oncopy = function(e) {
             e.preventDefault();
-            textKeyboardInput.value = textKeyboardInput.value.substring(0, textKeyboardInput.value.length - 1);
+            writeInput.value = writeInput.value.substring(0, writeInput.value.length - 1);
             alerta.querySelector("div").innerHTML='<strong>¡Ey!</strong> No se permite copiar ni pegar';
             alerta.style="display:block";
             Keyboard.close();
@@ -33,7 +31,7 @@ const Events = {
         btnLimpiar.onclick=function(e){
             e.preventDefault();
             Keyboard.properties.value="";
-            textKeyboardInput.value="";
+            writeInput.value="";
         }
     }
 };
@@ -45,10 +43,9 @@ window.addEventListener("DOMContentLoaded", function () {
 
 // close keyboard when press out of .use-keyboard-input
 window.addEventListener("click", function (e) {
-    var textKeyboardInput = document.querySelector('.use-keyboard-input');
     var keyboard = document.querySelector('.keyboard');
     var btnLimpiar = document.querySelector('.btn-limpiar');
-    if (!textKeyboardInput.contains(e.target) 
+    if (!writeInput.contains(e.target) 
     && !keyboard.contains(e.target) 
     && !btnLimpiar.contains(e.target)) { 
         Keyboard.close();              

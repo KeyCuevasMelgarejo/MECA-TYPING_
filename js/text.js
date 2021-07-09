@@ -1,16 +1,16 @@
 const Text = {
     init() {
-        // fill use-content-text
-        var placeHolderInput = document.querySelector('.use-content-text');
-        var writeInput = document.querySelector('.use-keyboard-input');
         // var text = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus culpa et quod reiciendis ullam sit aperiam libero laboriosam error distinctio repellendus omnis, quos perferendis facere sed! Minus fuga molestiae magni?";
         var text = "Lorem\ni";
         // disable for copy and paste
         writeInput.readOnly = "true";
         placeHolderInput.readOnly= "true";
+        // fill use-content-text
         placeHolderInput.innerHTML = text;
 
         this.compareText(placeHolderInput, writeInput.value);
+
+        saveMemento();
     },
 
     // for characters
@@ -20,8 +20,6 @@ const Text = {
         // on 'enter' key case asign '\n', in other way, a 'character'
         var nextWord = (placeHolderInput.innerHTML.charAt(writeInputLenght) && placeHolderInput.innerHTML[writeInputLenght].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght));
         var previousWord = (placeHolderInput.innerHTML.charAt(writeInputLenght-1) && placeHolderInput.innerHTML[writeInputLenght-1].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght-1));
-        var cardText = document.querySelector('.card-text');
-        var alert = document.getElementById('alert'); 
 
         var okNextWord = false;
         
@@ -30,7 +28,10 @@ const Text = {
                 var resultToCompare = placeHolderInput.value.localeCompare(writeInput);
 
                 okNextWord = true;
-                cardText.innerHTML="La siguiente letra es: <p>"+nextWord+"</p>";
+
+                // some special cases
+                this._specialWordsIndicateTop(nextWord);
+          
                 this._decoloringPreviousKey(previousWord);
                 this._coloringPendingKey(nextWord);
 
@@ -38,17 +39,17 @@ const Text = {
                 if(resultToCompare==0){
                     placeHolderInput.classList.toggle("sucess");
                     // message after complete the session correctly
-                    alert.querySelector("div").innerHTML='<strong>¡Muy bien!</strong> Has completado la sesión';
-                    alert.style="display:block";
-                    // indicator change message
-                    cardText.innerHTML="La siguiente letra es: <p>(Vacío)</p>";
+                    alerta.querySelector("div").innerHTML='<strong>¡Muy bien!</strong> Has completado la sesión';
+                    alerta.style="display:block";
+                    
+                    this._specialWordsIndicateTop(null);
                     setTimeout(function() {
                         Keyboard.close();
                         placeHolderInput.classList.toggle("sucess");
                     }, 200);
                 }
             }else{
-                cardText.innerHTML="La siguiente letra es: <p>"+nextWord+"</p>";
+                this._specialWordsIndicateTop(nextWord);
                 this._coloringPendingKey(nextWord);
             }
         }else{  
@@ -67,9 +68,8 @@ const Text = {
         var writeInputLenght = writeInput.length;
         var previousColoredWord = (placeHolderInput.innerHTML.charAt(writeInputLenght+1) && placeHolderInput.innerHTML[writeInputLenght+1].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght+1));
         var previousWord = (placeHolderInput.innerHTML.charAt(writeInputLenght) && placeHolderInput.innerHTML[writeInputLenght].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght));
-        var cardText = document.querySelector('.card-text');
-        
-        cardText.innerHTML="La siguiente letra es: <p>"+previousWord+"</p>";
+
+        this._specialWordsIndicateTop(previousWord);
         this._decoloringPreviousKey(previousColoredWord);
         this._coloringPendingKey(previousWord);
     },
@@ -77,11 +77,25 @@ const Text = {
     // for erase
     removeAllText(placeHolderInput){
         var previousWord = placeHolderInput.innerHTML.charAt(0);
-        var cardText = document.querySelector('.card-text');
         var keyboardKey = document.querySelectorAll(".keyboard__key"); 
         
-        cardText.innerHTML="La siguiente letra es: <p>"+previousWord+"</p>";
+        this._specialWordsIndicateTop(previousWord);
 
+        //remove all pendingColors
+        keyboardKey.forEach(key => {
+            key.classList.remove("keyboard__key--pending");
+        });
+
+        this._coloringPendingKey(previousWord);
+    },
+
+    undo(placeHolderInput,writeInput){
+        var writeInputLenght = writeInput.length;
+        var previousWord = (placeHolderInput.innerHTML.charAt(writeInputLenght) && placeHolderInput.innerHTML[writeInputLenght].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght));
+        var keyboardKey = document.querySelectorAll(".keyboard__key"); 
+
+        this._specialWordsIndicateTop(previousWord);
+        
         //remove all pendingColors
         keyboardKey.forEach(key => {
             key.classList.remove("keyboard__key--pending");
@@ -134,6 +148,24 @@ const Text = {
                 keyboardKey.length = 0;
             }
         });
+    },
+
+    _specialWordsIndicateTop(word){
+        var cardText = document.querySelector('.card-text');
+        switch (word){
+            case "\\n":
+                cardText.innerHTML="La siguiente letra es: <p>[Enter]</p>";
+                break;
+            case " ":
+                cardText.innerHTML="La siguiente letra es: <p>[Espacio]</p>";
+                break;
+            case null:
+                cardText.innerHTML="La siguiente letra es: <p>-Vacío-</p>";
+                break;
+            default:
+                cardText.innerHTML="La siguiente letra es: <p>"+word+"</p>";
+                break;
+        }
     }
 };
 

@@ -2,13 +2,13 @@ const KeypressDown = {
     init(e) { 
         var keyboardKey = document.querySelectorAll(".keyboard__key");  
         // when press  a key, show keyboard
-        document.querySelector('.use-keyboard-input').dispatchEvent(new Event("focus"));  
+        writeInput.dispatchEvent(new Event("focus"));  
         
         if(e.key=='Escape'|| e.key=='Esc'|| e.keyCode==27){ // detect esc key and close keyboard 
             this._reSetupEvent(e,keyboardKey,"keypress","visibility_off");
 
             // remove the focus and allow clicking on it to show keyboard again
-            document.getElementById("content-keyboard").blur();
+            writeInput.blur();
         }else if(e.keyCode==32){ // space bar
             this._reSetupEvent(e,keyboardKey,"keypress","space_bar");
         }else if(e.keyCode==13){ // enter
