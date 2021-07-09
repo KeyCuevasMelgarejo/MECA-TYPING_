@@ -19,6 +19,8 @@ El programa funciona en cualquier navegador pero si deseas te dejo la opción de
 <a href="https://github.com/KeyCuevasMelgarejo/archivos_publicos_/raw/master/MECA-TYPING_/MecaTyping_Windows.zip">
     <img alt="Demo" title="Demo Button" src="https://shields.io/badge/-DESCARGA%20PARA%20WINDOWS-blue.svg?&style=for-the-badge&logo=windows&logoColor=white"/></a>
 
+Al abrir el programa, dispones de otras opciones visibles al desplegar la barra de menú presionando la tecla 'Alt'.
+
 # Uso
 ### 1. Escribe
 El programa te indica la tecla que debes presionar y los dedos que debes usar según la letra que corresponde al bloque de texto dado.
