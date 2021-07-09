@@ -13,13 +13,12 @@ Practica y mejora tu escritura con el teclado.
     
 # Descarga
 El programa funciona en cualquier navegador pero si deseas te dejo la opción de descargar el ejecutable y usarlo dependiendo el sistema operativo que tengas. No hay ciencia en los pasos para instalar el programa, dale siguiente, siguiente, siguiente y ya está :see_no_evil:.
+Al abrir el programa, dispones de otras opciones visibles al desplegar la barra de menú presionando la tecla 'Alt'.
 
 <a href="https://github.com/KeyCuevasMelgarejo/archivos_publicos_/raw/master/MECA-TYPING_/MecaTyping_Linux.zip">
     <img alt="Demo" title="Demo Button" src="https://shields.io/badge/-DESCARGA%20PARA%20LINUX-blue.svg?&style=for-the-badge&logo=linux&logoColor=white"/></a>
 <a href="https://github.com/KeyCuevasMelgarejo/archivos_publicos_/raw/master/MECA-TYPING_/MecaTyping_Windows.zip">
     <img alt="Demo" title="Demo Button" src="https://shields.io/badge/-DESCARGA%20PARA%20WINDOWS-blue.svg?&style=for-the-badge&logo=windows&logoColor=white"/></a>
-
-Al abrir el programa, dispones de otras opciones visibles al desplegar la barra de menú presionando la tecla 'Alt'.
 
 # Uso
 ### 1. Escribe
