@@ -13,6 +13,7 @@ Practica y mejora tu escritura con el teclado.
     
 # Descarga
 El programa funciona en cualquier navegador pero si deseas te dejo la opción de descargar el ejecutable y usarlo dependiendo el sistema operativo que tengas. No hay ciencia en los pasos para instalar el programa, dale siguiente, siguiente, siguiente y ya está :see_no_evil:.
+
 Al abrir el programa, dispones de otras opciones visibles al desplegar la barra de menú presionando la tecla 'Alt'.
 
 <a href="https://github.com/KeyCuevasMelgarejo/archivos_publicos_/raw/master/MECA-TYPING_/MecaTyping_Linux.zip">
