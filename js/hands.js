@@ -26,8 +26,8 @@ const Hands = {
                     {property: "r", from: r, to: finger.r},
                     {property: "cx", from: cx, to: finger.cx},
                     {property: "cy", from: cy, to: finger.cy},
-                    ["fill", "#E9E9E9", "#3CD2E6", "300ms"],
-                    ["stroke", "#5f5f5f", "#E9E9E9", "300ms"]
+                    ["fill", "#f9cfac", "#3CD2E6", "300ms"],
+                    ["stroke", "#5f5f5f", "#f9cfac", "300ms"]
                 ], {
                     // Both "property" transitions will use "linear" timing function
                     timingFunction: "linear",
@@ -51,8 +51,8 @@ const Hands = {
                     {property: "r", from: finger.r, to: r},
                     {property: "cx", from: finger.cx, to: cx},
                     {property: "cy", from: finger.cy, to: cy},
-                    ["fill", "#3CD2E6", "#E9E9E9"],
-                    ["stroke", "#E9E9E9", "#5f5f5f"]
+                    ["fill", "#3CD2E6", "#f9cfac"],
+                    ["stroke", "#f9cfac", "#5f5f5f"]
                 ], {
                     timingFunction: "linear",
                     duration: "100ms"
