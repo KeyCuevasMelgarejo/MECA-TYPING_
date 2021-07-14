@@ -15,6 +15,7 @@ const Hands = {
     },
 
     fingerAnimation(fingerPending){
+        var palma;
         var element = document.querySelector(fingerPending);
         var r = element.getAttribute("r");
         var cx = element.getAttribute("cx");
@@ -22,11 +23,21 @@ const Hands = {
 
         this.fingers.properties.forEach(finger=>{
             if(finger.name==element.className.animVal){
+                // effect for hand
+                if(element.className.animVal.slice(-1)=="R"){
+                    palma = document.querySelector(".palmaR");
+                    this._handAnimation(palma);
+                }else if(element.className.animVal.slice(-1)=="L"){
+                    palma = document.querySelector(".palmaL");
+                    this._handAnimation(palma);
+                }
+
+                // effect for finger(s)
                 transition.begin(element, [
                     {property: "r", from: r, to: finger.r},
                     {property: "cx", from: cx, to: finger.cx},
                     {property: "cy", from: cy, to: finger.cy},
-                    ["fill", "#f9cfac", "#3CD2E6", "300ms"],
+                    ["fill", "#f9cfac", "#cf3e3e", "300ms"],
                     ["stroke", "#5f5f5f", "#f9cfac", "300ms"]
                 ], {
                     // Both "property" transitions will use "linear" timing function
@@ -40,6 +51,7 @@ const Hands = {
     },
 
     fingerReturn(fingerPending){
+        var palma;
         var element = document.querySelector(fingerPending);
         var r = element.getAttribute("r");
         var cx = element.getAttribute("cx");
@@ -47,11 +59,19 @@ const Hands = {
 
         this.fingers.properties.forEach(finger=>{
             if(finger.name==element.className.animVal){
+                if(element.className.animVal.slice(-1)=="R"){
+                    palma = document.querySelector(".palmaR");
+                    this._handReturn(palma);
+                }else if(element.className.animVal.slice(-1)=="L"){
+                    palma = document.querySelector(".palmaL");
+                    this._handReturn(palma);
+                }
+
                 transition.begin(element, [
                     {property: "r", from: finger.r, to: r},
                     {property: "cx", from: finger.cx, to: cx},
                     {property: "cy", from: finger.cy, to: cy},
-                    ["fill", "#3CD2E6", "#f9cfac"],
+                    ["fill", "#cf3e3e", "#f9cfac"],
                     ["stroke", "#f9cfac", "#5f5f5f"]
                 ], {
                     timingFunction: "linear",
@@ -59,6 +79,18 @@ const Hands = {
                 });
             }
         });
+    },
+
+    _handAnimation(palma){
+        transition.begin(palma, [
+            {property: "fill", from: "#cf3e3e", to: "#662B2F"}
+        ])
+    },
+
+    _handReturn(palma){
+        transition.begin(palma, [
+            {property: "fill", from: "#662B2F", to: "#cf3e3e"}
+        ])
     },
 
     open() {
