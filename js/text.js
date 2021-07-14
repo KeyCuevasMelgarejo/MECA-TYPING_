@@ -1,8 +1,6 @@
 const Text = {
     init() {
-        // var text = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus culpa et quod reiciendis ullam sit aperiam libero laboriosam error distinctio repellendus omnis, quos perferendis facere sed! Minus fuga molestiae magni?";
-        var text = "Lorem ipsum dolor sit\namet consectetur, adipisicing elit.\nNecessitatibus";
-        //var text="a b c d e f g h i j k l m n o p q r s t u v w y x z , ."
+        var text = "Lorem ipsum dolor sit\namet consectetur, adipisicing elit.\nNecessitatibus culpa et quod reiciendis ullam sit aperiam libero laboriosam error distinctio repellendus omnis, quos perferendis facere sed! Minus fuga molestiae magni?";
         // disable for copy and paste
         writeInput.readOnly = "true";
         placeHolderInput.readOnly= "true";

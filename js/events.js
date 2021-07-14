@@ -51,3 +51,7 @@ window.addEventListener("click", function (e) {
         Keyboard.close();              
     }
 });
+
+writeInput.addEventListener("scroll",()=>{
+    console.log(writeInput.scrollTop +" "+ writeInput.offsetHeight +" "+ writeInput.scrollHeight);
+});
