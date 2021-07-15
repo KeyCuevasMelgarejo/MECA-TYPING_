@@ -32,6 +32,9 @@ const Events = {
             e.preventDefault();
             Keyboard.properties.value="";
             writeInput.value="";
+
+            saveMemento(); // from keypress_undo.js
+            Text.removeAllText(placeHolderInput);
         }
     }
 };
