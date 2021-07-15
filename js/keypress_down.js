@@ -3,6 +3,10 @@ const KeypressDown = {
         var keyboardKey = document.querySelectorAll(".keyboard__key");  
         // when press  a key, show keyboard
         writeInput.dispatchEvent(new Event("focus"));  
+
+        // clic-zone disappear
+        document.querySelector(".clic-zone").classList.add("hidden");
+        placeHolderInput.classList.add("fadedOut");
         
         if(e.key=='Escape'|| e.key=='Esc'|| e.keyCode==27){ // detect esc key and close keyboard 
             this._reSetupEvent(e,keyboardKey,"keypress","visibility_off");

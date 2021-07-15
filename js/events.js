@@ -52,6 +52,17 @@ window.addEventListener("click", function (e) {
     }
 });
 
+// click on clic-zone and fadedOut use-content-input
+document.querySelector(".clic-zone").addEventListener("click",()=>{
+    document.querySelector(".clic-zone").classList.add("hidden");
+    placeHolderInput.classList.add("fadedOut");
+
+    // when press a key, show keyboard
+    setTimeout(function() {
+        writeInput.dispatchEvent(new Event("focus")); 
+    }, 1000);
+});
+
 writeInput.addEventListener("scroll",()=>{
     console.log(writeInput.scrollTop +" "+ writeInput.offsetHeight +" "+ writeInput.scrollHeight);
 });
