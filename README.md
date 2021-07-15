@@ -10,7 +10,6 @@ Practica y mejora tu escritura con el teclado.
 
 <a href="https://keycuevasmelgarejo.github.io/MECA-TYPING_">
     <img alt="Demo" title="Demo Button" src="https://shields.io/badge/-HAZ%20CLIC%20PARA%20VER%20LA%20DEMO-red.svg?&style=for-the-badge&logo=github&logoColor=white"/></a>
-    
 <p align="center"> 
     <img src="/Demo.png"/>
 </p>
