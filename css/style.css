@@ -23,6 +23,15 @@
 
 
 
+/* google material icons
+ * ------------------------------------------------- */
+ .material-icons{
+    display: inline-flex;
+    vertical-align: top;
+ }
+
+
+
 /* card
  * ------------------------------------------------- */
  .card{
@@ -44,10 +53,6 @@
     font-weight: bold;
  }
 
- .material-icons{
-    display: inline-flex;
-    vertical-align: top;
- }
  .btn-limpiar {
     margin-top: 23em;
     margin-bottom: 1em;
@@ -317,16 +322,15 @@
     border-radius: 2mm;
     background-color: #1a0b0c;
     color: #E9E9E9;
-    padding: 15px;
-    font-size: 20px;
+    padding: 65px;
+    font-size: 4vh;
     width: 100%;
     height: 280px;
-    margin-bottom: 15px;
     opacity: 0.6;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     text-align: center;
-    font: 20pt bold 'Vollkorn';
+    vertical-align: middle;
 }
 
 .hidden { 
@@ -482,5 +486,10 @@
     .card-text{
         font-size: 17px;
         margin-left: -17px !important;
-     }
+    }
+
+    .clic-zone {
+        height: 110px;
+        padding: 12px;
+    }
 }
