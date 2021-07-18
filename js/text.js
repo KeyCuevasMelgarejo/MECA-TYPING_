@@ -1,6 +1,7 @@
 const Text = {
     init() {
-        var text = "Lorem ipsum dolor sit\namet consectetur, adipisicing elit.\nNecessitatibus culpa et quod reiciendis ullam sit aperiam libero laboriosam error distinctio repellendus omnis, quos perferendis facere sed! Minus fuga molestiae magni?";
+        //var text = "Me cuentan que en otros pueblos los hombres azotados, los que sufrían, son ahora águilas, cóndores de inmenso y libre vuelo.\nTranquilo espera.\nLlegaremos más lejos que cuanto tú quisiste y soñaste, amaremos más de lo que tú amaste, con amor de paloma encantada, de calandria.\nTranquilo espera, con ese amor sin sosiego y sin límites, lo que tú no pudiste lo haremos nosotros.";
+        var text = "Me cuentan que en otros pueblos los hombres azotados, los que sufrian, son ahora aguilas, condores de inmenso y libre vuelo.\nTranquilo espera.\nLlegaremos mas lejos que cuanto tu quisiste y soñaste, amaremos mas de lo que tu amaste, con amor de paloma encantada, de calandria.\nTranquilo espera, con ese amor sin sosiego y sin limites, lo que tu no pudiste lo haremos nosotros.";
         // disable for copy and paste
         writeInput.readOnly = "true";
         placeHolderInput.readOnly= "true";
@@ -128,15 +129,12 @@ const Text = {
             // add color to the key which represents next word to type 
             if(key.innerText=="keyboard_return" && letra=='\\n'){
                 key.classList.add("keyboard__key--pending");
-                keyboardKey.length = 0;
                 Hands.fingerAnimation(".meniqueR");
             }else if(key.innerText=="space_bar" && letra==" "){
                 key.classList.add("keyboard__key--pending");
-                keyboardKey.length = 0;
                 Hands.fingerAnimation(".gordoR");
             }else if(key.innerText.toLowerCase()==letra.toLowerCase()){
                 key.classList.add("keyboard__key--pending");
-                keyboardKey.length = 0;
                 this._activeAnimation(letra.toLowerCase());
             }
         });
@@ -155,15 +153,12 @@ const Text = {
             // add color to the key which represents next word to type 
             if(key.innerText=="keyboard_return" && letra=='\\n'){
                 key.classList.remove("keyboard__key--pending");
-                keyboardKey.length = 0;
                 Hands.fingerReturn(".meniqueR");
             }else if(key.innerText=="space_bar" && letra==" "){
                 key.classList.remove("keyboard__key--pending");
-                keyboardKey.length = 0;
                 Hands.fingerReturn(".gordoR");
             }else if(key.innerText.toLowerCase()==letra.toLowerCase()){
                 key.classList.remove("keyboard__key--pending");
-                keyboardKey.length = 0;
                 this._inactiveAnimation(letra.toLowerCase());
             }
         });
@@ -173,16 +168,16 @@ const Text = {
         var cardText = document.querySelector('.card-text');
         switch (word){
             case "\\n":
-                cardText.innerHTML="La siguiente letra es: <p>[Enter]</p>";
+                cardText.innerHTML='La siguiente letra es: [ <p>Enter [<i class="material-icons">keyboard_return</i>]</p> ]';
                 break;
             case " ":
-                cardText.innerHTML="La siguiente letra es: <p>[Espacio]</p>";
+                cardText.innerHTML='La siguiente letra es: [ <p>Espacio [<i class="material-icons">space_bar</i>]</p> ]';
                 break;
             case null:
-                cardText.innerHTML="La siguiente letra es: <p>-Vacío-</p>";
+                cardText.innerHTML="La siguiente letra es: [ <p>-Vacío-</p> ]";
                 break;
             default:
-                cardText.innerHTML="La siguiente letra es: <p>"+word+"</p>";
+                cardText.innerHTML="La siguiente letra es: [ <p>"+word+"</p> ]";
                 break;
         }
     },
