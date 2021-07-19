@@ -1,7 +1,6 @@
 const Text = {
     init() {
-        //var text = "Me cuentan que en otros pueblos los hombres azotados, los que sufrían, son ahora águilas, cóndores de inmenso y libre vuelo.\nTranquilo espera.\nLlegaremos más lejos que cuanto tú quisiste y soñaste, amaremos más de lo que tú amaste, con amor de paloma encantada, de calandria.\nTranquilo espera, con ese amor sin sosiego y sin límites, lo que tú no pudiste lo haremos nosotros.";
-        var text = "Me cuentan que en otros pueblos los hombres azotados, los que sufrian, son ahora aguilas, condores de inmenso y libre vuelo.\nTranquilo espera.\nLlegaremos mas lejos que cuanto tu quisiste y soñaste, amaremos mas de lo que tu amaste, con amor de paloma encantada, de calandria.\nTranquilo espera, con ese amor sin sosiego y sin limites, lo que tu no pudiste lo haremos nosotros.";
+        var text = "Me cuentan que en otros pueblos los hombres azotados, los que sufrían, son ahora águilas, cóndores de inmenso y libre vuelo.\nTranquilo espera.\nLlegaremos más lejos que cuanto tú quisiste y soñaste, amaremos más de lo que tú amaste, con amor de paloma encantada, de calandria. Tranquilo espera, con ese amor sin sosiego y sin límites, lo que tú no pudiste lo haremos nosotros.";
         // disable for copy and paste
         writeInput.readOnly = "true";
         placeHolderInput.readOnly= "true";
@@ -120,9 +119,15 @@ const Text = {
         var keyboardKey = document.querySelectorAll(".keyboard__key");   
         keyboardKey.forEach(key => {
             // add color to 'shift' key when 'letra' is on LowerCase
-            if(letra!=letra.toLowerCase() && key.innerText=="keyboard_arrow_up" && Keyboard.properties.capsLock==false){
+            if(key.innerText=="keyboard_arrow_up" && letra!=letra.toLowerCase() && Keyboard.properties.shift==false){
                 key.classList.add("keyboard__key--pending");
                 Keyboard.properties.shiftPending=true;
+                Hands.fingerAnimation(".meniqueR");
+            }
+
+            // look for words with 'tilde', 'apostrophe', etc; add color and animation
+            if(key.innerText=="´" && letra.normalize("NFD").match(/[\u0300-\u036f]/g)){
+                key.classList.add("keyboard__key--pending");
                 Hands.fingerAnimation(".meniqueR");
             }
 
@@ -133,7 +138,8 @@ const Text = {
             }else if(key.innerText=="space_bar" && letra==" "){
                 key.classList.add("keyboard__key--pending");
                 Hands.fingerAnimation(".gordoR");
-            }else if(key.innerText.toLowerCase()==letra.toLowerCase()){
+            // string.normalize("NFD").replace(/[\u0300-\u036f]/g, "") remove words with tildes, apostrophe, etc
+            }else if(key.innerText.toLowerCase()==letra.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()){
                 key.classList.add("keyboard__key--pending");
                 this._activeAnimation(letra.toLowerCase());
             }
@@ -144,9 +150,15 @@ const Text = {
         var keyboardKey = document.querySelectorAll(".keyboard__key");   
         keyboardKey.forEach(key => {
             // add color to 'shift' key when 'letra' is on LowerCase
-            if(letra==letra.toUpperCase() && key.innerText=="keyboard_arrow_up"){
+            if(key.innerText=="keyboard_arrow_up" && letra==letra.toUpperCase()){
                 key.classList.remove("keyboard__key--pending");
                 Keyboard.properties.shiftPending=false;
+                Hands.fingerReturn(".meniqueR");
+            }
+
+            // look for words with 'tilde', 'apostrophe', etc; add color and animation
+            if(key.innerText=="´" && letra.normalize("NFD").match(/[\u0300-\u036f]/g)){
+                key.classList.remove("keyboard__key--pending");
                 Hands.fingerReturn(".meniqueR");
             }
 
@@ -157,7 +169,7 @@ const Text = {
             }else if(key.innerText=="space_bar" && letra==" "){
                 key.classList.remove("keyboard__key--pending");
                 Hands.fingerReturn(".gordoR");
-            }else if(key.innerText.toLowerCase()==letra.toLowerCase()){
+            }else if(key.innerText.toLowerCase()==letra.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()){
                 key.classList.remove("keyboard__key--pending");
                 this._inactiveAnimation(letra.toLowerCase());
             }
@@ -183,11 +195,11 @@ const Text = {
     },
 
     _activeAnimation(word){
-        switch (word) {
+        switch (word.normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
             case "1": case "q": case "a": case "z": case "!":
                 Hands.fingerAnimation(".meniqueL");
                 break;
-            case "2": case "w": case "s": case "x":
+            case "2": case "w": case "s": case "x": case "\"":
                 Hands.fingerAnimation(".anularL");
                 break;
             case "3": case "e": case "d": case "c":
@@ -205,24 +217,24 @@ const Text = {
             case "7": case "u": case "j": case "m":
                 Hands.fingerAnimation(".indiceR");
                 break;
-            case "8": case "i": case "k": case ",":
+            case "8": case "i": case "k": case ",": case "\(": case "\;":
                 Hands.fingerAnimation(".medioR");
                 break;
-            case "9": case "o": case "l": case ".":
+            case "9": case "o": case "l": case ".": case "\)": case "\:":
                 Hands.fingerAnimation(".anularR");
                 break;
-            case "0": case "p": case "ñ":
+            case "0": case "p": case "ñ": case "-": case "\_":
                 Hands.fingerAnimation(".meniqueR");
                 break;
         }
     },
 
     _inactiveAnimation(word){
-        switch (word) {
+        switch (word.normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
             case "1": case "q": case "a": case "z": case "!":
                 Hands.fingerReturn(".meniqueL");
                 break;
-            case "2": case "w": case "s": case "x":
+            case "2": case "w": case "s": case "x": case "\"":
                 Hands.fingerReturn(".anularL");
                 break;
             case "3": case "e": case "d": case "c":
@@ -240,13 +252,13 @@ const Text = {
             case "7": case "u": case "j": case "m":
                 Hands.fingerReturn(".indiceR");
                 break;
-            case "8": case "i": case "k": case ",":
+            case "8": case "i": case "k": case ",": case "\(": case "\;":
                 Hands.fingerReturn(".medioR");
                 break;
-            case "9": case "o": case "l": case ".":
+            case "9": case "o": case "l": case ".": case "\)": case "\:":
                 Hands.fingerReturn(".anularR");
                 break;
-            case "0": case "p": case "ñ":
+            case "0": case "p": case "ñ": case "-": case "\_":
                 Hands.fingerReturn(".meniqueR");
                 break;
         }

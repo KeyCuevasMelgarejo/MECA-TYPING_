@@ -14,7 +14,8 @@ const Keyboard = {
         value: "",
         capsLock: false,
         shift: false,
-        shiftPending: false
+        shiftPending: false,
+        escapeChain: false
     },
 
     init() {
@@ -47,9 +48,9 @@ const Keyboard = {
         const fragment = document.createDocumentFragment();
         const keyLayout = [
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "?", "backspace",
-            "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "enter",
+            "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "´", "enter",
             "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "ñ",
-            "z", "x", "c", "v", "b", "n", "m", ",", ".", "shift",
+            "z", "x", "c", "v", "b", "n", "m", ",", ".", "-", "shift",
             "done", "space", "erase", "undo"
         ];
 
@@ -89,7 +90,6 @@ const Keyboard = {
                     keyElement.innerHTML = createIconHTML("keyboard_capslock");
 
                     keyElement.addEventListener("click", () => {
-
                         // A2.the unique way to create effect after press and change color
                         // pseudoclasses like :active :hover are not accepted, that why i created @keyframes on style.css
                         // ...keypress_down.js part A1
@@ -185,18 +185,22 @@ const Keyboard = {
                     });
                     break;
 
+                case "´":
+                    keyElement.textContent = key;
+                    keyElement.addEventListener("click", () => {
+                        keyElement.classList.add("keypress");
+                        this.properties.escapeChain=true;
+                    });
+                    break;
+
                 default:
                     keyElement.textContent = key.toLowerCase();
 
                     keyElement.addEventListener("click", () => {
-                        if(key=="1"){
-                            this.properties.value += this.properties.shift ? "!": "1";
-                        }else if(key=="!"){
-                            this.properties.value += this.properties.shift ? "1": "!";
-                        }else{
-                            this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
-                        }
+                        // add a word to properties.value according capsLock or shift press
+                        this._evaluateCommonKeyPressed(key);
 
+                        // if key pressed is equals to next pending word, procede
                         if(this._triggerCompareText(this.properties.value)){
                             this._triggerEvent("oninput");
                             saveMemento(); // from keypress_undo.js
@@ -246,14 +250,81 @@ const Keyboard = {
 
         for (const key of this.elements.keys) {
             if (key.childElementCount === 0) {
-                if(key.textContent=="1"){
-                    key.textContent = "!";
-                }else if(key.textContent=="!"){
-                    key.textContent = "1";
-                }else{
-                    key.textContent = this.properties.capsLock ? key.textContent.toUpperCase() : key.textContent.toLowerCase();
+                switch(key.textContent){
+                    case "1": case "!":
+                        key.textContent = key.textContent=="1" ? key.textContent="!" : key.textContent="1";break;
+                    case "2": case "\"":
+                        key.textContent = key.textContent=="2" ? key.textContent="\"" : key.textContent="2";break;
+                    case "8": case "\(":
+                        key.textContent = key.textContent=="8" ? key.textContent="\(" : key.textContent="8";break;
+                    case "9": case "\)":
+                        key.textContent = key.textContent=="9" ? key.textContent="\)" : key.textContent="9";break;
+                    case ",": case "\;":
+                        key.textContent = key.textContent=="," ? key.textContent="\;" : key.textContent=",";break;
+                    case ".": case "\:":
+                        key.textContent = key.textContent=="." ? key.textContent="\:" : key.textContent=".";break;
+                    case "-": case "\_":
+                        key.textContent = key.textContent=="-" ? key.textContent="\_" : key.textContent="-";break;
+                    default:
+                        key.textContent = this.properties.capsLock ? key.textContent.toUpperCase() : key.textContent.toLowerCase();break;
                 }
             }
+        }
+    },
+
+    _evaluateCommonKeyPressed(key){
+        switch(key){
+            case "1":
+                this.properties.value += this.properties.shift ? "!": "1";break;
+            case "!":
+                this.properties.value += this.properties.shift ? "1": "!";break;
+            case "2":
+                this.properties.value += this.properties.shift ? "\"": "2";break;
+            case "\"":
+                this.properties.value += this.properties.shift ? "2": "\"";break;
+            case "8":
+                this.properties.value += this.properties.shift ? "\(": "8";break;
+            case "\(":
+                this.properties.value += this.properties.shift ? "8": "\(";break;
+            case "9":
+                this.properties.value += this.properties.shift ? "\)" :"9";break;
+            case "\)":
+                this.properties.value += this.properties.shift ? "9": "\)";break;
+            case ",":
+                this.properties.value += this.properties.shift ? "\;": ",";break;
+            case "\;":
+                this.properties.value += this.properties.shift ? ",": "\;";break;
+            case ".":
+                this.properties.value += this.properties.shift ? "\:": ".";break;
+            case "\:":
+                this.properties.value += this.properties.shift ? ".": "\:";break;
+            case "-":
+                this.properties.value += this.properties.shift ? "\_": "-";break;
+            case "\_":
+                this.properties.value += this.properties.shift ? "-": "\_";break;
+            default:
+                if(this.properties.escapeChain){
+                    var vocal = (/^[aeiou]$/i).test(key);
+                    if(vocal==true){
+                        if((/^[a]$/i).test(key)){
+                            this.properties.value += this.properties.capsLock ? '\u00C1' : '\u00E1';
+                        }else if((/^[e]$/i).test(key)){
+                            this.properties.value += this.properties.capsLock ? '\u00C9' : '\u00E9';
+                        }else if((/^[i]$/i).test(key)){
+                            this.properties.value += this.properties.capsLock ? '\u00CD' : '\u00ED';
+                        }else if((/^[o]$/i).test(key)){
+                            this.properties.value += this.properties.capsLock ? '\u00D3' : '\u00F3';
+                        }else if((/^[u]$/i).test(key)){
+                            this.properties.value += this.properties.capsLock ? '\u00DA' : '\u00FA';
+                        }
+                        this.properties.escapeChain=false;
+                    }else{
+                        this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+                    }
+                }else{
+                    this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+                }
+                break;
         }
     },
 

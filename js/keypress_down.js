@@ -30,6 +30,8 @@ const KeypressDown = {
             });
         }else if(e.keyCode==46){ // supr erase all
             this._reSetupEvent(e,keyboardKey,"suprkeypress","delete");
+        }else if(e.keyCode==222){ // tilde '´'
+            this._reSetupEvent(e,keyboardKey,"keypress","´");
         }else{ //numers, letters and backspace
             keyboardKey.forEach(key => {
                 key.classList.remove("keypress");
