@@ -66,6 +66,25 @@ document.querySelector(".clic-zone").addEventListener("click",()=>{
     }, 1000);
 });
 
+/* about scrolling
+ * ------------------------------------------------- */
+// scroll case is called by use-keyboard-input, automatically scroll use-content-text
+
+// on desktop case
 writeInput.addEventListener("scroll",()=>{
-    console.log(writeInput.scrollTop +" "+ writeInput.offsetHeight +" "+ writeInput.scrollHeight);
+    placeHolderInput.scrollTop = writeInput.scrollTop;
 });
+
+// on mobile case
+writeInput.addEventListener('touchmove', function(e) {
+    // Invoke appropriate handler depending on the
+    // number of touch points.
+    switch (e.touches.length) {
+      case 1: 
+      writeInput.scrollTop = e.touches[0].clientY; 
+      placeHolderInput.scrollTop = e.touches[0].clientY; 
+        break;
+      default: 
+        console.log("Not supported"); break;
+    }
+  }, false);
