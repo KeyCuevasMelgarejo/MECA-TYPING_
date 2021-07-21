@@ -5,7 +5,6 @@ const Text = {
         writeInput.readOnly = "true";
         placeHolderInput.readOnly= "true";
         // fill use-content-text
-        writeInput.innerHTML = text;
         placeHolderInput.innerHTML = text;
 
         this.compareText(placeHolderInput, writeInput.value);
