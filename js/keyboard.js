@@ -48,8 +48,8 @@ const Keyboard = {
         const fragment = document.createDocumentFragment();
         const keyLayout = [
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "?", "backspace",
-            "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "´", "enter",
-            "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "ñ",
+            "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "´", 
+            "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "ñ", "enter",
             "z", "x", "c", "v", "b", "n", "m", ",", ".", "-", "shift",
             "done", "space", "erase", "undo"
         ];
@@ -63,7 +63,7 @@ const Keyboard = {
             const keyElement = document.createElement("button");
 
             // this line means, ghaphicaly on keyboard, which keys delimit each row 
-            const insertLineBreak = ["backspace", "enter", "ñ", "shift"].indexOf(key) !== -1;
+            const insertLineBreak = ["backspace", "´", "enter", "shift"].indexOf(key) !== -1;
 
             // Add attributes/classes
             keyElement.setAttribute("type", "button");
