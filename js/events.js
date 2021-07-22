@@ -43,7 +43,6 @@ window.addEventListener("DOMContentLoaded", function () {
     Events.init();
 });
 
-
 // close keyboard when press out of .use-keyboard-input
 window.addEventListener("click", function (e) {
     var keyboard = document.querySelector('.keyboard');
@@ -88,3 +87,13 @@ writeInput.addEventListener('touchmove', function(e) {
         console.log("Not supported"); break;
     }
   }, false);
+
+// detect which key is on keyup or keydown, you can call it like is_key_down('code of the key')
+const is_key_down = (() => {
+    const state = {};
+
+    window.addEventListener('keyup', (e) => state[e.key] = false);
+    window.addEventListener('keydown', (e) => state[e.key] = true);
+
+    return (key) => state.hasOwnProperty(key) && state[key] || false;
+})();

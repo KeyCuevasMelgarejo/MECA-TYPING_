@@ -39,7 +39,7 @@ const KeypressDown = {
                     e.preventDefault();
                     key.addEventListener("click",function(){
                         key.classList.add("keypress");
-                    });
+                    });     
                     key.dispatchEvent(new Event("click"));
                 }
             });

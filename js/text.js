@@ -32,6 +32,9 @@ const Text = {
                 this._specialWordsIndicateTop(nextWord);
           
                 this._decoloringPreviousKey(previousWord);
+                if(Keyboard.properties.shift && is_key_down('Shift')==false){
+                    Keyboard._toggleShift();
+                }
                 this._coloringPendingKey(nextWord);
 
                 // session ends when you complete all words successfully
@@ -119,10 +122,12 @@ const Text = {
         var keyboardKey = document.querySelectorAll(".keyboard__key");   
         keyboardKey.forEach(key => {
             // add color to 'shift' key when 'letra' is on LowerCase
-            if(key.innerText=="keyboard_arrow_up" && letra!=letra.toLowerCase() && Keyboard.properties.shift==false){
+            if((key.innerText=="keyboard_arrow_up" && letra!=letra.toLowerCase() && Keyboard.properties.shift==false)
+            ||(key.innerText=="keyboard_arrow_up" 
+            && (letra=="!" || letra=="\"" || letra=="?" || letra=="¿" || letra=="\;" || letra=="\:" || letra=="\_"))){
                 key.classList.add("keyboard__key--pending");
                 Keyboard.properties.shiftPending=true;
-                Hands.fingerAnimation(".meniqueR");
+                isMobile==true ? Hands.fingerAnimation(".meniqueL") : Hands.fingerAnimation(".meniqueR");
             }
 
             // look for words with 'tilde', 'apostrophe', etc; add color and animation
@@ -138,7 +143,17 @@ const Text = {
             }else if(key.innerText=="space_bar" && letra==" "){
                 key.classList.add("keyboard__key--pending");
                 Hands.fingerAnimation(".gordoR");
+            }else if((key.innerText=="'" && letra=="?") 
+            || (key.innerText=="1" && letra=="!")
+            || (key.innerText=="2" && letra=="\"")
+            || (key.innerText=="¡" && letra=="¿")
+            || (key.innerText=="," && letra=="\;")
+            || (key.innerText=="." && letra=="\:")
+            || (key.innerText=="-" && letra=="\_")){
+                key.classList.add("keyboard__key--pending");
+                this._activeAnimation(letra);
             // string.normalize("NFD").replace(/[\u0300-\u036f]/g, "") remove words with tildes, apostrophe, etc
+            // https://en.wikipedia.org/wiki/Combining_Diacritical_Marks
             }else if(key.innerText.toLowerCase()==letra.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()){
                 key.classList.add("keyboard__key--pending");
                 this._activeAnimation(letra.toLowerCase());
@@ -150,10 +165,12 @@ const Text = {
         var keyboardKey = document.querySelectorAll(".keyboard__key");   
         keyboardKey.forEach(key => {
             // add color to 'shift' key when 'letra' is on LowerCase
-            if(key.innerText=="keyboard_arrow_up" && letra==letra.toUpperCase()){
+            if((key.innerText=="keyboard_arrow_up" && letra==letra.toUpperCase()) 
+            ||(key.innerText=="keyboard_arrow_up" 
+            && (letra=="!" || letra=="\"" || letra=="?" || letra=="¿" || letra=="\;" || letra=="\:" || letra=="\_"))){
                 key.classList.remove("keyboard__key--pending");
                 Keyboard.properties.shiftPending=false;
-                Hands.fingerReturn(".meniqueR");
+                isMobile ? Hands.fingerReturn(".meniqueL") : Hands.fingerReturn(".meniqueR");
             }
 
             // look for words with 'tilde', 'apostrophe', etc; add color and animation
@@ -169,6 +186,15 @@ const Text = {
             }else if(key.innerText=="space_bar" && letra==" "){
                 key.classList.remove("keyboard__key--pending");
                 Hands.fingerReturn(".gordoR");
+            }else if((key.innerText=="'" && letra=="?") 
+            || (key.innerText=="1" && letra=="!")
+            || (key.innerText=="2" && letra=="\"")
+            || (key.innerText=="¡" && letra=="¿")
+            || (key.innerText=="," && letra=="\;")
+            || (key.innerText=="." && letra=="\:")
+            || (key.innerText=="-" && letra=="\_")){
+                key.classList.remove("keyboard__key--pending");
+                this._inactiveAnimation(letra);
             }else if(key.innerText.toLowerCase()==letra.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()){
                 key.classList.remove("keyboard__key--pending");
                 this._inactiveAnimation(letra.toLowerCase());
@@ -223,7 +249,7 @@ const Text = {
             case "9": case "o": case "l": case ".": case "\)": case "\:":
                 Hands.fingerAnimation(".anularR");
                 break;
-            case "0": case "p": case "ñ": case "-": case "\_":
+            case "0": case "p": case "ñ": case "-": case "\_": case "\'": case "?": case "\¡": case "¿":
                 Hands.fingerAnimation(".meniqueR");
                 break;
         }
@@ -258,7 +284,7 @@ const Text = {
             case "9": case "o": case "l": case ".": case "\)": case "\:":
                 Hands.fingerReturn(".anularR");
                 break;
-            case "0": case "p": case "ñ": case "-": case "\_":
+            case "0": case "p": case "ñ": case "-": case "\_": case "\'": case "?": case "\¡": case "¿":
                 Hands.fingerReturn(".meniqueR");
                 break;
         }

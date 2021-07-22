@@ -169,12 +169,12 @@
 
 .keyboard__key--backspace {
     max-width: 100px;
-    width: 13%;
+    width: 12%;
 }
 
 .keyboard__key--shift {
     max-width: 120px;
-    width: 10%;
+    width: 9%;
 }
 
 .keyboard__key--undo {
@@ -182,7 +182,7 @@
 }
 
 .keyboard__key--enter {
-    width: 8%;
+    width: 9%;
 }
 
 .keyboard__key--wide {
@@ -292,6 +292,8 @@
     border: 1px solid #1f1f1f;
 }*/
 
+
+
 /* input
  * ------------------------------------------------- */
 .use-keyboard-input{
@@ -326,6 +328,7 @@
 }
 
 
+
 /* clic zone
  * ------------------------------------------------- */
 .clic-zone {
@@ -353,6 +356,7 @@
     transition-property: opacity, visibility; 
     transition-delay: 0s; 
 }
+
 
 
 /* alert
@@ -388,6 +392,8 @@
 .footer a:active {
     color:#E9E9E9;
 }
+
+
 
 /* hands
  * ------------------------------------------------- */
@@ -466,6 +472,7 @@
         display: none;
     }  
 }
+
 
 
 /* landscape mode on mobiles
