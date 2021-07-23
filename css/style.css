@@ -117,7 +117,7 @@
 
 .keyboard__key {
     height: 40px;
-    width: 3.5%;
+    width: 3.4%;
     min-width: 22px;
     max-width: 90px;
     margin: 2.5px;
@@ -178,15 +178,15 @@
 }
 
 .keyboard__key--undo {
-    min-width: 42px;
+    min-width: 40px;
 }
 
 .keyboard__key--enter {
-    width: 9%;
+    width: 8.5%;
 }
 
 .keyboard__key--wide {
-    width: 12%;
+    width: 10.5%;
 }
 
 .keyboard__key--extra-wide {
