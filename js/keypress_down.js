@@ -3,14 +3,13 @@ const KeypressDown = {
         var keyboardKey = document.querySelectorAll(".keyboard__key");  
         // when press  a key, show keyboard
         writeInput.dispatchEvent(new Event("focus"));  
-
         // clic-zone disappear
         document.querySelector(".clic-zone").classList.add("hidden");
         placeHolderInput.classList.add("fadedOut");
         
         if(e.key=='Escape'|| e.key=='Esc'|| e.keyCode==27){ // detect esc key and close keyboard 
+            Sound.play("keypress");
             this._reSetupEvent(e,keyboardKey,"keypress","visibility_off");
-
             // remove the focus and allow clicking on it to show keyboard again
             writeInput.blur();
         }else if(e.keyCode==32){ // space bar
@@ -18,8 +17,10 @@ const KeypressDown = {
         }else if(e.keyCode==13){ // enter
             this._reSetupEvent(e,keyboardKey,"keypress","keyboard_return");
         }else if(e.keyCode==20){ // bloq mayus
+            Sound.play("keypress");
             this._reSetupEvent(e,keyboardKey,"keypress","keyboard_capslock");
         }else if(e.keyCode==16){ // shift
+            Sound.play("keypress");
             e.preventDefault();
             keyboardKey.forEach(key => {
                 if(key.innerText=="keyboard_arrow_up"){
@@ -29,8 +30,10 @@ const KeypressDown = {
                 }
             });
         }else if(e.keyCode==46){ // supr erase all
+            Sound.play("keypress");
             this._reSetupEvent(e,keyboardKey,"suprkeypress","delete");
         }else if(e.keyCode==222){ // tilde '´'
+            Sound.play("keypress");
             this._reSetupEvent(e,keyboardKey,"keypress","´");
         }else{ //numers, letters and backspace
             keyboardKey.forEach(key => {

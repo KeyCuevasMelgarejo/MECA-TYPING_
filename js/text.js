@@ -24,6 +24,7 @@ const Text = {
         
         if(writeInput.slice(-1)==placeHolderInput.innerHTML.charAt(writeInputLenght - 1)){
             if(writeInputLenght!=0){
+                Sound.play("keypress");
                 var resultToCompare = placeHolderInput.value.localeCompare(writeInput);
 
                 okNextWord = true;
@@ -39,6 +40,7 @@ const Text = {
 
                 // session ends when you complete all words successfully
                 if(resultToCompare==0){
+                    Sound.play("success");
                     placeHolderInput.classList.toggle("sucess");
                     // message after complete the session correctly
                     alerta.querySelector("div").innerHTML='<strong>¡Muy bien!</strong> Has completado la sesión';
@@ -55,6 +57,7 @@ const Text = {
                 this._coloringPendingKey(nextWord);
             }
         }else{  
+            Sound.play("badkeypressed");
             // that's my solution to toggle, remove and toggle again after error
             placeHolderInput.classList.toggle("error");
             setTimeout(function() {
@@ -67,6 +70,8 @@ const Text = {
 
     // for backspace
     removeText(placeHolderInput, writeInput){
+        Sound.play("keypress");
+
         var writeInputLenght = writeInput.length;
         var previousColoredWord = (placeHolderInput.innerHTML.charAt(writeInputLenght+1) && placeHolderInput.innerHTML[writeInputLenght+1].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght+1));
         var previousWord = (placeHolderInput.innerHTML.charAt(writeInputLenght) && placeHolderInput.innerHTML[writeInputLenght].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght));
