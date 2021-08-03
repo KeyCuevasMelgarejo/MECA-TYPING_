@@ -1,47 +1,52 @@
-const Events = {
-    init() {        
-        var btnLimpiar = document.querySelector('.btn-limpiar');
-        var btnCloseAlert = document.getElementById('btn-close-alert');
+/* about copy and paste
+ * ------------------------------------------------- */
 
-        alerta.style="display:none";
+// you can't copy and paste from text
+writeInput.onpaste = function(e) {
+    e.preventDefault();
+    writeInput.value = writeInput.value.substring(0, writeInput.value.length - 1);
+    alerta.querySelector("div").innerHTML='<strong>¡Ey!</strong> No se permite copiar ni pegar';
+    alerta.style="display:block";
+    Keyboard.close();
+}
+writeInput.oncopy = function(e) {
+    e.preventDefault();
+    writeInput.value = writeInput.value.substring(0, writeInput.value.length - 1);
+    alerta.querySelector("div").innerHTML='<strong>¡Ey!</strong> No se permite copiar ni pegar';
+    alerta.style="display:block";
+    Keyboard.close();
+}
 
-        // you can't copy and paste from text
-        writeInput.onpaste = function(e) {
-            e.preventDefault();
-            writeInput.value = writeInput.value.substring(0, writeInput.value.length - 1);
-            alerta.querySelector("div").innerHTML='<strong>¡Ey!</strong> No se permite copiar ni pegar';
-            alerta.style="display:block";
-            Keyboard.close();
-        }
-        writeInput.oncopy = function(e) {
-            e.preventDefault();
-            writeInput.value = writeInput.value.substring(0, writeInput.value.length - 1);
-            alerta.querySelector("div").innerHTML='<strong>¡Ey!</strong> No se permite copiar ni pegar';
-            alerta.style="display:block";
-            Keyboard.close();
-        }
 
-        // you try to copy or paste show a message and then you can close it
-        btnCloseAlert.onclick=function(e){
-            e.preventDefault();
-            alerta.style.display="none";
-        }
 
-        // clear use-keyboard-input textarea
-        btnLimpiar.onclick=function(e){
-            e.preventDefault();
-            Keyboard.properties.value="";
-            writeInput.value="";
+/* about alert
+ * ------------------------------------------------- */
 
-            saveMemento(); // from keypress_undo.js
-            Text.removeAllText(placeHolderInput);
-        }
-    }
-};
+// you try to copy or paste show a message and then you can close it
+btnCloseAlert.onclick=function(e){
+    e.preventDefault();
+    alerta.style.display="none";
+}
 
-window.addEventListener("DOMContentLoaded", function () {
-    Events.init();
-});
+
+
+/* about clean writeinput
+ * ------------------------------------------------- */
+
+// clear use-keyboard-input textarea
+btnLimpiar.onclick=function(e){
+    e.preventDefault();
+    Keyboard.properties.value="";
+    writeInput.value="";
+
+    saveMemento(); // from keypress_undo.js
+    Text.removeAllText(placeHolderInput);
+}
+
+
+
+/* about textareas
+ * ------------------------------------------------- */
 
 // close keyboard when press out of .use-keyboard-input
 window.addEventListener("click", function (e) {
@@ -65,6 +70,8 @@ document.querySelector(".clic-zone").addEventListener("click",()=>{
     }, 1000);
 });
 
+
+
 /* about scrolling
  * ------------------------------------------------- */
 // scroll case is called by use-keyboard-input, automatically scroll use-content-text
@@ -86,7 +93,12 @@ writeInput.addEventListener('touchmove', function(e) {
       default: 
         console.log("Not supported"); break;
     }
-  }, false);
+}, false);
+
+
+
+/* about shift
+ * ------------------------------------------------- */
 
 // detect which key is on keyup or keydown, you can call it like is_key_down('code of the key')
 const is_key_down = (() => {
