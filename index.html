@@ -122,11 +122,14 @@
           <a href="" class="me-4"></a>
           <a href="" class="me-4"></a>
           <a href="" class="me-3">
-            <i class="fas fa-language"><small>&nbsp;Idioma</small></i>
+            <input type="checkbox" id="switch-idiom" hidden>
+            <label for="switch-idiom">
+              <i class="fas fa-language"><small></small></i>
+            </label>
           </a>
           <a href="" class="me-1">
-            <input type="checkbox" id="switch" hidden>
-            <label for="switch">
+            <input type="checkbox" id="switch-theme" hidden>
+            <label for="switch-theme">
               <i class="fas fa-paint-roller"><small>&nbsp;Tema</small></i>
             </label>
           </a>
@@ -134,7 +137,9 @@
       </div>
     </footer>
 
-    <script src="lib/transition.min.js"></script>
+    <!-- Must keep the actual declaration order -->
+    <script src="lib/animation/transition.min.js"></script>
+    <script src="lib/pdf/pdf.js"></script>
     <script src="js/sound.js"></script>
     <script src="js/globals.js"></script>
     <script src="js/keyboard.js"></script> 

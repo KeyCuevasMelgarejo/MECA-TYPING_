@@ -1,15 +1,30 @@
 const Text = {
+    // 'parts' are pdfs belong to just one book but divided by titles
+    idiomas: {
+        properties: [
+            {name: "castellano", parts:[1,2,4,6,8,10,12,14,16,18,20]},
+            {name: "quechua", parts:[3,5,7,9,11,13,15,17,19]},
+            {name: "aymara", parts:[1,2,3,5,7,8,11]}
+        ]
+    },
+
     init() {
-        var text = "Me cuentan que en otros pueblos los hombres azotados, los que sufrían, son ahora águilas, cóndores de inmenso y libre vuelo.\nTranquilo espera.\nLlegaremos más lejos que cuanto tú quisiste y soñaste, amaremos más de lo que tú amaste, con amor de paloma encantada, de calandria. Tranquilo espera, con ese amor sin sosiego y sin límites, lo que tú no pudiste lo haremos nosotros.";
         // disable for copy and paste
         writeInput.readOnly = "true";
         placeHolderInput.readOnly= "true";
+        
         // fill use-content-text
-        placeHolderInput.innerHTML = text;
-
-        this.compareText(placeHolderInput, writeInput.value);
-
-        saveMemento();
+        var idiom = JSON.parse(localStorage.getItem('idiom'));
+        if(idiom){
+            switch(idiom.name){
+                case "castellano":counterIdiom=0;break;
+                case "quechua":counterIdiom=1;break;
+                case "aymara":counterIdiom=2;break;
+            }
+            this._fillContent(idiom)
+        }else{
+            this._fillContent(this.idiomas.properties[counterIdiom]);
+        }
     },
 
     // for characters
@@ -121,6 +136,14 @@ const Text = {
         });
 
         this._coloringPendingKey(previousWord);
+    },
+
+    changeIdiom(){
+        counterIdiom++;
+        counterIdiom = counterIdiom==3 ? 0 : counterIdiom;
+        idiom=this.idiomas.properties[counterIdiom];
+        this._fillContent(idiom);
+        localStorage.setItem('idiom',JSON.stringify(idiom));
     },
 
     _coloringPendingKey(letra){
@@ -293,9 +316,62 @@ const Text = {
                 Hands.fingerReturn(".meniqueR");
                 break;
         }
+    },
+
+    async _fillContent(idiom){
+        var num;
+        var random;
+
+        // especify worker path
+        pdfjsLib.GlobalWorkerOptions.workerSrc = '../lib/pdf/pdf.worker.js';
+
+        //select pdf
+        switch(idiom.name){
+            case 'castellano': case 'quechua':  
+                random=Math.floor(Math.random() * ((idiom.parts.length-1) - 0) + 0);
+                num=idiom.parts[random];
+                // especify pdf path
+                var PDF_URL = '../books/'+idiom.name+'/'+num+'-katatay.pdf';
+                break;
+            case 'aymara':
+                random=Math.floor(Math.random() * ((idiom.parts.length-1) - 0) + 0);
+                num=idiom.parts[random];
+                // especify pdf path
+                var PDF_URL = '../books/'+idiom.name+'/'+num+'-parlama.pdf';
+                break;
+        }
+        
+        // clear write input
+        writeInput.value="";
+        writeInput.innerText="";
+        
+        let doc = await pdfjsLib.getDocument(PDF_URL).promise;
+        let pageTexts = Array.from({length: doc.numPages}, async (v,i) => {
+            return (await (await doc.getPage(i+1)).getTextContent()).items.map(token => token.str).join('');
+        });
+
+        var text=(await Promise.all(pageTexts)).join('');
+        placeHolderInput.innerHTML = text;
+
+        // remove pending keys colors
+        this.removeAllText(placeHolderInput);
+
+        // compare both textarea to show initial pending word
+        this.compareText(placeHolderInput, writeInput.value);
+
+        // restart mementos(undo) and save actual text content
+        mementos = [];
+        saveMemento();
+
+        // modify visible text on switch-idiom label small
+        document.querySelector('.fa-language small').innerHTML= idiom ? '&nbsp;'+idiom.name.charAt(0).toUpperCase() + idiom.name.slice(1) : '&nbsp;Castellano';
     }
 };
 
 window.addEventListener("DOMContentLoaded", function () {
     Text.init();
 });
+
+document.querySelector('#switch-idiom').onchange = function (e) {
+    Text.changeIdiom();
+};

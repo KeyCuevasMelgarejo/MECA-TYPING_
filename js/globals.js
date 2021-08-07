@@ -6,9 +6,10 @@ var isMobile = false; // for keyboard.js
 var btnLimpiar = document.querySelector('.btn-limpiar');
 var btnCloseAlert = document.getElementById('btn-close-alert');
 
-var counter = 0; // for theme.js
+var counterTheme = 0; // for theme.js
+var counterIdiom = 0; // for text.js
 
-const mementos = [];
+var mementos = [];
 function saveMemento() {
   mementos.push(writeInput.value);
 }
