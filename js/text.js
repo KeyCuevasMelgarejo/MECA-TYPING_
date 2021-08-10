@@ -345,26 +345,34 @@ const Text = {
         writeInput.value="";
         writeInput.innerText="";
         
-        let doc = await pdfjsLib.getDocument(PDF_URL).promise;
-        let pageTexts = Array.from({length: doc.numPages}, async (v,i) => {
-            return (await (await doc.getPage(i+1)).getTextContent()).items.map(token => token.str).join('');
-        });
+        try{
+            // extract pdf text
+            let doc = await pdfjsLib.getDocument(PDF_URL).promise;
+            let pageTexts = Array.from({length: doc.numPages}, async (v,i) => {
+                return (await (await doc.getPage(i+1)).getTextContent()).items.map(token => token.str).join('');
+            });
+    
+            // when finish extraction, fill pdf text on textarea
+            var text=(await Promise.all(pageTexts)).join('');
+            placeHolderInput.innerHTML = text;
+            // remove pending keys colors
+            this.removeAllText(placeHolderInput);
 
-        var text=(await Promise.all(pageTexts)).join('');
-        placeHolderInput.innerHTML = text;
+            // compare both textarea to show initial pending word
+            this.compareText(placeHolderInput, writeInput.value);
 
-        // remove pending keys colors
-        this.removeAllText(placeHolderInput);
+            // restart mementos(undo) and save actual text content
+            mementos = [];
+            saveMemento();
 
-        // compare both textarea to show initial pending word
-        this.compareText(placeHolderInput, writeInput.value);
-
-        // restart mementos(undo) and save actual text content
-        mementos = [];
-        saveMemento();
-
-        // modify visible text on switch-idiom label small
-        document.querySelector('.fa-language small').innerHTML= idiom ? '&nbsp;'+idiom.name.charAt(0).toUpperCase() + idiom.name.slice(1) : '&nbsp;Castellano';
+            // modify visible text on switch-idiom label small
+            document.querySelector('.fa-language small').innerHTML= idiom ? '&nbsp;'+idiom.name.charAt(0).toUpperCase() + idiom.name.slice(1) : '&nbsp;Castellano';
+        }catch(e){
+            console.log(e);
+            // message on error
+            alerta.querySelector("div").innerHTML='<strong>¡Ups!</strong> Error al cargar el texto';
+            alerta.style="display:block";
+        }
     }
 };
 
