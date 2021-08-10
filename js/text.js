@@ -323,11 +323,8 @@ const Text = {
         var random;
         var PDF_URL;
 
-        // Loaded via <script> tag, create shortcut to access PDF.js exports.
-        var pdfjsLib = window['pdfjs-dist/build/pdf'];
-
         // especify worker path
-        pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+        pdfjsLib.GlobalWorkerOptions.workerSrc = '../lib/pdf/pdf.worker.js';
 
         //select pdf
         switch(idiom.name){
