@@ -321,6 +321,7 @@ const Text = {
     async _fillContent(idiom){
         var num;
         var random;
+        var PDF_URL;
 
         // especify worker path
         pdfjsLib.GlobalWorkerOptions.workerSrc = '../lib/pdf/pdf.worker.js';
@@ -331,13 +332,13 @@ const Text = {
                 random=Math.floor(Math.random() * ((idiom.parts.length-1) - 0) + 0);
                 num=idiom.parts[random];
                 // especify pdf path
-                var PDF_URL = '../books/'+idiom.name+'/'+num+'-katatay.pdf';
+                PDF_URL = '../books/'+idiom.name+'/'+num+'-katatay.pdf';
                 break;
             case 'aymara':
                 random=Math.floor(Math.random() * ((idiom.parts.length-1) - 0) + 0);
                 num=idiom.parts[random];
                 // especify pdf path
-                var PDF_URL = '../books/'+idiom.name+'/'+num+'-parlama.pdf';
+                PDF_URL = '../books/'+idiom.name+'/'+num+'-parlama.pdf';
                 break;
         }
         
