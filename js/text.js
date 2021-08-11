@@ -9,6 +9,8 @@ const Text = {
     },
 
     init() {
+        // especify worker path
+        pdfjsLib.GlobalWorkerOptions.workerSrc = '../lib/pdf/pdf.worker.min.js';
         // disable for copy and paste
         writeInput.readOnly = "true";
         placeHolderInput.readOnly= "true";
@@ -344,8 +346,7 @@ const Text = {
         writeInput.innerText="";
         
         try{
-            // especify worker path
-            pdfjsLib.GlobalWorkerOptions.workerSrc = '../lib/pdf/pdf.worker.min.js';
+            
 
             // extract pdf text
             let doc = await pdfjsLib.getDocument(PDF_URL).promise;
