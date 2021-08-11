@@ -50,8 +50,8 @@ btnLimpiar.onclick=function(e){
 
 // close keyboard when press out of .use-keyboard-input
 window.addEventListener("click", function (e) {
-    var keyboard = document.querySelector('.keyboard');
-    var btnLimpiar = document.querySelector('.btn-limpiar');
+    let keyboard = document.querySelector('.keyboard');
+    let btnLimpiar = document.querySelector('.btn-limpiar');
     if (!writeInput.contains(e.target) 
     && !keyboard.contains(e.target) 
     && !btnLimpiar.contains(e.target)) { 

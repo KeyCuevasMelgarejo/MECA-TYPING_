@@ -14,7 +14,7 @@ const Text = {
         placeHolderInput.readOnly= "true";
         
         // fill use-content-text
-        var idiom = JSON.parse(localStorage.getItem('idiom'));
+        let idiom = JSON.parse(localStorage.getItem('idiom'));
         if(idiom){
             switch(idiom.name){
                 case "castellano":counterIdiom=0;break;
@@ -30,17 +30,17 @@ const Text = {
     // for characters
     // compare placeHolderInput and WriteInput 
     compareText(placeHolderInput, writeInput){
-        var writeInputLenght = writeInput.length;
+        let writeInputLenght = writeInput.length;
         // on 'enter' key case asign '\n', in other way, a 'character'
-        var nextWord = (placeHolderInput.innerHTML.charAt(writeInputLenght) && placeHolderInput.innerHTML[writeInputLenght].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght));
-        var previousWord = (placeHolderInput.innerHTML.charAt(writeInputLenght-1) && placeHolderInput.innerHTML[writeInputLenght-1].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght-1));
+        let nextWord = (placeHolderInput.innerHTML.charAt(writeInputLenght) && placeHolderInput.innerHTML[writeInputLenght].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght));
+        let previousWord = (placeHolderInput.innerHTML.charAt(writeInputLenght-1) && placeHolderInput.innerHTML[writeInputLenght-1].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght-1));
 
-        var okNextWord = false;
+        let okNextWord = false;
         
         if(writeInput.slice(-1)==placeHolderInput.innerHTML.charAt(writeInputLenght - 1)){
             if(writeInputLenght!=0){
                 Sound.play("keypress");
-                var resultToCompare = placeHolderInput.value.localeCompare(writeInput);
+                let resultToCompare = placeHolderInput.value.localeCompare(writeInput);
 
                 okNextWord = true;
 
@@ -87,9 +87,9 @@ const Text = {
     removeText(placeHolderInput, writeInput){
         Sound.play("keypress");
 
-        var writeInputLenght = writeInput.length;
-        var previousColoredWord = (placeHolderInput.innerHTML.charAt(writeInputLenght+1) && placeHolderInput.innerHTML[writeInputLenght+1].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght+1));
-        var previousWord = (placeHolderInput.innerHTML.charAt(writeInputLenght) && placeHolderInput.innerHTML[writeInputLenght].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght));
+        let writeInputLenght = writeInput.length;
+        let previousColoredWord = (placeHolderInput.innerHTML.charAt(writeInputLenght+1) && placeHolderInput.innerHTML[writeInputLenght+1].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght+1));
+        let previousWord = (placeHolderInput.innerHTML.charAt(writeInputLenght) && placeHolderInput.innerHTML[writeInputLenght].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght));
 
         this._specialWordsIndicateTop(previousWord);
         this._decoloringPreviousKey(previousColoredWord);
@@ -98,9 +98,9 @@ const Text = {
 
     // for erase
     removeAllText(placeHolderInput){
-        var previousWord = placeHolderInput.innerHTML.charAt(0);
-        var keyboardKey = document.querySelectorAll(".keyboard__key"); 
-        var fingers = document.querySelectorAll("circle");
+        let previousWord = placeHolderInput.innerHTML.charAt(0);
+        let keyboardKey = document.querySelectorAll(".keyboard__key"); 
+        let fingers = document.querySelectorAll("circle");
 
         this._specialWordsIndicateTop(previousWord);
 
@@ -118,10 +118,10 @@ const Text = {
     },
 
     undo(placeHolderInput,writeInput){
-        var writeInputLenght = writeInput.length;
-        var previousWord = (placeHolderInput.innerHTML.charAt(writeInputLenght) && placeHolderInput.innerHTML[writeInputLenght].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght));
-        var keyboardKey = document.querySelectorAll(".keyboard__key"); 
-        var fingers = document.querySelectorAll("circle");
+        let writeInputLenght = writeInput.length;
+        let previousWord = (placeHolderInput.innerHTML.charAt(writeInputLenght) && placeHolderInput.innerHTML[writeInputLenght].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght));
+        let keyboardKey = document.querySelectorAll(".keyboard__key"); 
+        let fingers = document.querySelectorAll("circle");
 
         this._specialWordsIndicateTop(previousWord);
         
@@ -147,7 +147,7 @@ const Text = {
     },
 
     _coloringPendingKey(letra){
-        var keyboardKey = document.querySelectorAll(".keyboard__key");   
+        let keyboardKey = document.querySelectorAll(".keyboard__key");   
         keyboardKey.forEach(key => {
             // add color to 'shift' key when 'letra' is on LowerCase
             if((key.innerText=="keyboard_arrow_up" && letra!=letra.toLowerCase() && Keyboard.properties.shift==false)
@@ -190,7 +190,7 @@ const Text = {
     },
 
     _decoloringPreviousKey(letra){
-        var keyboardKey = document.querySelectorAll(".keyboard__key");   
+        let keyboardKey = document.querySelectorAll(".keyboard__key");   
         keyboardKey.forEach(key => {
             // add color to 'shift' key when 'letra' is on LowerCase
             if((key.innerText=="keyboard_arrow_up" && letra==letra.toUpperCase()) 
@@ -231,7 +231,7 @@ const Text = {
     },
 
     _specialWordsIndicateTop(word){
-        var cardText = document.querySelector('.card-text');
+        let cardText = document.querySelector('.card-text');
         switch (word){
             case "\\n":
                 cardText.innerHTML='La siguiente letra es: [ <p>Enter [<i class="material-icons">keyboard_return</i>]</p> ]';
@@ -319,12 +319,9 @@ const Text = {
     },
 
     async _fillContent(idiom){
-        var num;
-        var random;
-        var PDF_URL;
-
-        // especify worker path
-        pdfjsLib.GlobalWorkerOptions.workerSrc = '../lib/pdf/pdf.worker.js';
+        let num;
+        let random;
+        let PDF_URL;
 
         //select pdf
         switch(idiom.name){
@@ -347,6 +344,9 @@ const Text = {
         writeInput.innerText="";
         
         try{
+            // especify worker path
+            pdfjsLib.GlobalWorkerOptions.workerSrc = '../lib/pdf/pdf.worker.min.js';
+
             // extract pdf text
             let doc = await pdfjsLib.getDocument(PDF_URL).promise;
             let pageTexts = Array.from({length: doc.numPages}, async (v,i) => {
@@ -354,7 +354,7 @@ const Text = {
             });
     
             // when finish extraction, fill pdf text on textarea
-            var text=(await Promise.all(pageTexts)).join('');
+            let text=(await Promise.all(pageTexts)).join('');
             placeHolderInput.innerHTML = text;
             // remove pending keys colors
             this.removeAllText(placeHolderInput);
@@ -369,7 +369,7 @@ const Text = {
             // modify visible text on switch-idiom label small
             document.querySelector('.fa-language small').innerHTML= idiom ? '&nbsp;'+idiom.name.charAt(0).toUpperCase() + idiom.name.slice(1) : '&nbsp;Castellano';
         }catch(e){
-            console.log(e);
+            console.log(e.message);
             // message on error
             alerta.querySelector("div").innerHTML='<strong>¡Ups!</strong> Error al cargar el texto';
             alerta.style="display:block";

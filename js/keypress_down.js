@@ -1,6 +1,6 @@
 const KeypressDown = {
     init(e) { 
-        var keyboardKey = document.querySelectorAll(".keyboard__key");  
+        let keyboardKey = document.querySelectorAll(".keyboard__key");  
         // when press  a key, show keyboard
         writeInput.dispatchEvent(new Event("focus"));  
         // clic-zone disappear

@@ -9,7 +9,7 @@ const Theme = {
     },
 
     init() {        
-        var theme = JSON.parse(localStorage.getItem('theme'));
+        let theme = JSON.parse(localStorage.getItem('theme'));
         if(theme){
             switch(theme.name){
                 case "default":counterTheme=0;break;
@@ -34,7 +34,7 @@ const Theme = {
     },
 
     _elements(theme){
-        var root = document.documentElement;
+        let root = document.documentElement;
         root.style.setProperty('--color-uno', theme.one);
         root.style.setProperty('--color-dos', theme.two);
         root.style.setProperty('--color-tres', theme.three);

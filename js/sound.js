@@ -1,6 +1,6 @@
 const Sound = {
     play(track){
-        var keypressSound=null;
+        let keypressSound=null;
         switch(track){
             case "keypress":
                 keypressSound = new Audio("./audio/keypress.mp3");
@@ -15,7 +15,7 @@ const Sound = {
                 keypressSound.volume = 1;
                 break;
         }
-        var promise=keypressSound.play();
+        let promise=keypressSound.play();
         if (promise) {
             //Older browsers may not return a promise, according to the MDN website
             promise.catch(function(error) { console.error(error); });

@@ -1,6 +1,6 @@
 const KeypressUp = {
     init(e) {  
-        const keyboardKey = document.querySelectorAll(".keyboard__key");
+        let keyboardKey = document.querySelectorAll(".keyboard__key");
         if(e.keyCode==16){ // shift
             e.preventDefault();
             keyboardKey.forEach(key => {

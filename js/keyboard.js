@@ -45,7 +45,7 @@ const Keyboard = {
     },
 
     _createKeys() {
-        var keyLayout=null;
+        let keyLayout=null;
         const fragment = document.createDocumentFragment();
 
         // device detection
@@ -80,7 +80,7 @@ const Keyboard = {
         };
 
         keyLayout.forEach(key => {
-            var insertLineBreak=null;
+            let insertLineBreak=null;
             const keyElement = document.createElement("button");
 
             if(isMobile){
@@ -341,7 +341,7 @@ const Keyboard = {
                 this.properties.value += this.properties.shift ? "-": "\_";break;
             default:
                 if(this.properties.escapeChain){
-                    var vocal = (/^[aeiou]$/i).test(key);
+                    let vocal = (/^[aeiou]$/i).test(key);
                     if(vocal==true){
                         if((/^[a]$/i).test(key)){
                             this.properties.value += this.properties.capsLock ? '\u00C1' : '\u00E1';
