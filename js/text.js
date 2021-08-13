@@ -1,5 +1,5 @@
 const Text = {
-    // 'parts' are pdfs belong to just one book but divided by titles
+    // 'parts' are pdfs pieces divided by titles and belong to just one book
     idiomas: {
         properties: [
             {name: "castellano", parts:[1,2,4,6,8,10,12,14,16,18,20]},
@@ -10,7 +10,7 @@ const Text = {
 
     init() {
         // especify worker path
-        pdfjsLib.GlobalWorkerOptions.workerSrc = '../lib/pdf/pdf.worker.min.js';
+        PDFJS.workerSrc = '../lib/pdf/pdf.worker.min.js';
         // disable for copy and paste
         writeInput.readOnly = "true";
         placeHolderInput.readOnly= "true";
@@ -349,7 +349,7 @@ const Text = {
             
 
             // extract pdf text
-            let doc = await pdfjsLib.getDocument(PDF_URL).promise;
+            let doc = await PDFJS.getDocument(PDF_URL).promise;
             let pageTexts = Array.from({length: doc.numPages}, async (v,i) => {
                 return (await (await doc.getPage(i+1)).getTextContent()).items.map(token => token.str).join('');
             });
