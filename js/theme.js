@@ -47,6 +47,6 @@ window.addEventListener("DOMContentLoaded", function () {
     Theme.init();
 });
 
-document.querySelector('#switch-theme').onchange = function (e) {
+document.querySelector('#switch-theme').onchange = function () {
     Theme.changeTheme();
 };

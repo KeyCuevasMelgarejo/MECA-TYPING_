@@ -347,12 +347,10 @@ const Text = {
                 break;
         }
         
-        // clear write input
-        writeInput.value="";
-        writeInput.innerText="";
-        
         try{
-            
+            // clear write input
+            writeInput.value="";
+            writeInput.innerText="";
 
             // extract pdf text
             let doc = await PDFJS.getDocument(PDF_URL).promise;
@@ -389,6 +387,6 @@ window.addEventListener("DOMContentLoaded", function () {
     Text.init();
 });
 
-document.querySelector('#switch-idiom').onchange = function (e) {
+document.querySelector('#switch-idiom').onchange = function () {
     Text.changeIdiom();
 };

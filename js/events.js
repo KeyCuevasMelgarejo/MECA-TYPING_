@@ -83,16 +83,19 @@ writeInput.addEventListener("scroll",()=>{
 
 // on mobile case
 writeInput.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+
     // Invoke appropriate handler depending on the
     // number of touch points.
     switch (e.touches.length) {
-      case 1: 
-      writeInput.scrollTop = e.touches[0].clientY; 
-      placeHolderInput.scrollTop = e.touches[0].clientY; 
-        break;
-      default: 
-        console.log("Not supported"); break;
+        case 1: 
+            writeInput.scrollTop = e.touches[0].clientY; 
+            placeHolderInput.scrollTop = writeInput.scrollTop; 
+            break;
+        default: 
+            console.log("Not supported"); break;
     }
+
 }, false);
 
 
