@@ -280,6 +280,8 @@ const Keyboard = {
                         key.textContent = key.textContent=="1" ? key.textContent="!" : key.textContent="1";break;
                     case "2": case "\"":
                         key.textContent = key.textContent=="2" ? key.textContent="\"" : key.textContent="2";break;
+                    case "7": case "\/":
+                        key.textContent = key.textContent=="7" ? key.textContent="\/" : key.textContent="7";break;
                     case "8": case "\(":
                         key.textContent = key.textContent=="8" ? key.textContent="\(" : key.textContent="8";break;
                     case "9": case "\)":
@@ -311,6 +313,10 @@ const Keyboard = {
                 this.properties.value += this.properties.shift ? "\"": "2";break;
             case "\"":
                 this.properties.value += this.properties.shift ? "2": "\"";break;
+            case "7":
+                this.properties.value += this.properties.shift ? "\/": "7";break;
+            case "\/":
+                this.properties.value += this.properties.shift ? "7": "\/";break;
             case "8":
                 this.properties.value += this.properties.shift ? "\(": "8";break;
             case "\(":

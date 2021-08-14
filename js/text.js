@@ -154,7 +154,7 @@ const Text = {
             // add color to 'shift' key when 'letra' is on LowerCase
             if((key.innerText=="keyboard_arrow_up" && letra!=letra.toLowerCase() && Keyboard.properties.shift==false)
             ||(key.innerText=="keyboard_arrow_up" 
-            && (letra=="!" || letra=="\"" || letra=="?" || letra=="¿" || letra=="\;" || letra=="\:" || letra=="\_"))){
+            && (letra=="!" || letra=="\"" || letra=="\/" || letra=="\(" || letra=="\)" || letra=="?" || letra=="¿" || letra=="\;" || letra=="\:" || letra=="\_"))){
                 key.classList.add("keyboard__key--pending");
                 Keyboard.properties.shiftPending=true;
                 isMobile==true ? Hands.fingerAnimation(".meniqueL") : Hands.fingerAnimation(".meniqueR");
@@ -176,6 +176,9 @@ const Text = {
             }else if((key.innerText=="'" && letra=="?") 
             || (key.innerText=="1" && letra=="!")
             || (key.innerText=="2" && letra=="\"")
+            || (key.innerText=="7" && letra=="\/")
+            || (key.innerText=="8" && letra=="\(")
+            || (key.innerText=="9" && letra=="\)")
             || (key.innerText=="¡" && letra=="¿")
             || (key.innerText=="," && letra=="\;")
             || (key.innerText=="." && letra=="\:")
@@ -197,7 +200,7 @@ const Text = {
             // add color to 'shift' key when 'letra' is on LowerCase
             if((key.innerText=="keyboard_arrow_up" && letra==letra.toUpperCase()) 
             ||(key.innerText=="keyboard_arrow_up" 
-            && (letra=="!" || letra=="\"" || letra=="?" || letra=="¿" || letra=="\;" || letra=="\:" || letra=="\_"))){
+            && (letra=="!" || letra=="\"" || letra=="\/" || letra=="\(" || letra=="\)" || letra=="?" || letra=="¿" || letra=="\;" || letra=="\:" || letra=="\_"))){
                 key.classList.remove("keyboard__key--pending");
                 Keyboard.properties.shiftPending=false;
                 isMobile ? Hands.fingerReturn(".meniqueL") : Hands.fingerReturn(".meniqueR");
@@ -219,6 +222,9 @@ const Text = {
             }else if((key.innerText=="'" && letra=="?") 
             || (key.innerText=="1" && letra=="!")
             || (key.innerText=="2" && letra=="\"")
+            || (key.innerText=="7" && letra=="\/")
+            || (key.innerText=="8" && letra=="\(")
+            || (key.innerText=="9" && letra=="\)")
             || (key.innerText=="¡" && letra=="¿")
             || (key.innerText=="," && letra=="\;")
             || (key.innerText=="." && letra=="\:")
@@ -270,7 +276,7 @@ const Text = {
             case "6": case "y": case "h": case "n":
                 Hands.fingerAnimation(".indiceR");
                 break;
-            case "7": case "u": case "j": case "m":
+            case "7": case "u": case "j": case "m": case "\/":
                 Hands.fingerAnimation(".indiceR");
                 break;
             case "8": case "i": case "k": case ",": case "\(": case "\;":
@@ -305,7 +311,7 @@ const Text = {
             case "6": case "y": case "h": case "n":
                 Hands.fingerReturn(".indiceR");
                 break;
-            case "7": case "u": case "j": case "m":
+            case "7": case "u": case "j": case "m": case "\/":
                 Hands.fingerReturn(".indiceR");
                 break;
             case "8": case "i": case "k": case ",": case "\(": case "\;":
@@ -356,7 +362,8 @@ const Text = {
     
             // when finish extraction, fill pdf text on textarea
             let text=(await Promise.all(pageTexts)).join('');
-            placeHolderInput.innerHTML = text;
+            placeHolderInput.innerHTML = text.trim();
+
             // remove pending keys colors
             this.removeAllText(placeHolderInput);
 
