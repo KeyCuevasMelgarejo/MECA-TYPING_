@@ -117,7 +117,7 @@ const ResultPanel = {
 
                     // book preview
                     contentItem.classList.add("resultpanel__item--book","column");
-                    contentItem.innerHTML = '<span>'+book.title+'</span><br><embed type="application/pdf" src="'+book.url+'#toolbar=0&navpanes=0&scrollbar=0" width="250" height="268">';
+                    contentItem.innerHTML = '<span>'+book.title+'</span><br><object type="application/pdf" data="'+book.url+'#toolbar=0&navpanes=0&scrollbar=0" frameborder="0" width="250" height="268"><embed type="application/pdf" src="'+book.url+'#toolbar=0&navpanes=0&scrollbar=0" frameborder="0" width="250" height="268"></embed></object>';
 
                     // buttons
                     btnPracticeAgain.classList.add("btn-book");
