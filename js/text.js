@@ -372,10 +372,11 @@ const Text = {
             });
     
             // when finish extraction, fill pdf text on textarea
-            let text=(await Promise.all(pageTexts)).join('');
-            placeHolderInput.innerHTML = text.trim().substring(0,400)+"...";
+            let textExtractFromPDF=(await Promise.all(pageTexts)).join('');
+            let text=textExtractFromPDF.trim().substring(0,400)+"...";
 
-            numPalabras=text.trim().length;
+            placeHolderInput.innerHTML = text;
+            numPalabras=text.length;
 
             // remove pending keys colors
             this.removeAllText(placeHolderInput);

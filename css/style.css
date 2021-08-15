@@ -570,6 +570,7 @@ html,body{
     background-color: var(--color-cinco);
     border: 2px solid var(--color-cuatro);
     padding: .375rem .75rem;
+    font-weight: bold;
     font-size: 1rem;
     border-radius: .25rem;
     position: relative;

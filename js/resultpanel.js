@@ -92,7 +92,7 @@ const ResultPanel = {
                     leftContainer.appendChild(itemElement);
                     break;
                 case "qualification":
-                    let sobreCien=(((numPalabras-error)*100)/numPalabras);
+                    let sobreCien=(((numPalabras)*100)/(success+error));
                     let sobreVeinte=(sobreCien*20)/100;
 
                     itemElement.classList.add("resultpanel__item--row");
