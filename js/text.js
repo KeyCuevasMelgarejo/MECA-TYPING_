@@ -373,7 +373,7 @@ const Text = {
     
             // when finish extraction, fill pdf text on textarea
             let text=(await Promise.all(pageTexts)).join('');
-            placeHolderInput.innerHTML = text.trim().substring(0,300);
+            placeHolderInput.innerHTML = text.trim().substring(0,400)+"...";
 
             numPalabras=text.trim().length;
 
