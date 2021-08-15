@@ -6,8 +6,13 @@
     5f5f5f = gris
     1f1f1f = gris oscuro
 */
-
-
+@font-face {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-size: 400;
+    src: url("../fonts/Quicksand.woff2") format('woff2');
+    unicode-range: U+1f1f1f0-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+21f1f1f-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 :root {
     --color-uno: #1f1f1f;
@@ -15,6 +20,11 @@
     --color-tres: #E9E9E9;
     --color-cuatro: #cf3e3e;
     --color-cinco: #1a0b0c;
+    --fuente: Quicksand;
+}
+
+*{
+    font-family: var(--fuente);
 }
 
 
@@ -454,6 +464,76 @@ html,body{
 
 
 
+/* result panel
+ * ------------------------------------------------- */
+ .resultpanel {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    padding: 5px 0;
+    background: var(--color-uno);
+    user-select: none;
+    transition: top 0.4s;
+    z-index: 3;
+    opacity: 0.96;
+}
+
+.resultpanel--hidden {
+    top: 100%;
+}
+
+.resultpanel__items {
+    text-align: center;
+}
+
+.resultpanel__item {
+    width: 100%;
+    border: none;
+    color: var(--color-cuatro);
+    font-size: 1.05rem;
+    outline: none;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+}
+
+.resultpanel__item--row{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.resultpanel__item--column{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+.resultpanel__item--content{
+    width: 100%;
+    border: none;
+    color: var(--color-cuatro);
+    font-size: 3rem;
+    font-weight: bold;
+    outline: none;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+}
+
+
+
 /* mobile
  * ------------------------------------------------- */
 @media only screen and (max-width:786px) {
@@ -528,5 +608,9 @@ html,body{
     .clic-zone {
         height: 110px;
         padding: 12px;
+    }
+
+    .resultpanel__item--content{
+        font-size: 2rem;
     }
 }

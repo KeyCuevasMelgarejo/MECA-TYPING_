@@ -59,7 +59,7 @@ window.addEventListener("click", function (e) {
     }
 });
 
-// click on clic-zone and fadedOut use-content-input
+// fadedOut use-content-input when clicking on clic-zone 
 document.querySelector(".clic-zone").addEventListener("click",()=>{
     document.querySelector(".clic-zone").classList.add("hidden");
     placeHolderInput.classList.add("fadedOut");
@@ -68,6 +68,9 @@ document.querySelector(".clic-zone").addEventListener("click",()=>{
     setTimeout(function() {
         writeInput.dispatchEvent(new Event("focus")); 
     }, 1000);
+
+    // initialize global variables about stats
+    timeInit=moment();
 });
 
 
@@ -95,7 +98,6 @@ writeInput.addEventListener('touchmove', function(e) {
         default: 
             console.log("Not supported"); break;
     }
-
 }, false);
 
 

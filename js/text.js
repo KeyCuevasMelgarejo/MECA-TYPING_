@@ -55,6 +55,9 @@ const Text = {
                 }
                 this._coloringPendingKey(nextWord);
 
+                // sum error global variable for resultpanel.js
+                success++;
+
                 // session ends when you complete all words successfully
                 if(resultToCompare==0){
                     Sound.play("success");
@@ -67,9 +70,11 @@ const Text = {
                     setTimeout(function() {
                         Keyboard.close();
                         placeHolderInput.classList.toggle("sucess");
+                        ResultPanel.init();
                     }, 200);
                 }
             }else{
+                // on first time when initialize
                 this._specialWordsIndicateTop(nextWord);
                 this._coloringPendingKey(nextWord);
             }
@@ -80,6 +85,9 @@ const Text = {
             setTimeout(function() {
                 placeHolderInput.classList.toggle("error");
             }, 200);
+
+            // sum error global variable for resultpanel.js
+            error++;
         }
 
         return okNextWord;
@@ -329,7 +337,10 @@ const Text = {
     async _fillContent(idiom){
         let num;
         let random;
-        let PDF_URL;
+
+        // initialize global variables about stats
+        error=0;
+        success=0;
 
         //select pdf
         switch(idiom.name){
@@ -337,13 +348,13 @@ const Text = {
                 random=Math.floor(Math.random() * ((idiom.parts.length-1) - 0) + 0);
                 num=idiom.parts[random];
                 // especify pdf path
-                PDF_URL = '../books/'+idiom.name+'/'+num+'-katatay.pdf';
+                book = '../books/'+idiom.name+'/'+num+'-katatay.pdf';
                 break;
             case 'aymara':
                 random=Math.floor(Math.random() * ((idiom.parts.length-1) - 0) + 0);
                 num=idiom.parts[random];
                 // especify pdf path
-                PDF_URL = '../books/'+idiom.name+'/'+num+'-parlama.pdf';
+                book = '../books/'+idiom.name+'/'+num+'-parlama.pdf';
                 break;
         }
         
@@ -353,14 +364,16 @@ const Text = {
             writeInput.innerText="";
 
             // extract pdf text
-            let doc = await PDFJS.getDocument(PDF_URL).promise;
+            let doc = await PDFJS.getDocument(book).promise;
             let pageTexts = Array.from({length: doc.numPages}, async (v,i) => {
                 return (await (await doc.getPage(i+1)).getTextContent()).items.map(token => token.str).join('');
             });
     
             // when finish extraction, fill pdf text on textarea
             let text=(await Promise.all(pageTexts)).join('');
-            placeHolderInput.innerHTML = text.trim();
+            placeHolderInput.innerHTML = text.trim().substring(0,150);
+
+            numPalabras=text.trim().length;
 
             // remove pending keys colors
             this.removeAllText(placeHolderInput);
@@ -389,4 +402,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
 document.querySelector('#switch-idiom').onchange = function () {
     Text.changeIdiom();
+
+    // initialize global variables about stats
+    timeInit=moment();
 };
