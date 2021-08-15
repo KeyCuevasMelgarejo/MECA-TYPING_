@@ -348,13 +348,15 @@ const Text = {
                 random=Math.floor(Math.random() * ((idiom.parts.length-1) - 0) + 0);
                 num=idiom.parts[random];
                 // especify pdf path
-                book = '../books/'+idiom.name+'/'+num+'-katatay.pdf';
+                book.url = '../books/'+idiom.name+'/'+num+'-katatay.pdf';
+                book.title="Katatay";
                 break;
             case 'aymara':
                 random=Math.floor(Math.random() * ((idiom.parts.length-1) - 0) + 0);
                 num=idiom.parts[random];
                 // especify pdf path
-                book = '../books/'+idiom.name+'/'+num+'-parlama.pdf';
+                book.url = '../books/'+idiom.name+'/'+num+'-parlama.pdf';
+                book.title="Parlama";
                 break;
         }
         
@@ -371,7 +373,7 @@ const Text = {
     
             // when finish extraction, fill pdf text on textarea
             let text=(await Promise.all(pageTexts)).join('');
-            placeHolderInput.innerHTML = text.trim().substring(0,150);
+            placeHolderInput.innerHTML = text.trim().substring(0,1);
 
             numPalabras=text.trim().length;
 

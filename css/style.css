@@ -50,6 +50,11 @@ html,body{
     vertical-align: top;
  }
 
+ .material-icons-outlined{
+    display: inline-flex;
+    vertical-align: top;
+ }
+
 
 
 /* card
@@ -80,7 +85,7 @@ html,body{
     height: 0px !important;
  }
 
- .btn-limpiar {
+ .btn {
     margin-top: 23em;
     margin-bottom: 1em;
     display: inline-block;
@@ -101,14 +106,14 @@ html,body{
     border-radius: .25rem;
 }
 
-.btn-limpiar:hover {
+.btn:hover {
     color: var(--color-dos);
     background-color: transparent;
     border: 2px solid var(--color-dos);
     
 }
 
-.btn-limpiar:active {
+.btn:active {
     color:var(--color-tres);
     background-color: transparent;
     border: 2px solid var(--color-tres);
@@ -478,6 +483,7 @@ html,body{
     transition: top 0.4s;
     z-index: 3;
     opacity: 0.96;
+    overflow-y: auto;
 }
 
 .resultpanel--hidden {
@@ -532,6 +538,56 @@ html,body{
     position: relative;
 }
 
+.resultpanel__item--book{
+    width: 100%;
+    height: 50%;
+    border: none;
+    color: var(--color-cuatro);
+    font-size: 3rem;
+    font-weight: bold;
+    outline: none;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+    position: static;
+    margin-bottom: 9vh;
+}
+
+.btn-book {
+    top:20px;
+    margin-top: 0.5em;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--color-cuatro);
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: var(--color-cinco);
+    border: 2px solid var(--color-cuatro);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    position: relative;
+}
+
+.btn-book:hover {
+    color: var(--color-dos);
+    background-color: transparent;
+    border: 2px solid var(--color-dos);
+    
+}
+
+.btn-book:active {
+    color:var(--color-tres);
+    background-color: transparent;
+    border: 2px solid var(--color-tres);
+}
+
 
 
 /* mobile
@@ -543,7 +599,7 @@ html,body{
         height: 6px;
     }  
 
-    .btn-limpiar {
+    .btn {
         margin-top: 22em;
         margin-bottom: 0.8em;
     }
@@ -583,7 +639,7 @@ html,body{
         height: 110px;
     }
 
-    .btn-limpiar {
+    .btn {
         margin-top: 7.7em;
     }
 

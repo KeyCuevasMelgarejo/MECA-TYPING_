@@ -108,9 +108,31 @@ const ResultPanel = {
                     leftContainer.appendChild(itemElement);
                     break;
                 case "book":
+                    const btnPracticeAgain=document.createElement("button");
+                    const btnReadBook=document.createElement("button");
+                    
+                    // mark icon
                     itemElement.classList.add("resultpanel__item--column");
-                    rightContainer.appendChild(itemElement);
                     itemElement.innerHTML = createIconHTML("bookmark");
+
+                    // book preview
+                    contentItem.classList.add("resultpanel__item--book","column");
+                    contentItem.innerHTML = '<span>'+book.title+'</span><br><embed type="application/pdf" src="'+book.url+'#toolbar=0&navpanes=0&scrollbar=0" width="250" height="268">';
+
+                    // buttons
+                    btnPracticeAgain.classList.add("btn-book");
+                    btnPracticeAgain.onclick = function() {history.go(0);}; // refresh page
+                    btnPracticeAgain.innerHTML = '<i class="material-icons-outlined">keyboard_hide</i> Seguir Practicando';
+                    
+                    btnReadBook.classList.add("btn-book");
+                    btnReadBook.onclick = function() {history.go(0);}; // for IE
+                    btnReadBook.innerHTML = '<i class="material-icons-outlined">auto_stories</i> Leer Texto Completo';
+
+                    itemElement.appendChild(contentItem);
+                    itemElement.appendChild(btnReadBook);
+                    itemElement.appendChild(btnPracticeAgain);
+
+                    rightContainer.appendChild(itemElement);
                     break;
             }
         });

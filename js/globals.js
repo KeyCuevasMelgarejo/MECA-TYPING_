@@ -3,7 +3,7 @@ var writeInput = document.querySelector('.use-keyboard-input');
 var alerta = document.getElementById('alert');
 var isMobile = false; // for keyboard.js
 
-var btnLimpiar = document.querySelector('.btn-limpiar');
+var btnLimpiar = document.querySelector('.btn');
 var btnCloseAlert = document.getElementById('btn-close-alert');
 
 var counterTheme = 0; // for theme.js
@@ -14,7 +14,7 @@ var numPalabras=0;
 var timeInit;
 var error=0; 
 var success=0;
-var book=null;
+var book=[];
 
 var mementos = [];
 function saveMemento() {
