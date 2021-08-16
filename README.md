@@ -32,7 +32,7 @@ El programa te indica la tecla que debes presionar y los dedos que debes usar se
 ### 2. Observa tus resultados
 Al finalizar, el programa te indica un estadistico de tu desempeño concerniente a la prácticas realizadas. 
 ### 3. Accede a la lectura
-En el panel donde se muestran tus resultados, también se indicará el título y la imagen de la obra cuyo texto acabas de tipear. Además, un botón que, al darle clic, te llevará a un apartado especial donde pordrás hacer lectura completa de la obra. (pendiente)
+En el panel donde se muestran tus resultados, también se indicará el título y la imagen de la obra cuyo texto acabas de tipear. Además, un botón que, al darle clic, te llevará a un apartado especial donde podrás hacer lectura completa de la obra. (pendiente)
 
 # Nota
 El proyecto está enfocado a la práctica de mecanografía especialmente en una computadora o laptop. Por ello, se generaron los ejecutables dependiendo el entorno en el que estés trabajando; claro que también, con el [link](https://keycuevasmelgarejo.github.io/MECA-TYPING_/) que se ha proporcionado, puedes abrir el proyecto en cualquier navegador.
