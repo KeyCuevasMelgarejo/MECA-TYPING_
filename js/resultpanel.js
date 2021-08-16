@@ -11,18 +11,18 @@ const ResultPanel = {
         this.elements.itemsContainer = document.createElement("div");
 
         // Setup main elements
-        this.elements.main.classList.add("resultpanel", "resultpanel--hidden");
+        this.elements.main.classList.add("resultpanel");
         this.elements.itemsContainer.classList.add("resultpanel__items");
         this.elements.itemsContainer.classList.add("resultpanel__item--row");
         this.elements.itemsContainer.appendChild(this._createItems());
 
         this.elements.items = this.elements.itemsContainer.querySelectorAll(".resultpanel__item");
 
-        // Add to DOM
+        // Add to DOM as first element on body
         this.elements.main.appendChild(this.elements.itemsContainer);
-        document.body.appendChild(this.elements.main);
+        document.body.insertBefore(this.elements.main, document.body.firstChild);
 
-        this.open();
+        this.open(this.elements.main.classList);
     },
 
     _createItems() {
@@ -113,7 +113,7 @@ const ResultPanel = {
                     
                     // mark icon
                     itemElement.classList.add("resultpanel__item--column");
-                    itemElement.innerHTML = createIconHTML("bookmark");
+                    itemElement.innerHTML = createIconHTML("bookmark")+"&nbsp;EXTRACTO DE LA OBRA:";
 
                     // book preview
                     contentItem.classList.add("resultpanel__item--book","column");
@@ -141,8 +141,10 @@ const ResultPanel = {
         return fragment;
     },
 
-    open() {
-        this.elements.main.classList.remove("resultpanel--hidden");
+    open(classList) {
+        setTimeout(function() {
+            classList.add("resultpanel--showen");
+        }, 2000);
     }
 };
 
