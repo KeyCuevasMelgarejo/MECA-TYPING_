@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html class="no-js" lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title></title>
+		<meta name="description" content="Fullscreen Pageflip Layout with BookBlock" />
+		<meta name="keywords" content="fullscreen pageflip, booklet, layout, bookblock, jquery plugin, flipboard layout, sidebar menu" />
+		<meta name="author" content="Codrops" />
+		<link rel='shortcut icon' type='image/x-icon' href='images/keyboard.ico' />
+
+		<link rel="stylesheet" href="css/style.jscrollpane.custom.css" />
+		<link rel="stylesheet" href="css/style.bookblock.css" />
+		<link rel="stylesheet" href="css/style.bookreader.css" />
+
+		<!-- Compatibility with all browsers -->
+		<script src="lib/compatibility/modernizr.custom.79639.js"></script>
+	</head>
+	<body>
+		<div id="container" class="container">	
+			<div class="bb-custom-wrapper">
+				<div id="bb-bookblock" class="bb-bookblock">
+				</div>
+				
+				<nav>
+					<span id="bb-nav-prev">&larrhk;</span>
+					<span id="bb-nav-next">&rarrhk;</span>
+				</nav>
+
+				<span id="tblcontents" class="close-button">&#10005;</span>
+			</div>	
+		</div><!-- /container -->
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<!-- Just 1.10.100 version works, other versions have many browser issues.
+		Github pages detect it as 'fake worker', thats why I host it on Netlify-->
+		<script src="lib/pdf/pdf.min.js"></script> 
+		<script src="lib/jquery/bookblock.js"></script>
+		<script src="lib/jquery/mousewheel.js"></script>
+		<script src="lib/jquery/jscrollpane.min.js"></script>
+		<script src="js/jquery.reader.js"></script>
+		<script src="js/jquery.custom.js"></script>
+		<script>
+			$(function() {
+				Page.init();
+			});
+		</script>
+	</body>
+</html>

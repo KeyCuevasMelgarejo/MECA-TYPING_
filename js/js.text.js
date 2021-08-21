@@ -2,8 +2,8 @@ const Text = {
     // 'parts' are pdfs pieces divided by titles and belong to just one book
     idiomas: {
         properties: [
-            {name: "castellano", parts:[1,2,4,6,8,10,12,14,16,18,20]},
-            {name: "quechua", parts:[3,5,7,9,11,13,15,17,19]},
+            {name: "castellano", parts:[1,2,4,8,10,12,14,16,18,20]},
+            {name: "quechua", parts:[3,7,9,11,13,15,17,19]},
             {name: "aymara", parts:[1,2,3,5,7,8,11]}
         ]
     },
@@ -366,7 +366,7 @@ const Text = {
             writeInput.innerText="";
 
             // extract pdf text
-            let doc = await PDFJS.getDocument(book).promise;
+            let doc = await PDFJS.getDocument(book.url).promise;
             let pageTexts = Array.from({length: doc.numPages}, async (v,i) => {
                 return (await (await doc.getPage(i+1)).getTextContent()).items.map(token => token.str).join('');
             });
