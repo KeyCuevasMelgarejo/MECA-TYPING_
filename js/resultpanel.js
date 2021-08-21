@@ -117,18 +117,17 @@ const ResultPanel = {
 
                     // book preview
                     contentItem.classList.add("resultpanel__item--book","column");
-                    contentItem.innerHTML = '<span>'+book.title+'</span><br><object type="application/pdf" data="'+book.ur+'#toolbar=0&navpanes=0&scrollbar=0" frameborder="0" width="250" height="268"><embed type="application/pdf" src="'+book.url+'#toolbar=0&navpanes=0&scrollbar=0" frameborder="0" width="250" height="268"></embed></object>';
+                    contentItem.innerHTML = '<span>'+book.title+'</span><br><object type="application/pdf" data="'+book.url+'#toolbar=0&navpanes=0&scrollbar=0" frameborder="0" width="250" height="268"><embed type="application/pdf" src="'+book.url+'#toolbar=0&navpanes=0&scrollbar=0" frameborder="0" width="250" height="268"></embed></object>';
 
                     // buttons
-                    btnReadBook.classList.add("btn-book");
-                    btnReadBook.onclick = function() {window.open('bookreader.html?url='+book.url+'&title='+book.title,'_blank').focus();}; // post parameter to page.js
-                    btnReadBook.innerHTML = '<i class="material-icons-outlined">auto_stories</i> Leer Texto Completo';
-
                     btnPracticeAgain.classList.add("btn-book");
                     btnPracticeAgain.onclick = function() {history.go(0);}; // refresh page
                     btnPracticeAgain.innerHTML = '<i class="material-icons-outlined">keyboard_hide</i> Seguir Practicando';
+                    
+                    btnReadBook.classList.add("btn-book");
+                    btnReadBook.onclick = function() {history.go(0);}; // for IE
+                    btnReadBook.innerHTML = '<i class="material-icons-outlined">auto_stories</i> Leer Texto Completo';
 
-                    // add elements to DOM
                     itemElement.appendChild(contentItem);
                     itemElement.appendChild(btnReadBook);
                     itemElement.appendChild(btnPracticeAgain);

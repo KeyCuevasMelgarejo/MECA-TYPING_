@@ -67,4 +67,4 @@ const KeypressDown = {
 
 window.addEventListener('keydown', function(e){
     KeypressDown.init(e);
-});
+}, true);
