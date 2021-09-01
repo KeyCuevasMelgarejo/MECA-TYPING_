@@ -9,6 +9,8 @@
     <meta name="author" content="Key Cuevas Melgarejo" />
     <link rel='shortcut icon' type='image/x-icon' href='images/keyboard.ico' />
 
+    <!-- Socket IO -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -24,9 +26,45 @@
     <div class="container">  
       <span id="audio"></span>
 
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-text"></h5>
+      <!-- Header -->
+      <div class="row">
+        <div style="width: 75%;">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-text"></h5>
+            </div>
+          </div>
+        </div>
+        <div style="width: 25%;">
+          <div class="card client-server">
+            <div class="card-body">
+              <button href="#" class="btn-client-server" title="Anónimo">
+                <i class="fas fa-mask"></i>
+                <i class="fas fa-exclamation-triangle"></i>
+                <i class="fas fa-users"></i>
+                <i class="fas fa-chalkboard-teacher"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- The Modal -->
+      <div class="modal">
+        <div class="modal-content">
+          <div class="modal-head">
+            <span class="title"></span>
+            <span class="close">&times;</span>
+          </div>
+          <div class="modal-body">
+            <!--<button type="submit" onclick="ValidaWeb()" class="btn">Validar</button>-->      
+          </div>
+          <div class="modal-captcha">
+          </div>
+          <div class="modal-message">
+            <br><hr>
+            <p></p>
+          </div>
         </div>
       </div>
   
@@ -37,11 +75,12 @@
             <textarea id="content-keyboard" readonly class="use-keyboard-input"></textarea>
             <div class="clic-zone">
               Haz clic aquí para comenzar
-              <br><br><i class="material-icons">touch_app</i></div>
+              <br><br><i class="material-icons">touch_app</i>
+            </div>
           </div>
         </div>
         <div class="col-lg-12 text-center">
-          <button href="#" class="btn"><i class="material-icons">delete</i> Borrar Todo <strong>[Supr]</strong></button>
+          <button href="#" class="btn"><i class="material-icons">delete_outline</i> Borrar Todo <strong>[Supr]</strong></button>
         </div>
       </div>
 
@@ -156,5 +195,7 @@
     <script src="js/js.events.js"></script> 
     <script src="js/js.theme.js"></script> 
     <script src="js/js.resultpanel.js"></script> 
+    <script src="js/js.socket.js"></script>
+    <script src='js/js.captcha.js'></script>
   </body>
 </html>

@@ -14,6 +14,6 @@ const KeypressUp = {
     }
 };
 
-window.addEventListener('keyup', function(e){
+writeInput.addEventListener('keyup', function(e){
     KeypressUp.init(e);
 }, true);
