@@ -195,7 +195,8 @@ html,body{
     cursor: pointer;
 }
 
-.modal-body{
+.modal-body,
+.modal-classroomview{
     position: relative;
     color: var(--color-dos);
     margin: auto;
@@ -296,10 +297,15 @@ html,body{
     color:var(--color-tres);
 }
 
+.modal-body input.large{
+    width: 100%;
+    margin-bottom: 1.4rem;
+}
+
 .modal-captcha hr,
 .modal-message hr{
     margin-top: -0.5rem;
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.4rem;
     border-radius: .25rem;
     border-top: 1px solid var(--color-cuatro); 
     height:0;
@@ -325,7 +331,7 @@ html,body{
     border-radius: .25rem;
     width:80%;
     margin-right: .2rem;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
 }
 
 .modal-captcha .btn-no-border{
@@ -351,7 +357,15 @@ html,body{
     vertical-align: middle;
 }
 
-.modal-message .btn-tiny  {
+.modal-classroomview__students {
+    text-align: center;
+}
+
+.modal-classroomview__options{
+    text-align: center;
+}
+
+.modal-classroomview__options .btn-tiny  {
     font-weight: 400;
     line-height: 1.5;
     color: var(--color-cuatro);
@@ -366,10 +380,13 @@ html,body{
     font-size: 1.4rem;
     border-radius: .25rem;
     position: relative;
-    width:10%;
+    width:24%;
+    display: inline-block;
     margin-bottom: 1rem;
+    margin:2px;
     min-width: 40px;
 }
+
 
 
 /* button
@@ -921,6 +938,11 @@ html,body{
 
     .close {
         padding-left:85%;
+    }
+
+    .modal-message p{
+        font-size: 17px;
+        width: 83%;
     }
 }
 

@@ -1,8 +1,7 @@
 const ResultPanel = {
     elements: {
         main: null,
-        itemsContainer: null,
-        items: [],
+        itemsContainer: null
     },
 
     init() {
@@ -15,8 +14,6 @@ const ResultPanel = {
         this.elements.itemsContainer.classList.add("resultpanel__items");
         this.elements.itemsContainer.classList.add("resultpanel__item--row");
         this.elements.itemsContainer.appendChild(this._createItems());
-
-        this.elements.items = this.elements.itemsContainer.querySelectorAll(".resultpanel__item");
 
         // Add to DOM as first element on body
         this.elements.main.appendChild(this.elements.itemsContainer);

@@ -7,14 +7,16 @@ const socket = io('http://localhost:3000',{
 
 socket.on('connect', function() {
     if(modalBody.children.length==0){
-        let pText=document.createElement("p"),
+        let pName = document.createElement('p'),
+            inputName = document.createElement('input'),
+            pText=document.createElement("p"),
             inputCodeSession=document.createElement("input"),
             btnJoinToSession=document.createElement("button"),
             aToBeTeacher=document.createElement("a");
     
         // initilize modalBody every time to connect with socket even after disconnect
         modalBody.innerHTML="";
-        modalBody.appendChild(pText);
+        
         modalBody.addEventListener("mousedown",function(){
             // disable modal body
             modalBody.style.opacity ="1";
@@ -26,11 +28,24 @@ socket.on('connect', function() {
             }, 4000);
         }); 
 
+        pName.innerHTML="Ingrese su nombre completo:";
+        inputName.type = "text";
+        inputName.maxLength = 35;
+        inputName.classList.add("large");
+        inputName.id = "modal-input-name";
+
         inputCodeSession.maxLength = 4;
     
         btnJoinToSession.className='btn-short';
         btnJoinToSession.innerHTML='&#10140';
         btnJoinToSession.addEventListener("click",async function(){
+            // on case inputName would be empty
+            if(!inputName.value){
+                document.querySelector(".modal-message > p").innerHTML = "<strong>ERROR:</strong> Debe ingresar su nombre completo.";
+                modalMessage.style.display = "inline-block";
+                return;
+            }
+
             socket.emit("PIN-check", inputCodeSession.value);
             btnJoinToSession.style.pointerEvents = "none";
             await socket.on("PIN-checked",function(data){
@@ -52,8 +67,9 @@ socket.on('connect', function() {
                     document.querySelector(".modal-message > p").innerHTML = "Usted se encuentra dentro de la clase",
                     modalMessage.style.display = "inline-block",
 
-                    socket.emit("join-match", "fulano", inputCodeSession.value)
+                    socket.emit("join-match", inputName.value, inputCodeSession.value)
                 ):(
+                    inputName.value="",
                     inputCodeSession.value="",
                     document.querySelector(".modal-message > p").innerHTML = "<strong>ERROR:</strong> El código de sesión ingresado, es incorrecto.",
                     modalMessage.style.display = "inline-block",
@@ -79,8 +95,11 @@ socket.on('connect', function() {
             modalCaptcha.dispatchEvent(new Event("mousedown"));
         }); 
 
-        document.querySelector(".modal-body > p").innerHTML = "Ingrese el código de la sesión:";
+        pText.innerHTML = "Ingrese el código de la sesión:";
         
+        modalBody.appendChild(pName);
+        modalBody.appendChild(inputName);
+        modalBody.appendChild(pText);
         modalBody.appendChild(inputCodeSession);
         modalBody.appendChild(btnJoinToSession);
         modalBody.appendChild(aToBeTeacher);

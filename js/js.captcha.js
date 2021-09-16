@@ -20,8 +20,8 @@ function Captcha() {
     if(modalCaptcha.children.length==0){
         var captcha = document.createElement('canvas');
         let hr = document.createElement('hr'),
-            p = document.createElement('p'),
-            input = document.createElement('input'),
+            pCaptcha = document.createElement('p'),
+            inputCaptcha = document.createElement('input'),
             refresh = document.createElement('button'),
             check = document.createElement('button');
     
@@ -37,35 +37,31 @@ function Captcha() {
 
         captcha.id = 'captcha';
     
-        input.type = "text";
-        input.id = 'inputName';
-        input.maxLength = 7;
-    
         refresh.type = "submit";
-        refresh.id = "refresh";
         refresh.classList.add("btn-short","btn-no-border");
         refresh.innerHTML = '&olarr;';
         refresh.addEventListener("click",function(){
             modalMessage.style.display = "none";
-            input.value="";
+            inputCaptcha.value="";
             Captcha();
         });  
 
-        p.innerHTML="Ingrese los caracteres de la imagen superior:";
+        pCaptcha.innerHTML="Ingrese los caracteres de la imagen superior:";
+        inputCaptcha.type = "text";
+        inputCaptcha.maxLength = 7;
     
         check.type = "submit";
-        check.id = "check";
         check.className = "btn-short";
         check.innerHTML = "&#10003;";
         check.addEventListener("click",function(){
-            ValidCaptcha(input);
+            ValidCaptcha(inputCaptcha);
         });  
     
         modalCaptcha.appendChild(hr);
         modalCaptcha.appendChild(captcha);
         modalCaptcha.appendChild(refresh);
-        modalCaptcha.appendChild(p);
-        modalCaptcha.appendChild(input);
+        modalCaptcha.appendChild(pCaptcha);
+        modalCaptcha.appendChild(inputCaptcha);
         modalCaptcha.appendChild(check);
     }else{
         var captcha = modalCaptcha.querySelector('canvas');
@@ -73,21 +69,15 @@ function Captcha() {
     CreaIMG(code,captcha);
 }
 
-async function ValidCaptcha(input) {
+async function ValidCaptcha(inputCaptcha) {
     let string1 = removeSpaces(getCookie('c')),
-        string2 = removeSpaces(input.value);
+        string2 = removeSpaces(inputCaptcha.value);
+    
     if (string1 == string2) {
         // create 'nueva clase'
-        socket.emit("new-match", "Profesor");
+        socket.emit("new-match", "PROFESOR");
         // get code sesion
         await socket.on("new-pin",function(data){
-            let staticClassRoom=document.createElement("button");
-            staticClassRoom.title = "ver clase";
-            staticClassRoom.type = "submit";
-            staticClassRoom.id = "staticClassRoom";
-            staticClassRoom.classList.add("btn-tiny");
-            staticClassRoom.innerHTML = '<i class="fas fa-eye"></i>';
-
             showFaIcon(".fa-chalkboard-teacher");
 
             // show new message on title
@@ -103,11 +93,12 @@ async function ValidCaptcha(input) {
 
             // show message
             document.querySelector(".modal-message > p").innerHTML = "Su código de sesión es: <strong>"+data+"</strong>";
-            modalMessage.appendChild(staticClassRoom);
             modalMessage.style.display = "inline-block";
+
+            ClassRoomView.init();
         });
     }else{
-        input.value="";
+        inputCaptcha.value="";
         document.querySelector(".modal-message > p").innerHTML = "<strong>ERROR:</strong> Los caracteres ingresados no coinciden con los de la imagen.";
         modalMessage.style.display = "inline-block";
         Captcha();
