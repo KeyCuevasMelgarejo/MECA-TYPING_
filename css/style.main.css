@@ -365,7 +365,7 @@ html,body{
     text-align: center;
 }
 
-.modal-classroomview__options .btn-tiny  {
+.modal-classroomview__options .btn-tiny {
     font-weight: 400;
     line-height: 1.5;
     color: var(--color-cuatro);
@@ -385,6 +385,30 @@ html,body{
     margin-bottom: 1rem;
     margin:2px;
     min-width: 40px;
+    pointer-events: auto;
+}
+
+.modal-classroomview__options .btn-tiny:hover,
+.modal-classroomview__options .btn-tiny.target:hover {
+    color: var(--color-dos);
+    border: 1px solid var(--color-dos);
+}
+
+.modal-classroomview__options .btn-tiny:active,
+.modal-classroomview__options .btn-tiny.target:active {
+    color:var(--color-tres);
+    border: 1px solid var(--color-tres);
+}
+
+.modal-classroomview__options .btn-tiny.target {
+    color:var(--color-seis);
+    border: 1px solid var(--color-seis);
+}
+
+.modal-classroomview__options .btn-tiny:disabled {
+    pointer-events: none;
+    color:var(--color-uno);
+    border: 1px solid var(--color-uno);
 }
 
 
