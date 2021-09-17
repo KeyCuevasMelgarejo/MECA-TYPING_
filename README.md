@@ -40,7 +40,7 @@ Puedes crear una clase (adquieres el rol de Profesor) o unirte a una (adquieres 
 * Pausar - inhabilita la escritura y pausa el tiempo de la prueba de mecanografía para todo el alumnado de la clase hasta que el Profesor vueva a usar la opción Iniciar.
 * Detener - opción que detiene forzadamente la prueba de mecanografía para todo el alumnado de la clase.
 
-Para esta funcionalidad, por el lado del BackEnd, se levantó un server desarrollado en NodeJS el cual se alojó en la siguiente dirección [link](https://mecatyping.herokuapp.com:3000/) cuyo código se encuentra en un repositorio privado. Puedes acceder a la dirección antes dada para consumir los servicios, aún asi, todas los funcionalidades de los puntos 1,2 y 3, del proyecto compartido en este repositorio, funcionarán con total normalidad; el punto 4 (Únete a una clase) es un adicional que no afecta los puntos anteriores.
+Para esta funcionalidad, por el lado del BackEnd, se levantó un server desarrollado en NodeJS el cual se alojó en la siguiente dirección [[link](https://mecatyping.herokuapp.com:3000/)] cuyo código se encuentra en un repositorio privado. Puedes acceder a la dirección antes dada para consumir los servicios, aún asi, todas los funcionalidades de los puntos 1,2 y 3, del proyecto compartido en este repositorio, funcionarán con total normalidad; el punto 4 (Únete a una clase) es un adicional que no afecta los puntos anteriores.
 
 # Nota
 El proyecto está enfocado a la práctica de mecanografía especialmente en una computadora o laptop. Por ello, se generaron los ejecutables dependiendo el entorno en el que estés trabajando; claro que también, con el [link](https://keycuevasmelgarejo.github.io/MECA-TYPING_/) que se ha proporcionado, puedes abrir el proyecto en cualquier navegador.
