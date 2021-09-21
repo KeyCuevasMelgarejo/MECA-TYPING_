@@ -16,6 +16,7 @@ const ClassRoomView = {
         // Setup main elements
         this.elements.main.classList.add("modal-classroomview");
         this.elements.studentsContainer.classList.add("modal-classroomview__students");
+        this.elements.studentsContainer.appendChild(this._createStudents());
         this.elements.optionsContainer.classList.add("modal-classroomview__options");
         this.elements.optionsContainer.appendChild(this._createOptions());
 
@@ -23,6 +24,61 @@ const ClassRoomView = {
         this.elements.main.appendChild(this.elements.studentsContainer);
         this.elements.main.appendChild(this.elements.optionsContainer);
         document.querySelector(".modal-content").insertBefore(this.elements.main, document.querySelector(".modal-content").lastChild);
+    },
+
+    _createStudents(){
+        const studentsContainer=document.createElement("ul");
+        let studentsCountLabel=document.createElement("p");
+        let studentsCount=0;
+
+        studentsContainer.id="students-container";
+        studentsCountLabel.id="students-count";
+
+        studentsCountLabel.innerHTML="<strong></strong> estudiantes conectados";
+
+        socket.on("join-new-student", function(data) {
+            const newStudent=document.createElement("li");
+            newStudent.id=data[0];
+            newStudent.innerHTML=data[1];
+
+            studentsContainer.querySelectorAll("li").forEach(student=>{
+                if(student.id==data[0]){
+                    studentsContainer.removeChild(student);
+                    studentsContainer.length=0;
+
+                    studentsCount--;
+                }
+            })
+            
+            studentsCount++;
+
+            studentsCountLabel.querySelector("strong").textContent=studentsCount;
+
+            if(studentsContainer.querySelectorAll("li").length==0){
+                studentsContainer.appendChild(studentsCountLabel);
+            }
+        
+            studentsContainer.appendChild(newStudent);
+        });
+
+        socket.on("student-disconnected", function(data) {
+            studentsContainer.querySelectorAll("li").forEach(student=>{
+                if(student.id==data){
+                    studentsContainer.removeChild(student);
+                    studentsContainer.length=0;
+
+                    studentsCount--;
+                }
+            })
+
+            studentsCountLabel.querySelector("strong").textContent=studentsCount;
+
+            if(studentsContainer.querySelectorAll("li").length==0){
+                studentsContainer.removeChild(studentsCountLabel);
+            }
+        });
+
+        return studentsContainer;
     },
 
     _createOptions(){

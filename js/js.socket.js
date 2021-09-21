@@ -141,4 +141,5 @@ socket.io.on("reconnect_failed", function() {
     btnClientServer.style.visibility = "hidden";
 });
 
-// socket.emit('sayHi', { message: 'Hello world' });
+// disable thread for all, and enable on classroomview.js
+socket.off("join-new-student");

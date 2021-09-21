@@ -31,7 +31,6 @@ function saveMemento() {
 
 /* about card client-server
  * ------------------------------------------------- */
-
 function showFaIcon(faIcon){
   document.querySelectorAll(".btn-client-server i").forEach(element => {
     element.style.display = "none";
@@ -51,3 +50,9 @@ function enableModalPart(modalPart){
   modalPart.style.opacity ="1";
   modalPart.style.pointerEvents = "auto";
 }
+
+/* about close window accidentally
+ * ------------------------------------------------- */
+/*window.onbeforeunload = function() {
+  return "¿Estás seguro de abandonar la página?";
+};*/

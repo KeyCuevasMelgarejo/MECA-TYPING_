@@ -195,8 +195,7 @@ html,body{
     cursor: pointer;
 }
 
-.modal-body,
-.modal-classroomview{
+.modal-body{
     position: relative;
     color: var(--color-dos);
     margin: auto;
@@ -357,8 +356,49 @@ html,body{
     vertical-align: middle;
 }
 
+.modal-classroomview{
+    position: relative;
+    color: var(--color-dos);
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+    margin-bottom: 1em;
+    display:inline-block; 
+    text-align:left;
+}
+
 .modal-classroomview__students {
     text-align: center;
+    margin-bottom: 1.6rem;
+}
+
+.modal-classroomview__students ul {
+    width: 100%;
+}
+
+.modal-classroomview__students ul:empty::before{
+    height: 50px;
+    content: "(Aún no hay estudiantes)";
+}
+
+.modal-classroomview__students li {
+    margin-left: -32.5px;
+    list-style: none;
+    color: var(--color-tres);
+    border: 1px dashed var(--color-tres);
+    background: var(--color-cuatro);
+    padding: 5px;
+    font-size: 2.5vh;
+}
+
+.modal-classroomview__students li:nth-child(2) {
+    border-top-left-radius:.3rem;
+    border-top-right-radius:.3rem;
+}
+
+.modal-classroomview__students li:last-child {
+    border-bottom-left-radius:.3rem;
+    border-bottom-right-radius:.3rem;
 }
 
 .modal-classroomview__options{
