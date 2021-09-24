@@ -97,9 +97,9 @@ const Text = {
     removeText(placeHolderInput, writeInput){
         Sound.play("keypress");
 
-        let writeInputLenght = writeInput.length;
-        let previousColoredWord = (placeHolderInput.innerHTML.charAt(writeInputLenght+1) && placeHolderInput.innerHTML[writeInputLenght+1].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght+1));
-        let previousWord = (placeHolderInput.innerHTML.charAt(writeInputLenght) && placeHolderInput.innerHTML[writeInputLenght].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght));
+        let writeInputLenght = writeInput.length,
+            previousColoredWord = (placeHolderInput.innerHTML.charAt(writeInputLenght+1) && placeHolderInput.innerHTML[writeInputLenght+1].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght+1)),
+            previousWord = (placeHolderInput.innerHTML.charAt(writeInputLenght) && placeHolderInput.innerHTML[writeInputLenght].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght));
 
         this._specialWordsIndicateTop(previousWord);
         this._decoloringPreviousKey(previousColoredWord);
@@ -108,9 +108,9 @@ const Text = {
 
     // for erase
     removeAllText(placeHolderInput){
-        let previousWord = placeHolderInput.innerHTML.charAt(0);
-        let keyboardKey = document.querySelectorAll(".keyboard__key"); 
-        let fingers = document.querySelectorAll("circle");
+        let previousWord = placeHolderInput.innerHTML.charAt(0),
+            keyboardKey = document.querySelectorAll(".keyboard__key"), 
+            fingers = document.querySelectorAll("circle");
 
         this._specialWordsIndicateTop(previousWord);
 
@@ -128,10 +128,10 @@ const Text = {
     },
 
     undo(placeHolderInput,writeInput){
-        let writeInputLenght = writeInput.length;
-        let previousWord = (placeHolderInput.innerHTML.charAt(writeInputLenght) && placeHolderInput.innerHTML[writeInputLenght].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght));
-        let keyboardKey = document.querySelectorAll(".keyboard__key"); 
-        let fingers = document.querySelectorAll("circle");
+        let writeInputLenght = writeInput.length,
+            previousWord = (placeHolderInput.innerHTML.charAt(writeInputLenght) && placeHolderInput.innerHTML[writeInputLenght].match(/\n/gm)!==null ? '\\n' :placeHolderInput.innerHTML.charAt(writeInputLenght)),
+            keyboardKey = document.querySelectorAll(".keyboard__key"), 
+            fingers = document.querySelectorAll("circle");
 
         this._specialWordsIndicateTop(previousWord);
         
@@ -335,8 +335,7 @@ const Text = {
     },
 
     async _fillContent(idiom){
-        let num;
-        let random;
+        let num,random;
 
         // initialize global variables about stats
         error=0;
@@ -372,8 +371,8 @@ const Text = {
             });
     
             // when finish extraction, fill pdf text on textarea
-            let textExtractFromPDF=(await Promise.all(pageTexts)).join('');
-            let text=textExtractFromPDF.trim().substring(0,400)+"...";
+            let textExtractFromPDF=(await Promise.all(pageTexts)).join(''),
+                text=textExtractFromPDF.trim().substring(0,400)+"...";
 
             placeHolderInput.innerHTML = text;
             numPalabras=text.length;

@@ -15,11 +15,11 @@ const Hands = {
     },
 
     fingerAnimation(fingerPending){
-        let palma;
-        let element = document.querySelector(fingerPending);
-        let r = element.getAttribute("r");
-        let cx = element.getAttribute("cx");
-        let cy = element.getAttribute("cy");
+        let palma,
+            element = document.querySelector(fingerPending),
+            r = element.getAttribute("r"),
+            cx = element.getAttribute("cx"),
+            cy = element.getAttribute("cy");
 
         this.fingers.properties.forEach(finger=>{
             if(finger.name==element.className.animVal){
@@ -51,11 +51,11 @@ const Hands = {
     },
 
     fingerReturn(fingerPending){
-        let palma;
-        let element = document.querySelector(fingerPending);
-        let r = element.getAttribute("r");
-        let cx = element.getAttribute("cx");
-        let cy = element.getAttribute("cy");
+        let palma,
+            element = document.querySelector(fingerPending),
+            r = element.getAttribute("r"),
+            cx = element.getAttribute("cx"),
+            cy = element.getAttribute("cy");
 
         this.fingers.properties.forEach(finger=>{
             if(finger.name==element.className.animVal){

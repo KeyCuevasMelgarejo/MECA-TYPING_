@@ -1,11 +1,6 @@
 const KeypressDown = {
     init(e) { 
         let keyboardKey = document.querySelectorAll(".keyboard__key");  
-        // when press  a key, show keyboard
-        writeInput.dispatchEvent(new Event("focus"));  
-        // clic-zone disappear
-        document.querySelector(".clic-zone").classList.add("hidden");
-        placeHolderInput.classList.add("fadedOut");
         
         if(e.key=='Escape'|| e.key=='Esc'|| e.keyCode==27){ // detect esc key and close keyboard 
             Sound.play("keypress");
@@ -65,6 +60,6 @@ const KeypressDown = {
     }
 };
 
-window.addEventListener('keydown', function(e){
+writeInput.addEventListener('keydown', function(e){
     KeypressDown.init(e);
 });

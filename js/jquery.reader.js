@@ -101,16 +101,14 @@ var Page = (function() {
 		$bookBlock = $( '#bb-bookblock' ); // document.querySelector()
 
 		// to create elements
-		let $bbItem;
-		let $content;
-		let $scroller;
+		let $bbItem,$content,$scroller;
 		
         try{
             // extract pdf text
-			let textItems=[];
-			let finalString = "";
-			let line=0;
-            let doc = await PDFJS.getDocument(url).promise;
+			let textItems=[],
+				finalString = "",
+				line=0,
+            	doc = await PDFJS.getDocument(url).promise;
             let pageTexts = Array.from({length: doc.numPages}, async (v,i) => {
 				textItems=(await (await doc.getPage(i+1)).getTextContent()).items;
 
@@ -135,11 +133,11 @@ var Page = (function() {
             });
 
             // when finish extraction, fill pdf text on scroller div
-			let pageNum=0;
-			let textMerged="";
-            let textExtractFromPDF=(await Promise.resolve(pageTexts[pageTexts.length-1]));
-			let textCompressed=textExtractFromPDF.trim();
-			let textSplitted=textCompressed.split('\r\n\r\n');
+			let pageNum=0,
+				textMerged="",
+            	textExtractFromPDF=(await Promise.resolve(pageTexts[pageTexts.length-1])),
+				textCompressed=textExtractFromPDF.trim(),
+				textSplitted=textCompressed.split('\r\n\r\n');
 
 			for(let i = 0; i < textSplitted.length; i++){
 				$bbItem = $("<div></div>");

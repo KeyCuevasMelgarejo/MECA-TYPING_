@@ -1,8 +1,7 @@
 const ResultPanel = {
     elements: {
         main: null,
-        itemsContainer: null,
-        items: [],
+        itemsContainer: null
     },
 
     init() {
@@ -15,8 +14,6 @@ const ResultPanel = {
         this.elements.itemsContainer.classList.add("resultpanel__items");
         this.elements.itemsContainer.classList.add("resultpanel__item--row");
         this.elements.itemsContainer.appendChild(this._createItems());
-
-        this.elements.items = this.elements.itemsContainer.querySelectorAll(".resultpanel__item");
 
         // Add to DOM as first element on body
         this.elements.main.appendChild(this.elements.itemsContainer);
@@ -42,21 +39,22 @@ const ResultPanel = {
         };
 
         itemLayout.forEach(item => {
-            const itemElement = document.createElement("div");
-            const contentItem = document.createElement("div");
+            const itemElement = document.createElement("div"),
+                contentItem = document.createElement("div");
 
             // Add attributes/classes
             itemElement.classList.add("resultpanel__item");
 
             switch (item) {
                 case "time":
-                    let timeFinish = moment();
-                    let timeTotal=timeFinish.diff(timeInit); // diff yields milliseconds
-                    let timeUsed=moment.duration(timeTotal);
+                    let timeFinish = moment(),
+                        timeTotal=timeFinish.diff(timeInit), // diff yields milliseconds
+                        timeUsed=moment.duration(timeTotal),
 	
-                    let sg=timeUsed.seconds(); //seconds 	
-                    let mn=timeUsed.minutes(); //minutes 	
-                    let ho=timeUsed.hours(); //hours 	
+                        sg=timeUsed.seconds(), //seconds 	
+                        mn=timeUsed.minutes(), //minutes 	
+                        ho=timeUsed.hours(); //hours 	
+                        
                     //add '0' on result less than 10			 
                     if(ho<10){ho="0"+ho;} 
                     if(sg<10){sg="0"+sg;} 
@@ -108,8 +106,8 @@ const ResultPanel = {
                     leftContainer.appendChild(itemElement);
                     break;
                 case "book":
-                    const btnPracticeAgain=document.createElement("button");
-                    const btnReadBook=document.createElement("button");
+                    const btnPracticeAgain=document.createElement("button"),
+                        btnReadBook=document.createElement("button");
                     
                     // mark icon
                     itemElement.classList.add("resultpanel__item--column");

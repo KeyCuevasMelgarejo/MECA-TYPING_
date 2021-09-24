@@ -49,9 +49,9 @@ btnLimpiar.onclick=function(e){
  * ------------------------------------------------- */
 
 // close keyboard when press out of .use-keyboard-input
-window.addEventListener("click", function (e) {
-    let keyboard = document.querySelector('.keyboard');
-    let btnLimpiar = document.querySelector('.btn');
+window.addEventListener("click",function(e){
+    let keyboard = document.querySelector('.keyboard'),
+        btnLimpiar = document.querySelector('.btn');
     if (!writeInput.contains(e.target) 
     && !keyboard.contains(e.target) 
     && !btnLimpiar.contains(e.target)) { 
@@ -60,13 +60,13 @@ window.addEventListener("click", function (e) {
 });
 
 // fadedOut use-content-input when clicking on clic-zone 
-document.querySelector(".clic-zone").addEventListener("click",()=>{
+document.querySelector(".clic-zone").addEventListener("click",function(){
     document.querySelector(".clic-zone").classList.add("hidden");
     placeHolderInput.classList.add("fadedOut");
 
     // when press a key, show keyboard
-    setTimeout(function() {
-        writeInput.dispatchEvent(new Event("focus")); 
+    setTimeout(function(){
+        writeInput.focus(); 
     }, 1000);
 
     // initialize global variables about stats
@@ -80,7 +80,7 @@ document.querySelector(".clic-zone").addEventListener("click",()=>{
 // scroll case is called by use-keyboard-input, automatically scroll use-content-text
 
 // on desktop case
-writeInput.addEventListener("scroll",()=>{
+writeInput.addEventListener("scroll",function(){
     placeHolderInput.scrollTop = writeInput.scrollTop;
 });
 
@@ -106,7 +106,7 @@ writeInput.addEventListener('touchmove', function(e) {
  * ------------------------------------------------- */
 
 // detect which key is on keyup or keydown, you can call it like is_key_down('code of the key')
-const is_key_down = (() => {
+const is_key_down = (function(){
     const state = {};
 
     window.addEventListener('keyup', (e) => state[e.key] = false);
@@ -114,3 +114,25 @@ const is_key_down = (() => {
 
     return (key) => state.hasOwnProperty(key) && state[key] || false;
 })();
+
+
+
+/* about modal
+ * ------------------------------------------------- */
+
+// When the user clicks the button, open the modal 
+btnClientServer.onclick = function() {
+    modal.style.display = "block";
+}
+  
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
