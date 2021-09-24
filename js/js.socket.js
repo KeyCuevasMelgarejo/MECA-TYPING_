@@ -1,4 +1,4 @@
-const socket = io('http://localhost:3000',{
+const socket = io('https://mecatyping.herokuapp.com',{
     reconnection:true,
     reconnectionDelay: 4000,
     reconnectionDelayMax: 8000,
