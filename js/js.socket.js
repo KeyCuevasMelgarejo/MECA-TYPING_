@@ -1,4 +1,7 @@
-const socket = io('https://mecatyping.herokuapp.com',{
+/* general
+ * ------------------------------------------------- */
+
+const socket = io('http://localhost:3000',{
     reconnection:true,
     reconnectionDelay: 4000,
     reconnectionDelayMax: 8000,
@@ -25,6 +28,7 @@ socket.on('connect', function() {
 
             timer=setTimeout(function() {
                 modalCaptcha.style.display="none";
+                document.getElementById("id-input-captcha").value="";
             }, 4000);
         }); 
 
@@ -67,7 +71,10 @@ socket.on('connect', function() {
                     document.querySelector(".modal-message > p").innerHTML = "Usted se encuentra dentro de la clase",
                     modalMessage.style.display = "inline-block",
 
-                    socket.emit("join-match", inputName.value, inputCodeSession.value)
+                    socket.emit("join-match", inputName.value, inputCodeSession.value),
+                    socket.on("wait",(data)=>{
+                        Text._fillContentByTeacher(data);
+                    })
                 ):(
                     inputName.value="",
                     inputCodeSession.value="",
@@ -89,6 +96,9 @@ socket.on('connect', function() {
             modalBody.style.opacity ="0.4";
             // enable visual modal captcha
             modalCaptcha.style.opacity ="1";
+
+            // avoid modalCaptcha style 'display' turns 'none'
+            clearTimeout(timer);
 
             // send a clic fake to activate mousedown 'clearTimeout()' to avoid desappear modal-captcha 
             // see captcha.js
@@ -141,5 +151,12 @@ socket.io.on("reconnect_failed", function() {
     btnClientServer.style.visibility = "hidden";
 });
 
-// disable thread for all, and enable on classroomview.js
-socket.off("join-new-student");
+
+
+/* about student class
+ * ------------------------------------------------- */
+
+// play evaluation for entire classroom
+socket.io.on("init",function(){
+
+});

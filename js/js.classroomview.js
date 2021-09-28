@@ -109,6 +109,13 @@ const ClassRoomView = {
                             button.classList.remove("target");
                         })
                         optionElement.classList.add("target");
+
+                        new Promise(resolve => {
+                            Text.reinit();
+                            setTimeout(() => resolve("done!"), 500)
+                        }).then(()=>{
+                            socket.emit("new",placeHolderInput.value,PIN);
+                        });
                     });
                     break;
                 case "init":
