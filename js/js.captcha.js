@@ -47,6 +47,7 @@ function Captcha() {
         });  
 
         pCaptcha.innerHTML="Ingrese los caracteres de la imagen superior:";
+        inputCaptcha.id = "id-input-captcha";
         inputCaptcha.type = "text";
         inputCaptcha.maxLength = 7;
     
@@ -75,9 +76,11 @@ async function ValidCaptcha(inputCaptcha) {
     
     if (string1 == string2) {
         // create 'nueva clase'
-        socket.emit("new-match", "PROFESOR");
+        socket.emit("new-match", "PROFESOR", placeHolderInput.value);
         // get code sesion
-        await socket.on("new-pin",function(data){
+        await socket.once("new-pin",function(data){
+            PIN = data;
+
             showFaIcon(".fa-chalkboard-teacher");
 
             // show new message on title
@@ -92,7 +95,7 @@ async function ValidCaptcha(inputCaptcha) {
             modalCaptcha.style.display = "none";
 
             // show message
-            document.querySelector(".modal-message > p").innerHTML = "Su código de sesión es: <strong>"+data+"</strong>";
+            document.querySelector(".modal-message > p").innerHTML = "Su código de sesión es: <strong>"+PIN+"</strong>";
             modalMessage.style.display = "inline-block";
 
             ClassRoomView.init();

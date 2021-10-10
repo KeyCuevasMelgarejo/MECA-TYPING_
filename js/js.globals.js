@@ -12,8 +12,9 @@ var btnClientServer = document.querySelector('.btn-client-server'), // for modal
   modalBody=document.querySelector(".modal-body"), // for socket.js captcha.js
   modalCaptcha=document.querySelector(".modal-captcha"), // for socket.js captcha.js
   modalMessage=document.querySelector(".modal-message"), // for socket.js captcha.js
-  timer; // for socket.js captcha.js
-
+  timer, // for socket.js captcha.js
+  PIN; // for socket.js
+  
 var counterTheme = 0,
   counterIdiom = 0; // for text.js
 

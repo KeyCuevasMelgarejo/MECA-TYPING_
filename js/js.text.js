@@ -23,10 +23,21 @@ const Text = {
                 case "quechua":counterIdiom=1;break;
                 case "aymara":counterIdiom=2;break;
             }
-            this._fillContent(idiom)
+            this._fillContentByMe(idiom);
         }else{
-            this._fillContent(this.idiomas.properties[counterIdiom]);
+            this._fillContentByMe(this.idiomas.properties[counterIdiom]);
         }
+    },
+
+    reinit() {
+        // fill use-content-text
+        let idiom = JSON.parse(localStorage.getItem('idiom'));
+        switch(idiom.name){
+            case "castellano":counterIdiom=0;break;
+            case "quechua":counterIdiom=1;break;
+            case "aymara":counterIdiom=2;break;
+        }
+        this._fillContentByMe(idiom);
     },
 
     // for characters
@@ -152,7 +163,7 @@ const Text = {
         counterIdiom++;
         counterIdiom = counterIdiom==3 ? 0 : counterIdiom;
         idiom=this.idiomas.properties[counterIdiom];
-        this._fillContent(idiom);
+        this._fillContentByMe(idiom);
         localStorage.setItem('idiom',JSON.stringify(idiom));
     },
 
@@ -334,7 +345,7 @@ const Text = {
         }
     },
 
-    async _fillContent(idiom){
+    async _fillContentByMe(idiom){
         let num,random;
 
         // initialize global variables about stats
@@ -395,6 +406,30 @@ const Text = {
             alerta.querySelector("div").innerHTML='<strong>¡Ups!</strong> Error al cargar el texto';
             alerta.style="display:block";
         }
+    },
+
+    _fillContentByTeacher(text){
+        console.log(text);
+        // initialize global variables about stats
+        error=0;
+        success=0;
+        
+        // clear write input
+        writeInput.value="";
+        writeInput.innerText="";
+
+        placeHolderInput.innerHTML = text;
+        numPalabras=text.length;
+
+        // remove pending keys colors
+        this.removeAllText(placeHolderInput);
+
+        // compare both textarea to show initial pending word
+        this.compareText(placeHolderInput, writeInput.value);
+
+        // restart mementos(undo) and save actual text content
+        mementos = [];
+        saveMemento();
     }
 };
 
