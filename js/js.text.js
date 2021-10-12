@@ -30,6 +30,10 @@ const Text = {
     },
 
     reinit() {
+        // appear clicZoneDiv
+        clicZoneDiv.classList.remove("hidden");
+        placeHolderInput.classList.remove("fadedOut");
+
         // fill use-content-text
         let idiom = JSON.parse(localStorage.getItem('idiom'));
         switch(idiom.name){
@@ -409,7 +413,10 @@ const Text = {
     },
 
     _fillContentByTeacher(text){
-        console.log(text);
+        // appear clicZoneDiv
+        clicZoneDiv.classList.remove("hidden");
+        placeHolderInput.classList.remove("fadedOut");
+        
         // initialize global variables about stats
         error=0;
         success=0;

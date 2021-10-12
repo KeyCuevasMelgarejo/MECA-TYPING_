@@ -1,5 +1,6 @@
-var placeHolderInput = document.querySelector('.use-content-text'),
+var clicZoneDiv = document.querySelector(".clic-zone"),
   writeInput = document.querySelector('.use-keyboard-input'),
+  placeHolderInput = document.querySelector('.use-content-text'),
   alerta = document.getElementById('alert'),
   isMobile = false; // for keyboard.js
 
@@ -32,6 +33,7 @@ function saveMemento() {
 
 /* about card client-server
  * ------------------------------------------------- */
+// show and hide icons about btn-client.server on depends of status
 function showFaIcon(faIcon){
   document.querySelectorAll(".btn-client-server i").forEach(element => {
     element.style.display = "none";

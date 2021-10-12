@@ -1,3 +1,5 @@
+// about teacher
+
 const ClassRoomView = {
     elements: {
         main: null,

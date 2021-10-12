@@ -19,6 +19,33 @@ writeInput.oncopy = function(e) {
 
 
 
+/* about scrolling
+ * ------------------------------------------------- */
+// scroll case is called by use-keyboard-input, automatically scroll use-content-text
+
+// on desktop case
+writeInput.addEventListener("scroll",function(){
+    placeHolderInput.scrollTop = writeInput.scrollTop;
+});
+
+// on mobile case
+writeInput.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+
+    // Invoke appropriate handler depending on the
+    // number of touch points.
+    switch (e.touches.length) {
+        case 1: 
+            writeInput.scrollTop = e.touches[0].clientY; 
+            placeHolderInput.scrollTop = writeInput.scrollTop; 
+            break;
+        default: 
+            console.log("Not supported"); break;
+    }
+}, false);
+
+
+
 /* about alert
  * ------------------------------------------------- */
 
@@ -60,8 +87,8 @@ window.addEventListener("click",function(e){
 });
 
 // fadedOut use-content-input when clicking on clic-zone 
-document.querySelector(".clic-zone").addEventListener("click",function(){
-    document.querySelector(".clic-zone").classList.add("hidden");
+clicZoneDiv.addEventListener("click",function(){
+    clicZoneDiv.classList.add("hidden");
     placeHolderInput.classList.add("fadedOut");
 
     // when press a key, show keyboard
@@ -72,33 +99,6 @@ document.querySelector(".clic-zone").addEventListener("click",function(){
     // initialize global variables about stats
     timeInit=moment();
 });
-
-
-
-/* about scrolling
- * ------------------------------------------------- */
-// scroll case is called by use-keyboard-input, automatically scroll use-content-text
-
-// on desktop case
-writeInput.addEventListener("scroll",function(){
-    placeHolderInput.scrollTop = writeInput.scrollTop;
-});
-
-// on mobile case
-writeInput.addEventListener('touchmove', function(e) {
-    e.preventDefault();
-
-    // Invoke appropriate handler depending on the
-    // number of touch points.
-    switch (e.touches.length) {
-        case 1: 
-            writeInput.scrollTop = e.touches[0].clientY; 
-            placeHolderInput.scrollTop = writeInput.scrollTop; 
-            break;
-        default: 
-            console.log("Not supported"); break;
-    }
-}, false);
 
 
 
