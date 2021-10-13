@@ -413,10 +413,17 @@ const Text = {
     },
 
     _fillContentByTeacher(text){
+        // show splashWait div
+        let template = document.getElementById('id-splash-wait');
+        let templateContent = template.content;
+        document.body.appendChild(templateContent);
+        let splashWait = document.querySelector(".splashWait");
+        splashWait.classList.add("splashWait--showen");
+
         // appear clicZoneDiv
         clicZoneDiv.classList.remove("hidden");
         placeHolderInput.classList.remove("fadedOut");
-        
+
         // initialize global variables about stats
         error=0;
         success=0;
