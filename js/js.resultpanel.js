@@ -47,24 +47,17 @@ const ResultPanel = {
 
             switch (item) {
                 case "time":
-                    let timeFinish = moment(),
-                        timeTotal=timeFinish.diff(timeInit), // diff yields milliseconds
-                        timeUsed=moment.duration(timeTotal),
-	
-                        sg=timeUsed.seconds(), //seconds 	
-                        mn=timeUsed.minutes(), //minutes 	
-                        ho=timeUsed.hours(); //hours 	
-                        
-                    //add '0' on result less than 10			 
-                    if(ho<10){ho="0"+ho;} 
-                    if(sg<10){sg="0"+sg;} 
-                    if(mn<10){mn="0"+mn;} 
+                    // add plugin duration.min.js to dayjs
+                    dayjs.extend(dayjs_plugin_duration);
+                    
+                    let timeTotal=timeFinish.diff(timeInit), // diff yields milliseconds
+                        timeUsed=dayjs.duration(timeTotal).format('HH:mm:ss');
 
                     itemElement.classList.add("resultpanel__item--row");
                     itemElement.innerHTML = createIconHTML("update")+"&nbsp;TIEMPO UTILIZADO:";
 
                     contentItem.classList.add("resultpanel__item--content");
-                    contentItem.innerHTML = ho+":"+mn+":"+sg;
+                    contentItem.innerHTML = timeUsed;
 
                     itemElement.appendChild(contentItem);
                     leftContainer.appendChild(itemElement);

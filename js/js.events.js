@@ -97,7 +97,7 @@ clicZoneDiv.addEventListener("click",function(){
     }, 1000);
 
     // initialize global variables about stats
-    timeInit=moment();
+    timeInit=dayjs();
 });
 
 

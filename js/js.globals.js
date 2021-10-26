@@ -14,7 +14,8 @@ var btnClientServer = document.querySelector('.btn-client-server'), // for modal
   modalCaptcha=document.querySelector(".modal-captcha"), // for socket.js captcha.js
   modalMessage=document.querySelector(".modal-message"), // for socket.js captcha.js
   timer, // for socket.js captcha.js
-  PIN; // for socket.js
+  PIN, // for socket.js
+  splashWait; // for text.js socket.js
   
 var counterTheme = 0,
   counterIdiom = 0; // for text.js
@@ -22,6 +23,7 @@ var counterTheme = 0,
 // for resultpanel.js, present on text.js too
 var numPalabras=0,
   timeInit,
+  timeFinish,
   error=0,
   success=0,
   book=[];

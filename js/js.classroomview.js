@@ -112,6 +112,7 @@ const ClassRoomView = {
                         })
                         optionElement.classList.add("target");
 
+                        // send order to BACKEND
                         new Promise(resolve => {
                             Text.reinit();
                             setTimeout(() => resolve("done!"), 500)
@@ -133,6 +134,9 @@ const ClassRoomView = {
                             button.classList.remove("target");
                         })
                         optionElement.classList.add("target");
+
+                        // send order to BACKEND
+                        socket.emit("play",PIN);
                     });
                     break;
                 case "pause":

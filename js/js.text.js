@@ -85,6 +85,7 @@ const Text = {
                     setTimeout(function() {
                         Keyboard.close();
                         placeHolderInput.classList.toggle("sucess");
+                        timeFinish = dayjs();
                         ResultPanel.init();
                     }, 200);
                 }
@@ -416,8 +417,10 @@ const Text = {
         // show splashWait div
         let template = document.getElementById('id-splash-wait');
         let templateContent = template.content;
+
         document.body.appendChild(templateContent);
-        let splashWait = document.querySelector(".splashWait");
+
+        splashWait = document.querySelector(".splashWait");
         splashWait.classList.add("splashWait--showen");
 
         // appear clicZoneDiv
@@ -455,5 +458,5 @@ document.querySelector('#switch-idiom').onchange = function () {
     Text.changeIdiom();
 
     // initialize global variables about stats
-    timeInit=moment();
+    timeInit=dayjs();
 };

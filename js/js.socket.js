@@ -74,6 +74,9 @@ socket.on('connect', function() {
                     socket.emit("join-match", inputName.value, inputCodeSession.value),
                     socket.on("wait",(data)=>{
                         Text._fillContentByTeacher(data);
+                    }),
+                    socket.on("init",()=>{
+                        splashWait.classList.remove("splashWait--showen");
                     })
                 ):(
                     inputName.value="",
@@ -149,14 +152,4 @@ socket.io.on("reconnect", function() {
 socket.io.on("reconnect_failed", function() {
     document.querySelector(".modal-message > p").innerHTML = "No se pudo reconectar al servicio :(";
     btnClientServer.style.visibility = "hidden";
-});
-
-
-
-/* about student class
- * ------------------------------------------------- */
-
-// play evaluation for entire classroom
-socket.io.on("init",function(){
-
 });
