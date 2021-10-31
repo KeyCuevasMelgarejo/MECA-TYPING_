@@ -24,8 +24,12 @@ var counterTheme = 0,
 var numPalabras=0,
   timeInit,
   timeFinish,
+  timePause=0,
+  pauseDuration=0, // on milliseconds
+  timeUsed, // total
   error=0,
   success=0,
+  qualification,
   book=[];
 
 var mementos = [];

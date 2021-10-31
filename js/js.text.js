@@ -87,6 +87,11 @@ const Text = {
                         placeHolderInput.classList.toggle("sucess");
                         timeFinish = dayjs();
                         ResultPanel.init();
+
+                        // on the case is connected to classroom
+                        if(PIN!==undefined && PIN!==null){
+                            socket.emit("resume", timeUsed, qualification, PIN);
+                        }
                     }, 200);
                 }
             }else{
