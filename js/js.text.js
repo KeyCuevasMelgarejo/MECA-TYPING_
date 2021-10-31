@@ -30,6 +30,10 @@ const Text = {
     },
 
     reinit() {
+        // appear clicZoneDiv
+        clicZoneDiv.classList.remove("hidden");
+        placeHolderInput.classList.remove("fadedOut");
+
         // fill use-content-text
         let idiom = JSON.parse(localStorage.getItem('idiom'));
         switch(idiom.name){
@@ -81,7 +85,13 @@ const Text = {
                     setTimeout(function() {
                         Keyboard.close();
                         placeHolderInput.classList.toggle("sucess");
+                        timeFinish = dayjs();
                         ResultPanel.init();
+
+                        // on the case is connected to classroom
+                        if(PIN!==undefined && PIN!==null){
+                            socket.emit("resume", timeUsed, qualification, PIN);
+                        }
                     }, 200);
                 }
             }else{
@@ -409,7 +419,19 @@ const Text = {
     },
 
     _fillContentByTeacher(text){
-        console.log(text);
+        // show splashWait div
+        let template = document.getElementById('id-splash-wait');
+        let templateContent = template.content;
+
+        document.body.appendChild(templateContent);
+
+        splashWait = document.querySelector(".splashWait");
+        splashWait.classList.add("splashWait--showen");
+
+        // appear clicZoneDiv
+        clicZoneDiv.classList.remove("hidden");
+        placeHolderInput.classList.remove("fadedOut");
+
         // initialize global variables about stats
         error=0;
         success=0;
@@ -441,5 +463,5 @@ document.querySelector('#switch-idiom').onchange = function () {
     Text.changeIdiom();
 
     // initialize global variables about stats
-    timeInit=moment();
+    timeInit=dayjs();
 };

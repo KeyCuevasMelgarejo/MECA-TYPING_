@@ -1,3 +1,5 @@
+// about teacher
+
 const ClassRoomView = {
     elements: {
         main: null,
@@ -78,6 +80,14 @@ const ClassRoomView = {
             }
         });
 
+        socket.on("resume", function(data) {
+            let studentAttr;
+            data.forEach(students=>{
+                studentAttr= Object.values(students)[0];
+                document.getElementById(Object.keys(students)).innerHTML=studentAttr.name+" [ Tiempo: "+studentAttr.time+" - Nota: "+studentAttr.qualification+" ]";
+            });
+        });
+
         return studentsContainer;
     },
 
@@ -110,6 +120,7 @@ const ClassRoomView = {
                         })
                         optionElement.classList.add("target");
 
+                        // send order to BACKEND
                         new Promise(resolve => {
                             Text.reinit();
                             setTimeout(() => resolve("done!"), 500)
@@ -131,6 +142,9 @@ const ClassRoomView = {
                             button.classList.remove("target");
                         })
                         optionElement.classList.add("target");
+
+                        // send order to BACKEND
+                        socket.emit("init",PIN);
                     });
                     break;
                 case "pause":
@@ -143,6 +157,9 @@ const ClassRoomView = {
                             button.classList.remove("target");
                         })
                         optionElement.classList.add("target");
+
+                        // send order to BACKEND
+                        socket.emit("pause",PIN);
                     });
                     break;
                 case "stop":
@@ -159,6 +176,9 @@ const ClassRoomView = {
                             button.classList.remove("target");
                         })
                         optionElement.classList.add("target");
+
+                        // send order to BACKEND
+                        socket.emit("stop",PIN);
                     });
                     break;
             }

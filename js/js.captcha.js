@@ -49,6 +49,7 @@ function Captcha() {
         pCaptcha.innerHTML="Ingrese los caracteres de la imagen superior:";
         inputCaptcha.id = "id-input-captcha";
         inputCaptcha.type = "text";
+        inputCaptcha.autocomplete="off";
         inputCaptcha.maxLength = 7;
     
         check.type = "submit";
@@ -76,7 +77,7 @@ async function ValidCaptcha(inputCaptcha) {
     
     if (string1 == string2) {
         // create 'nueva clase'
-        socket.emit("new-match", "PROFESOR", placeHolderInput.value);
+        socket.emit("new-match", placeHolderInput.value);
         // get code sesion
         await socket.once("new-pin",function(data){
             PIN = data;
