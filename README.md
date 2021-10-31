@@ -32,7 +32,15 @@ El programa te indica la tecla que debes presionar y los dedos que debes usar se
 ### 2. Observa tus resultados
 Al finalizar, el programa te indica un estadistico de tu desempeño concerniente a la prácticas realizadas. 
 ### 3. Accede a la lectura
-En el panel donde se muestran tus resultados, también se indicará el título y la imagen de la obra cuyo texto acabas de tipear. Además, un botón que, al darle clic, te llevará a un apartado especial donde podrás hacer lectura completa de la obra. (pendiente)
+En el panel donde se muestran tus resultados, también se indicará el título y la imagen de la obra cuyo texto acabas de tipear. Además, un botón que, al darle clic, te llevará a un apartado especial donde podrás hacer lectura completa de la obra.
+### 4. Únete a una clase (por culminar)
+Puedes crear una clase (adquieres el rol de Profesor) o unirte a una (adquieres el rol de Alumno). En el caso del rol de Profesor, podrás crear un código de sesión con el cual los alumnos podrán acceder a dicha clase, participar en la sesión y al final de esta, podrás ver el resultado de cada alumno desde este único panel. Asi mismo, se proveen las opciones de:
+* Nueva Prueba - el cual realiza un cambio del texto que tendrán los alumnos en la prueba. Todos los alumnos unidos a la clase tienen un mismo texto designado sólo por el profesor.
+* Iniciar - opción que habilita la escritura y da inicio a la prueba de mecanografía para todo el alumnado de la clase.
+* Pausar - inhabilita la escritura y pausa el tiempo de la prueba de mecanografía para todo el alumnado de la clase hasta que el Profesor vueva a usar la opción Iniciar.
+* Detener - opción que detiene forzadamente la prueba de mecanografía para todo el alumnado de la clase.
+
+Para esta funcionalidad, por el lado del **BACKEND**, se levantó un server desarrollado en **NODE JS** el cual se alojó en la siguiente dirección [[link](https://mecatyping.herokuapp.com)] cuyo código se encuentra en un repositorio privado. Puedes acceder a esa dirección para consumir los servicios, aún asi, todas las funcionalidades de los puntos 1,2 y 3, del proyecto compartido en este repositorio, funcionarán con total normalidad; el punto 4 (Únete a una clase) es un adicional, y su exclusión,no afectaría el funcionamiento de los puntos anteriormente mencionados.
 
 # Nota
 El proyecto está enfocado a la práctica de mecanografía especialmente en una computadora o laptop. Por ello, se generaron los ejecutables dependiendo el entorno en el que estés trabajando; claro que también, con el [link](https://keycuevasmelgarejo.github.io/MECA-TYPING_/) que se ha proporcionado, puedes abrir el proyecto en cualquier navegador.
