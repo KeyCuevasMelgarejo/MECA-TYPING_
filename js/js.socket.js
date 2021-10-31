@@ -1,7 +1,7 @@
 /* general
  * ------------------------------------------------- */
 
-const socket = io('http://localhost:3000',{
+const socket = io('https://mecatyping.herokuapp.com',{ //http://localhost:3000',{
     reconnection:true,
     reconnectionDelay: 4000,
     reconnectionDelayMax: 8000,
@@ -54,6 +54,7 @@ socket.on('connect', function() {
             btnJoinToSession.style.pointerEvents = "none";
             await socket.on("PIN-checked",function(data){
                 data?(
+                    PIN=inputCodeSession.value,
                     showFaIcon(".fa-users"),
 
                     // show new message on title
@@ -72,8 +73,32 @@ socket.on('connect', function() {
                     modalMessage.style.display = "inline-block",
 
                     socket.emit("join-match", inputName.value, inputCodeSession.value),
-                    socket.on("wait",(data)=>{
+                    socket.on("wait",(data)=>{ // about new
                         Text._fillContentByTeacher(data);
+                    }),
+                    socket.on("play",()=>{ // about init
+                        if(timePause!=0){
+                            let continues=dayjs();
+
+                            // add plugin duration.min.js to dayjs
+                            dayjs.extend(dayjs_plugin_duration);
+
+                            pauseDuration = dayjs.duration(continues.diff(timePause))+pauseDuration;  
+                        }
+                        splashWait.classList.remove("splashWait--showen");
+                    }),
+                    socket.on("pause",()=>{ //about pause
+                        timePause = dayjs();
+                        splashWait.classList.add("splashWait--showen");
+                    }),
+                    socket.on("stop",()=>{ //about stop
+                        Keyboard.close();
+                        if(timeInit===undefined){
+                            timeInit = dayjs();
+                        }
+                        timeFinish = dayjs();
+                        ResultPanel.init();
+                        socket.emit("resume", timeUsed, qualification, PIN);
                     })
                 ):(
                     inputName.value="",
@@ -149,14 +174,4 @@ socket.io.on("reconnect", function() {
 socket.io.on("reconnect_failed", function() {
     document.querySelector(".modal-message > p").innerHTML = "No se pudo reconectar al servicio :(";
     btnClientServer.style.visibility = "hidden";
-});
-
-
-
-/* about student class
- * ------------------------------------------------- */
-
-// play evaluation for entire classroom
-socket.io.on("init",function(){
-
 });

@@ -1,5 +1,6 @@
-var placeHolderInput = document.querySelector('.use-content-text'),
+var clicZoneDiv = document.querySelector(".clic-zone"),
   writeInput = document.querySelector('.use-keyboard-input'),
+  placeHolderInput = document.querySelector('.use-content-text'),
   alerta = document.getElementById('alert'),
   isMobile = false; // for keyboard.js
 
@@ -13,7 +14,8 @@ var btnClientServer = document.querySelector('.btn-client-server'), // for modal
   modalCaptcha=document.querySelector(".modal-captcha"), // for socket.js captcha.js
   modalMessage=document.querySelector(".modal-message"), // for socket.js captcha.js
   timer, // for socket.js captcha.js
-  PIN; // for socket.js
+  PIN, // for socket.js
+  splashWait; // for text.js socket.js
   
 var counterTheme = 0,
   counterIdiom = 0; // for text.js
@@ -21,8 +23,13 @@ var counterTheme = 0,
 // for resultpanel.js, present on text.js too
 var numPalabras=0,
   timeInit,
+  timeFinish,
+  timePause=0,
+  pauseDuration=0, // on milliseconds
+  timeUsed, // total
   error=0,
   success=0,
+  qualification,
   book=[];
 
 var mementos = [];
@@ -32,6 +39,7 @@ function saveMemento() {
 
 /* about card client-server
  * ------------------------------------------------- */
+// show and hide icons about btn-client.server on depends of status
 function showFaIcon(faIcon){
   document.querySelectorAll(".btn-client-server i").forEach(element => {
     element.style.display = "none";

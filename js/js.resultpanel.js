@@ -47,24 +47,18 @@ const ResultPanel = {
 
             switch (item) {
                 case "time":
-                    let timeFinish = moment(),
-                        timeTotal=timeFinish.diff(timeInit), // diff yields milliseconds
-                        timeUsed=moment.duration(timeTotal),
-	
-                        sg=timeUsed.seconds(), //seconds 	
-                        mn=timeUsed.minutes(), //minutes 	
-                        ho=timeUsed.hours(); //hours 	
-                        
-                    //add '0' on result less than 10			 
-                    if(ho<10){ho="0"+ho;} 
-                    if(sg<10){sg="0"+sg;} 
-                    if(mn<10){mn="0"+mn;} 
+                    // add plugin duration.min.js to dayjs
+                    dayjs.extend(dayjs_plugin_duration);
+
+                    let timeTotal=timeFinish.diff(timeInit); // diff yields milliseconds
+                    timeTotal=timeTotal-pauseDuration; 
+                    timeUsed=dayjs.duration(timeTotal).format('HH:mm:ss');
 
                     itemElement.classList.add("resultpanel__item--row");
                     itemElement.innerHTML = createIconHTML("update")+"&nbsp;TIEMPO UTILIZADO:";
 
                     contentItem.classList.add("resultpanel__item--content");
-                    contentItem.innerHTML = ho+":"+mn+":"+sg;
+                    contentItem.innerHTML = timeUsed;
 
                     itemElement.appendChild(contentItem);
                     leftContainer.appendChild(itemElement);
@@ -90,8 +84,15 @@ const ResultPanel = {
                     leftContainer.appendChild(itemElement);
                     break;
                 case "qualification":
-                    let sobreCien=(((numPalabras)*100)/(success+error));
-                    let sobreVeinte=(sobreCien*20)/100;
+                    if((success+error)>0){
+                        let sobreCien,sobreVeinte;
+                        sobreCien=(((numPalabras)*100)/(success+error));
+                        sobreVeinte=(sobreCien*20)/100;
+                        qualification=sobreVeinte.toFixed(2);
+                    }else{
+                        sobreCien=0;
+                        qualification=0;
+                    }
 
                     itemElement.classList.add("resultpanel__item--row");
                     if(success>error){
@@ -100,7 +101,7 @@ const ResultPanel = {
                         itemElement.innerHTML = createIconHTML("sentiment_very_dissatisfied")+"&nbsp;CALIFICACIÓN ("+sobreCien.toFixed(2)+"%) :";
                     }
                     contentItem.classList.add("resultpanel__item--content");
-                    contentItem.innerHTML = sobreVeinte.toFixed(2);
+                    contentItem.innerHTML = qualification;
 
                     itemElement.appendChild(contentItem);
                     leftContainer.appendChild(itemElement);
@@ -123,7 +124,14 @@ const ResultPanel = {
                     btnReadBook.innerHTML = '<i class="material-icons-outlined">auto_stories</i> Leer Texto Completo';
 
                     btnPracticeAgain.classList.add("btn-book");
-                    btnPracticeAgain.onclick = function() {history.go(0);}; // refresh page
+                    btnPracticeAgain.onclick = function() {
+                        // on the case is connected to classroom
+                        PIN!==undefined?(
+                            document.body.removeChild(document.querySelector(".resultpanel")) // just remove or close resultpanel
+                        ):(
+                            history.go(0) // refresh page
+                        );
+                    };
                     btnPracticeAgain.innerHTML = '<i class="material-icons-outlined">keyboard_hide</i> Seguir Practicando';
 
                     // add elements to DOM
