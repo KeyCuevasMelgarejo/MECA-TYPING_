@@ -1,6 +1,3 @@
-```bash
-# Proyecto en curso...
-```
 # Meca Typing - Descripcion
 Practica y mejora tu escritura con el teclado.
  
@@ -33,7 +30,7 @@ El programa te indica la tecla que debes presionar y los dedos que debes usar se
 Al finalizar, el programa te indica un estadistico de tu desempeño concerniente a la prácticas realizadas. 
 ### 3. Accede a la lectura
 En el panel donde se muestran tus resultados, también se indicará el título y la imagen de la obra cuyo texto acabas de tipear. Además, un botón que, al darle clic, te llevará a un apartado especial donde podrás hacer lectura completa de la obra.
-### 4. Únete a una clase (por culminar)
+### 4. Únete a una clase
 Puedes crear una clase (adquieres el rol de Profesor) o unirte a una (adquieres el rol de Alumno). En el caso del rol de Profesor, podrás crear un código de sesión con el cual los alumnos podrán acceder a dicha clase, participar en la sesión y al final de esta, podrás ver el resultado de cada alumno desde este único panel. Asi mismo, se proveen las opciones de:
 * Nueva Prueba - el cual realiza un cambio del texto que tendrán los alumnos en la prueba. Todos los alumnos unidos a la clase tienen un mismo texto designado sólo por el profesor.
 * Iniciar - opción que habilita la escritura y da inicio a la prueba de mecanografía para todo el alumnado de la clase.
