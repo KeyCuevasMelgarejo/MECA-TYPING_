@@ -84,8 +84,9 @@ const ResultPanel = {
                     leftContainer.appendChild(itemElement);
                     break;
                 case "qualification":
+                    let sobreCien;
                     if((success+error)>0){
-                        let sobreCien,sobreVeinte;
+                        let sobreVeinte;
                         sobreCien=(((numPalabras)*100)/(success+error));
                         sobreVeinte=(sobreCien*20)/100;
                         qualification=sobreVeinte.toFixed(2);
